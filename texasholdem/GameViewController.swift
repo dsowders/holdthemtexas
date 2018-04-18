@@ -58,33 +58,25 @@ class GameViewController: UIViewController {
 
     class Card: NSObject
     {
-        var name: Int
-        var suit: Int
+        var card: Int
+        
         
         // var image: UIImage
         init(name1: Int, suit1: Int)
         {
-            name.self = name1
-            suit.self = suit1
+            card.self = name1
+            
             
         }
         //2,3,4,5,6,7,8,9,10, Jack, Queen, King, Ace
         //2,3,4,5,6,7,8,9,10, 11, 12, 13, 14
-        func getName() -> Int
+        func setCard(num: Int)
         {
-            return name
+            card = num
         }
-        func setName(num: Int)
+        func getCard() -> Int
         {
-            name = num
-        }
-        func getSuit() -> Int
-        {
-            return suit
-        }
-        func setSuit(num: Int)
-        {
-            suit = num
+            return card
         }
     }
     var aceSpade : Card! = Card(name1: 0, suit1: 0)
