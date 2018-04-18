@@ -4,7 +4,7 @@
 //
 //  Created by yonk on 4/5/18.
 //  Copyright © 2018 kartikchrisderick. All rights reserved.
-// zimka comment
+// kartik comment
 
 import UIKit
 import SpriteKit
