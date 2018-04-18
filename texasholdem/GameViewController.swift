@@ -57,6 +57,7 @@ class GameViewController: UIViewController {
     {
         var name: Int
         var suit: Int
+        
         // var image: UIImage
         init(name1: Int, suit1: Int)
         {
@@ -92,15 +93,47 @@ class GameViewController: UIViewController {
     
     
     
-    func royalFlush()
+    func royalFlush(playerOne: Array<Any>, playerTwo: Array<Any>)
     {
         
     }
-    
     func straightFlush()
     {
     
     }
+    func fourOfAKind()
+    {
+    
+    }
+    func fullHouse()
+    {
+        
+    }
+    func flush()
+    {
+        
+    }
+    func straight()
+    {
+        
+    }
+    func threeOfAKind()
+    {
+        
+    }
+    func twoPair()
+    {
+        
+    }
+    func onePair()
+    {
+        
+    }
+    func highCard()
+    {
+        
+    }
+    
     
     
     
