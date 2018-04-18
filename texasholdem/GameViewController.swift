@@ -17,6 +17,9 @@ class GameViewController: UIViewController {
         
         var playerOne: [Card] = []
         var playerTwo: [Card] = []
+        var playerThree: [Card] = []
+        var playerFour: [Card] = []
+        
         
         if let view = self.view as! SKView? {
             // Load the SKScene from 'GameScene.sks'
@@ -55,14 +58,14 @@ class GameViewController: UIViewController {
 
     class Card: NSObject
     {
-        var name: Int
-        var suit: Int
+        var card: Int
+        
         
         // var image: UIImage
-        init(name1: Int, suit1: Int)
+        init(name1: Int)
         {
-            name.self = name1
-            suit.self = suit1
+            card.self = name1
+            
             
         }
         //2,3,4,5,6,7,8,9,10, Jack, Queen, King, Ace
@@ -73,24 +76,20 @@ class GameViewController: UIViewController {
         }
         func setName(num: Int)
         {
-            name = num
+            card = num
         }
-        func getSuit() -> Int
+        func getCard() -> Int
         {
-            return suit
-        }
-        func setSuit(num: Int)
-        {
-            suit = num
+            return card
         }
     }
-    var aceSpade : Card! = Card(name1: 0, suit1: 0)
-    var aceDia : Card! = Card(name1: 0, suit1: 0)
+    var aceSpade : Card! = Card(name1: 0)
+    var aceDia : Card! = Card(name1: 0)
     
     //how are we going to determine which one is the best
     //have an array for each player
     
-    
+    func createCard(int )
     
     func royalFlush(player: Array<Any>)
     {
@@ -98,7 +97,7 @@ class GameViewController: UIViewController {
     }
     func straightFlush(player: Array<Any>)
     {
-    
+        
     }
     func fourOfAKind(player: Array<Any>)
     {
