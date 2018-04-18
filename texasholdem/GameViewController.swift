@@ -17,6 +17,9 @@ class GameViewController: UIViewController {
         
         var playerOne: [Card] = []
         var playerTwo: [Card] = []
+        var playerThree: [Card] = []
+        var playerFour: [Card] = []
+        
         
         if let view = self.view as! SKView? {
             // Load the SKScene from 'GameScene.sks'
