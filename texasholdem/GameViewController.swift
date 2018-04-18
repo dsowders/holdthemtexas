@@ -91,9 +91,9 @@ class GameViewController: UIViewController {
     
     
     
-    func royalFlush()
+    func royalFlush(playerOne: Array<Any>, playerTwo: Array<Any>)
     {
-        
+        playerOne[0].getCard
     }
     
     func straightFlush()
