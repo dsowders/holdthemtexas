@@ -112,6 +112,26 @@ class GameViewController: UIViewController {
     {
         
     }
+    func straight()
+    {
+        
+    }
+    func threeOfAKind()
+    {
+        
+    }
+    func twoPair()
+    {
+        
+    }
+    func onePair()
+    {
+        
+    }
+    func highCard()
+    {
+        
+    }
     
     
     override var prefersStatusBarHidden: Bool {
