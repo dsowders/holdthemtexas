@@ -21,7 +21,9 @@ class GameViewController: UIViewController {
         var playerThree: [Card] = []
         var playerFour: [Card] = []
         
-        
+        var arrayOfUsedNums: [Int] = []
+        var tempNum = 52
+        for index in 1...5
         
         
         
