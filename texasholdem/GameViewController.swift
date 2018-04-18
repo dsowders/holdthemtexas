@@ -62,7 +62,7 @@ class GameViewController: UIViewController {
         
         
         // var image: UIImage
-        init(name1: Int, suit1: Int)
+        init(name1: Int)
         {
             card.self = name1
             
@@ -79,13 +79,13 @@ class GameViewController: UIViewController {
             return card
         }
     }
-    var aceSpade : Card! = Card(name1: 0, suit1: 0)
-    var aceDia : Card! = Card(name1: 0, suit1: 0)
+    var aceSpade : Card! = Card(name1: 0)
+    var aceDia : Card! = Card(name1: 0)
     
     //how are we going to determine which one is the best
     //have an array for each player
     
-    
+    func createCard(int )
     
     func royalFlush(player: Array<Any>)
     {
