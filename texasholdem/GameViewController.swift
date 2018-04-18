@@ -57,6 +57,7 @@ class GameViewController: UIViewController {
     {
         var name: Int
         var suit: Int
+        
         // var image: UIImage
         init(name1: Int, suit1: Int)
         {
@@ -95,11 +96,43 @@ class GameViewController: UIViewController {
     {
         
     }
-    
     func straightFlush()
     {
     
     }
+    func fourOfAKind()
+    {
+    
+    }
+    func fullHouse()
+    {
+        
+    }
+    func flush()
+    {
+        
+    }
+    func straight()
+    {
+        
+    }
+    func threeOfAKind()
+    {
+        
+    }
+    func twoPair()
+    {
+        
+    }
+    func onePair()
+    {
+        
+    }
+    func highCard()
+    {
+        
+    }
+    
     
     override var prefersStatusBarHidden: Bool {
         return true
