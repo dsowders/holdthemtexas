@@ -96,6 +96,23 @@ class GameViewController: UIViewController {
     {
         
     }
+    func straightFlush()
+    {
+    
+    }
+    func fourOfAKind()
+    {
+    
+    }
+    func fullHouse()
+    {
+        
+    }
+    func flush()
+    {
+        
+    }
+    
     
     override var prefersStatusBarHidden: Bool {
         return true
