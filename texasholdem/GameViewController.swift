@@ -96,39 +96,39 @@ class GameViewController: UIViewController {
     {
         
     }
-    func straightFlush()
+    func straightFlush(player: Array<Any>)
     {
     
     }
-    func fourOfAKind()
+    func fourOfAKind(player: Array<Any>)
     {
     
     }
-    func fullHouse()
+    func fullHouse(player: Array<Any>)
     {
         
     }
-    func flush()
+    func flush(player: Array<Any>)
     {
         
     }
-    func straight()
+    func straight(player: Array<Any>)
     {
         
     }
-    func threeOfAKind()
+    func threeOfAKind(player: Array<Any>)
     {
         
     }
-    func twoPair()
+    func twoPair(player: Array<Any>)
     {
         
     }
-    func onePair()
+    func onePair(player: Array<Any>)
     {
         
     }
-    func highCard()
+    func highCard(player: Array<Any>)
     {
         
     }
