@@ -66,6 +66,7 @@ class GameViewController: UIViewController {
         }
         //2,3,4,5,6,7,8,9,10, Jack, Queen, King, Ace
         //2,3,4,5,6,7,8,9,10, 11, 12, 13, 14, 15
+        // 0 = spades, 1 = clubs, 2 = hearts, 3 = diamonds
         func getName() -> Int
         {
             return name
@@ -83,8 +84,8 @@ class GameViewController: UIViewController {
             suit = num
         }
     }
-    var aceSpade : Card! = Card(name1: 0, suit1: 0)
-    var aceDia : Card! = Card(name1: 0, suit1: 0)
+    var aceSpade : Card! = Card(name1: 15, suit1: 0)
+    var aceDia : Card! = Card(name1: 15, suit1: 3)
     
     //how are we going to determine which one is the best
     //have an array for each player
@@ -100,6 +101,8 @@ class GameViewController: UIViewController {
     {
     
     }
+    
+    
     
     override var prefersStatusBarHidden: Bool {
         return true
