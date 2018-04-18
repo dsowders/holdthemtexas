@@ -53,6 +53,7 @@ class GameViewController: UIViewController {
     {
         var name: Int
         var suit: Int
+        
         // var image: UIImage
         init(name1: Int, suit1: Int)
         {
@@ -89,6 +90,7 @@ class GameViewController: UIViewController {
     {
         
     }
+    
     override var prefersStatusBarHidden: Bool {
         return true
     }
