@@ -4,7 +4,7 @@
 //
 //  Created by yonk on 4/5/18.
 //  Copyright © 2018 kartikchrisderick. All rights reserved.
-// kartik comment
+//  comment
 
 import UIKit
 import SpriteKit
@@ -14,6 +14,9 @@ class GameViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        var playerOne: [Card] = []
+        var playerTwo: [Card] = []
         
         if let view = self.view as! SKView? {
             // Load the SKScene from 'GameScene.sks'
@@ -26,6 +29,7 @@ class GameViewController: UIViewController {
             }
             
             view.ignoresSiblingOrder = true
+            
             
             view.showsFPS = true
             view.showsNodeCount = true
@@ -61,7 +65,8 @@ class GameViewController: UIViewController {
             suit.self = suit1
             
         }
-        
+        //2,3,4,5,6,7,8,9,10, Jack, Queen, King, Ace
+        //2,3,4,5,6,7,8,9,10, 11, 12, 13, 14, 15
         func getName() -> Int
         {
             return name
@@ -84,6 +89,7 @@ class GameViewController: UIViewController {
     
     //how are we going to determine which one is the best
     //have an array for each player
+    
     
     
     func royalFlush()
