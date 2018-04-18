@@ -92,7 +92,7 @@ class GameViewController: UIViewController {
     
     
     
-    func royalFlush(playerOne: Array<Any>, playerTwo: Array<Any>)
+    func royalFlush(player: Array<Any>)
     {
         
     }
