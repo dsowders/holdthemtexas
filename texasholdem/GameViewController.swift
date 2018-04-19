@@ -105,14 +105,44 @@ class GameViewController: UIViewController {
             return suit1
         }
     }
-    var aceSpade : Card! = Card(name1: 0)
-    var aceDia : Card! = Card(name1: 0)
+    
     //this is what we are going to do 
     
     //how are we going to determine which one is the best
     //have an array for each player
     
     
+    func checkSuit(player: Array<Card>) -> Bool
+    {
+        var c = 0
+        var s = 0
+        var d = 0
+        var h = 0
+        for i in 0...6
+        {
+            if (player[i].getSuit() == 0)
+            {
+                c += 1
+            }
+            if (player[i].getSuit() == 0)
+            {
+                s += 1
+            }
+            if (player[i].getSuit() == 0)
+            {
+                d += 1
+            }
+            if (player[i].getSuit() == 0)
+            {
+                h += 1
+            }
+        }
+        if (c >= 5 || s >= 5 || d >= 5 || h >= 5)
+        {
+            return true
+        }
+        return false
+    }
     func royalFlush(player: Array<Any>) -> Int
     {
         
