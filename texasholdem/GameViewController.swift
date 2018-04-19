@@ -23,7 +23,7 @@ class GameViewController: UIViewController {
         
         var arrayOfUsedNums: [Int] = []
         var tempNum = 52
-        for index in 1...5
+        
         
         
         
