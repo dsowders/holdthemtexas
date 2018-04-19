@@ -81,6 +81,7 @@ class GameViewController: UIViewController {
     }
     var aceSpade : Card! = Card(name1: 0)
     var aceDia : Card! = Card(name1: 0)
+    //this is what we are going to do 
     
     //how are we going to determine which one is the best
     //have an array for each player
