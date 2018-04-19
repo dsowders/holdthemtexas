@@ -105,43 +105,43 @@ class GameViewController: UIViewController {
     //have an array for each player
     
     
-    func royalFlush(player: Array<Any>)
+    func royalFlush(player: Array<Any>) -> Int
     {
         
     }
-    func straightFlush(player: Array<Any>)
+    func straightFlush(player: Array<Any>) -> Int
     {
         
     }
-    func fourOfAKind(player: Array<Any>)
+    func fourOfAKind(player: Array<Any>) -> Int
     {
     
     }
-    func fullHouse(player: Array<Any>)
+    func fullHouse(player: Array<Any>) -> Int
     {
         
     }
-    func flush(player: Array<Any>)
+    func flush(player: Array<Any>) -> Int
     {
         
     }
-    func straight(player: Array<Any>)
+    func straight(player: Array<Any>) -> Int
     {
         
     }
-    func threeOfAKind(player: Array<Any>)
+    func threeOfAKind(player: Array<Any>) -> Int
     {
         
     }
-    func twoPair(player: Array<Any>)
+    func twoPair(player: Array<Any>) -> Int
     {
         
     }
-    func onePair(player: Array<Any>)
+    func onePair(player: Array<Any>) -> Int
     {
         
     }
-    func highCard(player: Array<Any>)
+    func highCard(player: Array<Any>) -> Int
     {
         
     }
