@@ -15,10 +15,19 @@ class GameViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        var board: [Card] = []
         var playerOne: [Card] = []
         var playerTwo: [Card] = []
         var playerThree: [Card] = []
         var playerFour: [Card] = []
+        
+        var arrayOfUsedNums: [Int] = []
+        var tempNum = 52
+        for index in 1...5
+        
+        
+        
+        
         
         
         if let view = self.view as! SKView? {
@@ -58,25 +67,36 @@ class GameViewController: UIViewController {
 
     class Card: NSObject
     {
-        var card: Int
+        var name1: Int
+        var suit1: Int
         
         
         // var image: UIImage
-        init(name1: Int)
+        //0,1,2,3,4,5,6,7,8...50,51
+        //twoOfClubs,twoOfSpades,twoOfDiamonds,twoOfHearts,threeOfClubs,threeOfSpades,threeOfDiamonds,threeOfHearts
+        //fourOfClubs...aceOfDiamonds,aceOfHearts
+        init(numb: Int)
         {
-            card.self = name1
-            
-            
+            self.name1 = ((numb / 4) + 2)
+            self.suit1 = (numb % 4)
         }
         //2,3,4,5,6,7,8,9,10, Jack, Queen, King, Ace
         //2,3,4,5,6,7,8,9,10, 11, 12, 13, 14
-        func setCard(num: Int)
+        //these are the names^^
+        func getName() -> Int
         {
-            card = num
+            return name1
         }
-        func getCard() -> Int
+        func setName(num: Int)
         {
-            return card
+            name1 = num
+        }
+        //clubs, spades, diamonds, hearts
+        //0,1,2,3
+        //these are the suits^^
+        func getSuit() -> Int
+        {
+            return suit1
         }
     }
     var aceSpade : Card! = Card(name1: 0)
@@ -86,7 +106,6 @@ class GameViewController: UIViewController {
     //how are we going to determine which one is the best
     //have an array for each player
     
-    func createCard(int )
     
     func royalFlush(player: Array<Any>)
     {
