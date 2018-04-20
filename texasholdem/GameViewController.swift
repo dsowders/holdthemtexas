@@ -9,21 +9,52 @@
 import UIKit
 import SpriteKit
 import GameplayKit
+var arrayNumbers: [Int] = [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51]
 
 class GameViewController: UIViewController {
 
+    func checkForNegative(num: Int, arr: Array<Int>) -> Bool
+    {
+        if(arr[num] == -1)
+        {
+            return true
+        }
+        return false
+    }
+    func generateRandomNumber() -> Int
+    {
+        var num = Int(arc4random_uniform(52))
+        
+        if(arrayNumbers[num] == -1)
+        {
+            return generateRandomNumber()
+        }
+        else
+        {
+            arrayNumbers[num] = -1
+        }
+        return num
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        //0 and 1 are the players cards and 2 to 6 are the boards card.
         var board: [Card] = []
         var playerOne: [Card] = []
         var playerTwo: [Card] = []
         var playerThree: [Card] = []
         var playerFour: [Card] = []
         
-        var arrayNumbers: [Int] = [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51]
-        var tempNum = 52
+        var playerOneCardOne : Card! = Card(genearteRandomNumber())
+        var playerOneCardTwo : Card! = Card(generateRandomNumber())
         
+       playerOne[] = [playerOneCardOne,playerTwoCardTwo, board[0], board[1],board[2], board[3], board[4]]
+        
+        //we are going to use this array to check what cards have been randomly generated.
+        //set the position that we have used to negative one. check on whether or not the value is negative.
+        
+        var tempNum = 52
         
         
         
@@ -47,6 +78,7 @@ class GameViewController: UIViewController {
             view.showsNodeCount = true
         }
     }
+    
 
     override var shouldAutorotate: Bool {
         return true
@@ -60,7 +92,7 @@ class GameViewController: UIViewController {
         }
     }
 
-   
+    
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -105,8 +137,7 @@ class GameViewController: UIViewController {
             return suit1
         }
     }
-    var aceSpade : Card! = Card(name1: 0)
-    var aceDia : Card! = Card(name1: 0)
+   
     //this is what we are going to do 
     
     //how are we going to determine which one is the best
