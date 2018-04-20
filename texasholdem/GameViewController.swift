@@ -58,15 +58,8 @@ class GameViewController: UIViewController {
         var playerFour: [Card] = [newCard(num: generateRandomNumber()), newCard(num: generateRandomNumber()), board[0],board[1],board[2],board[3],board[4]]
         
         //we are going to use this array to check what cards have been randomly generated.
-        //set the position that we have used to negative one. check on whether or not the value is negative.
-        
-        var tempNum = 52
-        
-        
-        
-        
-        
-        
+        //set the position that we have used to negative one. check on whether or not the value is negativ
+
         if let view = self.view as! SKView? {
             // Load the SKScene from 'GameScene.sks'
             if let scene = SKScene(fileNamed: "GameScene") {
