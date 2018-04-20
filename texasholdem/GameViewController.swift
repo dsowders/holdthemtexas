@@ -36,20 +36,27 @@ class GameViewController: UIViewController {
         return num
     }
     
+    func newCard(num : Int) -> Card
+    {
+        var newCard : Card = Card(numb: num)
+        return newCard
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         //0 and 1 are the players cards and 2 to 6 are the boards card.
-        var board: [Card] = []
-        var playerOne: [Card] = []
+       
+        
+        var board: [Card] = [newCard(generateRandomNumber()), newCard(generateRandomNumber()), newCard(generateRandomNumber()), newCard(generateRandomNumber()), newCard(generateRandomNumber())]
+        
         var playerTwo: [Card] = []
         var playerThree: [Card] = []
         var playerFour: [Card] = []
         
-        var playerOneCardOne : Card! = Card(genearteRandomNumber())
-        var playerOneCardTwo : Card! = Card(generateRandomNumber())
         
-       playerOne[] = [playerOneCardOne,playerTwoCardTwo, board[0], board[1],board[2], board[3], board[4]]
+        var playerOne: [Card] = [newCard(generateRandomNumber()), newCard(generateRandomNumber()), board[0], board[1], board[2], board[3], board[4]]
+        
         
         //we are going to use this array to check what cards have been randomly generated.
         //set the position that we have used to negative one. check on whether or not the value is negative.
