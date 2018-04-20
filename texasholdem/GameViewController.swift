@@ -155,15 +155,15 @@ class GameViewController: UIViewController {
             {
                 c += 1
             }
-            if (player[i].getSuit() == 0)
+            if (player[i].getSuit() == 1)
             {
                 s += 1
             }
-            if (player[i].getSuit() == 0)
+            if (player[i].getSuit() == 2)
             {
                 d += 1
             }
-            if (player[i].getSuit() == 0)
+            if (player[i].getSuit() == 3)
             {
                 h += 1
             }
