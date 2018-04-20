@@ -48,15 +48,14 @@ class GameViewController: UIViewController {
         //0 and 1 are the players cards and 2 to 6 are the boards card.
        
         
-        var board: [Card] = [newCard(generateRandomNumber()), newCard(generateRandomNumber()), newCard(generateRandomNumber()), newCard(generateRandomNumber()), newCard(generateRandomNumber())]
-        
-        var playerTwo: [Card] = []
-        var playerThree: [Card] = []
-        var playerFour: [Card] = []
+        var board: [Card] = [newCard(num: generateRandomNumber()), newCard(num: generateRandomNumber()), newCard(num: generateRandomNumber()), newCard(num: generateRandomNumber()), newCard(num: generateRandomNumber())]
         
         
-        var playerOne: [Card] = [newCard(generateRandomNumber()), newCard(generateRandomNumber()), board[0], board[1], board[2], board[3], board[4]]
+        var playerOne: [Card] = [newCard(num: generateRandomNumber()), newCard(num: generateRandomNumber()), board[0], board[1], board[2], board[3], board[4]]
         
+        var playerTwo: [Card] = [newCard(num: generateRandomNumber()), newCard(num: generateRandomNumber()), board[0], board[1], board[2], board[3], board[4]]
+        var playerThree: [Card] = [newCard(num: generateRandomNumber()), newCard(num: generateRandomNumber()), board[0],board[1],board[2],board[3],board[4]]
+        var playerFour: [Card] = [newCard(num: generateRandomNumber()), newCard(num: generateRandomNumber()), board[0],board[1],board[2],board[3],board[4]]
         
         //we are going to use this array to check what cards have been randomly generated.
         //set the position that we have used to negative one. check on whether or not the value is negative.
