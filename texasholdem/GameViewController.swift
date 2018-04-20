@@ -151,43 +151,74 @@ class GameViewController: UIViewController {
     //have an array for each player
     
     
-    func royalFlush(player: Array<Any>)
+    func checkSuit(player: Array<Card>) -> Bool
+    {
+        var c = 0
+        var s = 0
+        var d = 0
+        var h = 0
+        for i in 0...6
+        {
+            if (player[i].getSuit() == 0)
+            {
+                c += 1
+            }
+            if (player[i].getSuit() == 0)
+            {
+                s += 1
+            }
+            if (player[i].getSuit() == 0)
+            {
+                d += 1
+            }
+            if (player[i].getSuit() == 0)
+            {
+                h += 1
+            }
+        }
+        if (c >= 5 || s >= 5 || d >= 5 || h >= 5)
+        {
+            return true
+        }
+        return false
+    }
+    func royalFlush(player: Array<Any>) -> Int
     {
         
     }
-    func straightFlush(player: Array<Any>)
+    func straightFlush(player: Array<Any>) -> Int
     {
         
     }
-    func fourOfAKind(player: Array<Any>)
+    func fourOfAKind(player: Array<Any>) -> Int
     {
     
     }
-    func fullHouse(player: Array<Any>)
+    func fullHouse(player: Array<Any>) -> Int
     {
         
     }
-    func flush(player: Array<Any>)
+    func flush(player: Array<Any>) -> Int
     {
         
     }
-    func straight(player: Array<Any>)
+    func straight(player: Array<Any>) -> Int
     {
         
     }
-    func threeOfAKind(player: Array<Any>)
+    func threeOfAKind(player: Array<Any>) -> Int
     {
         
     }
-    func twoPair(player: Array<Any>)
+    func twoPair(player: Array<Any>) -> Int
     {
         
     }
-    func onePair(player: Array<Any>)
+    func onePair(player: Array<Any>) -> Int
     {
         
     }
-    func highCard(player: Array<Any>)
+    func highCard(player: Array<Any>) -> Int
     {
         
     }
