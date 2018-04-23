@@ -42,6 +42,39 @@ class GameViewController: UIViewController {
         return newCard
     }
     
+    
+    func partition(v: [Card], left: Int, right: Int) -> Int {
+        var i = left
+        var temp : Card = Card(numb: 0)
+        for j in (left)...(right) {
+            if v[j].getName() < v[left].getName() {
+                i += 1
+                temp.setSuit(num: v[i].getSuit())
+                temp.setName(num: v[i].getName())
+                v[i].setName(num: v[j].getName())
+                v[i].setSuit(num: v[j].getSuit())
+                v[j].setName(num: temp.getName())
+                v[j].setSuit(num: temp.getSuit())
+            }
+        }
+        
+        temp.setSuit(num: v[i].getSuit())
+        temp.setName(num: v[i].getName())
+        v[i].setSuit(num: v[left].getSuit())
+        v[i].setName(num: v[left].getName())
+        v[left].setSuit(num: temp.getSuit())
+        v[left].setName(num: temp.getName())
+        return i
+    }
+    
+    func quicksort(c: [Card], a: Int, b: Int) {
+        if b > a {
+            let pivotIndex = partition(v: c, left: a, right: b)
+            quicksort(c: c, a: a, b: pivotIndex - 1)
+            quicksort(c: c, a: pivotIndex + 1, b: b)
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -56,7 +89,14 @@ class GameViewController: UIViewController {
         var playerTwo: [Card] = [newCard(num: generateRandomNumber()), newCard(num: generateRandomNumber()), board[0], board[1], board[2], board[3], board[4]]
         var playerThree: [Card] = [newCard(num: generateRandomNumber()), newCard(num: generateRandomNumber()), board[0],board[1],board[2],board[3],board[4]]
         var playerFour: [Card] = [newCard(num: generateRandomNumber()), newCard(num: generateRandomNumber()), board[0],board[1],board[2],board[3],board[4]]
-        
+        var sortedPlayerOne: [Card] = [playerOne[0],playerOne[1],playerOne[2],playerOne[3],playerOne[4]]
+        var sortedPlayerTwo: [Card] = [playerTwo[0],playerTwo[1],playerTwo[2],playerTwo[3],playerTwo[4]]
+        var sortedPlayerThree: [Card] = [playerThree[0],playerThree[1],playerThree[2],playerThree[3],playerThree[4]]
+        var sortedPlayerFour: [Card] = [playerFour[0],playerFour[1],playerFour[2],playerFour[3],playerThree[4]]
+        quicksort(c: sortedPlayerOne, a: 0, b: 4)
+        quicksort(c: sortedPlayerTwo, a: 0, b: 4)
+        quicksort(c: sortedPlayerThree, a: 0, b: 4)
+        quicksort(c: sortedPlayerFour, a: 0, b: 4)
         //we are going to use this array to check what cards have been randomly generated.
         //set the position that we have used to negative one. check on whether or not the value is negativ
 
@@ -210,7 +250,7 @@ class GameViewController: UIViewController {
     {
         
     }
-    func highCard(player: Array<Any>) -> Int
+    func highCard(player: Array<Card>) -> Int
     {
         
     }
