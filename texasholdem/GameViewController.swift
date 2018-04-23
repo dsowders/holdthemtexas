@@ -89,14 +89,33 @@ class GameViewController: UIViewController {
         var playerTwo: [Card] = [newCard(num: generateRandomNumber()), newCard(num: generateRandomNumber()), board[0], board[1], board[2], board[3], board[4]]
         var playerThree: [Card] = [newCard(num: generateRandomNumber()), newCard(num: generateRandomNumber()), board[0],board[1],board[2],board[3],board[4]]
         var playerFour: [Card] = [newCard(num: generateRandomNumber()), newCard(num: generateRandomNumber()), board[0],board[1],board[2],board[3],board[4]]
-        var sortedPlayerOne: [Card] = [playerOne[0],playerOne[1],playerOne[2],playerOne[3],playerOne[4]]
-        var sortedPlayerTwo: [Card] = [playerTwo[0],playerTwo[1],playerTwo[2],playerTwo[3],playerTwo[4]]
-        var sortedPlayerThree: [Card] = [playerThree[0],playerThree[1],playerThree[2],playerThree[3],playerThree[4]]
-        var sortedPlayerFour: [Card] = [playerFour[0],playerFour[1],playerFour[2],playerFour[3],playerThree[4]]
-        quicksort(c: sortedPlayerOne, a: 0, b: 4)
-        quicksort(c: sortedPlayerTwo, a: 0, b: 4)
-        quicksort(c: sortedPlayerThree, a: 0, b: 4)
-        quicksort(c: sortedPlayerFour, a: 0, b: 4)
+        var sortedPlayerOne: [Card] = [playerOne[0],playerOne[1],playerOne[2],playerOne[3],playerOne[4], playerOne[5],playerOne[6]]
+        var sortedPlayerTwo: [Card] = [playerTwo[0],playerTwo[1],playerTwo[2],playerTwo[3],playerTwo[4], playerTwo[5], playerTwo[6]]
+        var sortedPlayerThree: [Card] = [playerThree[0],playerThree[1],playerThree[2],playerThree[3],playerThree[4], playerThree[5],playerThree[6]]
+        var sortedPlayerFour: [Card] = [playerFour[0],playerFour[1],playerFour[2],playerFour[3],playerFour[4],playerFour[5],playerFour[6]]
+        quicksort(c: sortedPlayerOne, a: 0, b: 6)
+        quicksort(c: sortedPlayerTwo, a: 0, b: 6)
+        quicksort(c: sortedPlayerThree, a: 0, b: 6)
+        quicksort(c: sortedPlayerFour, a: 0, b: 6)
+        
+        print(playerOne[0])
+        print(playerOne[1])
+        print(playerOne[2])
+        print(playerOne[3])
+        print(playerOne[4])
+        print(playerOne[5])
+        print(playerOne[6])
+       
+        
+        print()
+        
+        print(sortedPlayerOne[0])
+        print(sortedPlayerOne[1])
+        print(sortedPlayerOne[2])
+        print(sortedPlayerOne[3])
+        print(sortedPlayerOne[4])
+        print(sortedPlayerOne[5])
+        print(sortedPlayerOne[6])
         //we are going to use this array to check what cards have been randomly generated.
         //set the position that we have used to negative one. check on whether or not the value is negativ
 
@@ -233,45 +252,45 @@ class GameViewController: UIViewController {
         return -1
         
     }
-    func straightFlush(player: Array<Any>) -> Int
-    {
+   // func straightFlush(player: Array<Any>) -> Int
+    //{
         
-    }
-    func fourOfAKind(player: Array<Any>) -> Int
-    {
+   // }
+    //func fourOfAKind(player: Array<Any>) -> Int
+    //{
     
-    }
-    func fullHouse(player: Array<Any>) -> Int
-    {
+   // }
+    //func fullHouse(player: Array<Any>) -> Int
+    //{
         
-    }
-    func flush(player: Array<Any>) -> Int
-    {
+    //}
+    //func flush(player: Array<Any>) -> Int
+    //{
         
-    }
-    func straight(player: Array<Any>) -> Int
-    {
+    //}
+    //func straight(player: Array<Any>) -> Int
+    //{
+    
+    //}
+    //func threeOfAKind(player: Array<Any>) -> Int
+    //{
         
-    }
-    func threeOfAKind(player: Array<Any>) -> Int
-    {
+    //}
+    //func twoPair(player: Array<Any>) -> Int
+    //{
         
-    }
-    func twoPair(player: Array<Any>) -> Int
-    {
+    //}
+    //func onePair(player: Array<Any>) -> Int
+    //{
         
-    }
-    func onePair(player: Array<Any>) -> Int
-    {
+    //}
+    //func highCard(player: Array<Card>) -> Int
+    //{
         
-    }
-    func highCard(player: Array<Card>) -> Int
-    {
-        
-    }
+    //}
     
     
-    override var prefersStatusBarHidden: Bool {
-        return true
-    }
+    //override var prefersStatusBarHidden: Bool {
+    //    return true
+    //}
 }
