@@ -214,8 +214,23 @@ class GameViewController: UIViewController {
         }
         return false
     }
-    func royalFlush(player: Array<Any>) -> Int
+    func royalFlush(player: Array<Card>) -> Int
     {
+        //use sortedPlayer
+        var royalFlushCards: [Card] = [player[2], player[3], player[4], player[5], player[6]]
+        var cardValues: [Int] = []
+        for i in 2...6
+        {
+            cardValues.append(player[i].getName())
+        }
+        if (cardValues.contains(10) && cardValues.contains(11) && cardValues.contains(12) && cardValues.contains(13) && cardValues.contains(14))
+        {
+            if (checkSuit(player: royalFlushCards))
+            {
+                return 1
+            }
+        }
+        return -1
         
     }
     func straightFlush(player: Array<Any>) -> Int
