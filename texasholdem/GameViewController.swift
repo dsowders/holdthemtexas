@@ -13,6 +13,17 @@ var arrayNumbers: [Int] = [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,
 
 class GameViewController: UIViewController {
 
+    
+    @IBOutlet weak var leftCardImage: UIImageView!
+    
+    @IBOutlet weak var rightCardImage: UIImageView!
+    
+    
+    
+    
+    
+    
+    
     func checkForNegative(num: Int, arr: Array<Int>) -> Bool
     {
         if(arr[num] == -1)
@@ -78,6 +89,12 @@ class GameViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
+        leftCardImage.image = UIImage(named: "back")
+        
+        rightCardImage.image = UIImage(named: "back")
+        
+        
         //0 and 1 are the players cards and 2 to 6 are the boards card.
        
         
@@ -137,6 +154,14 @@ class GameViewController: UIViewController {
         }
     }
     
+    // back is a placeholder until we know what the actual card will be
+    @IBAction func rightCard(_ sender: UIButton) {
+      leftCardImage.image = UIImage(named: "back")
+    }
+    
+    @IBAction func leftCard(_ sender: UIButton) {
+       rightCardImage.image = UIImage(named: "back")
+    }
 
     override var shouldAutorotate: Bool {
         return true
@@ -173,8 +198,8 @@ class GameViewController: UIViewController {
             self.suit1 = (numb % 4)
         }
         //2,3,4,5,6,7,8,9,10, Jack, Queen, King, Ace
-        //2,3,4,5,6,7,8,9,10, 11, 12, 13, 14
-        //these are the names^^
+        //2,3,4,5,6,7,8,9,10, 11, 12, 13, 14, 15
+        // 0 = spades, 1 = clubs, 2 = hearts, 3 = diamonds
         func getName() -> Int
         {
             return name1
@@ -195,8 +220,8 @@ class GameViewController: UIViewController {
             return suit1
         }
     }
-   
-    //this is what we are going to do 
+    var aceSpade : Card! = Card(name1: 15, suit1: 0)
+    var aceDia : Card! = Card(name1: 15, suit1: 3)
     
     //how are we going to determine which one is the best
     //have an array for each player
