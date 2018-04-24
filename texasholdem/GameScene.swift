@@ -85,9 +85,6 @@ class GameScene: SKScene {
     
     override func load()
     {
-        leftCardImage.image = UIImage(named: "back")
-        
-        rightCardImage.image = UIImage(named: "back")
         
         
         //0 and 1 are the players cards and 2 to 6 are the boards card.
