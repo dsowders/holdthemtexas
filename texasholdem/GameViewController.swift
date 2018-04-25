@@ -14,11 +14,7 @@ var arrayNumbers: [Int] = [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,
 class GameViewController: UIViewController {
 
     
-    @IBOutlet weak var leftCardImage: UIImageView!
-    
-    @IBOutlet weak var rightCardImage: UIImageView!
-    
-    
+ 
     
     
     
@@ -50,14 +46,7 @@ class GameViewController: UIViewController {
         }
     }
     
-    // back is a placeholder until we know what the actual card will be
-    @IBAction func rightCard(_ sender: UIButton) {
-      leftCardImage.image = UIImage(named: "back")
-    }
-    
-    @IBAction func leftCard(_ sender: UIButton) {
-       rightCardImage.image = UIImage(named: "back")
-    }
+   
 
     override var shouldAutorotate: Bool {
         return true
