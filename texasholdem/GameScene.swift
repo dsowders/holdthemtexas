@@ -9,6 +9,8 @@
 import SpriteKit
 import GameplayKit
 
+
+
 class GameScene: SKScene {
     
    
@@ -83,26 +85,24 @@ class GameScene: SKScene {
         }
     }
     
-    override func load()
-    {
-        
+    var board: [Card] = [newCard(num: generateRandomNumber()), newCard(num: generateRandomNumber()), newCard(num: generateRandomNumber()), newCard(num: generateRandomNumber()), newCard(num: generateRandomNumber())]
+    
+    
+    var playerOne: [Card] = [newCard(num: generateRandomNumber()), newCard(num: generateRandomNumber()), board[0], board[1], board[2], board[3], board[4]]
+    
+    var playerTwo: [Card] = [newCard(num: generateRandomNumber()), newCard(num: generateRandomNumber()), board[0], board[1], board[2], board[3], board[4]]
+    var playerThree: [Card] = [newCard(num: generateRandomNumber()), newCard(num: generateRandomNumber()), board[0],board[1],board[2],board[3],board[4]]
+    var playerFour: [Card] = [newCard(num: generateRandomNumber()), newCard(num: generateRandomNumber()), board[0],board[1],board[2],board[3],board[4]]
+    var sortedPlayerOne: [Card] = [playerOne[0],playerOne[1],playerOne[2],playerOne[3],playerOne[4], playerOne[5],playerOne[6]]
+    var sortedPlayerTwo: [Card] = [playerTwo[0],playerTwo[1],playerTwo[2],playerTwo[3],playerTwo[4], playerTwo[5], playerTwo[6]]
+    var sortedPlayerThree: [Card] = [playerThree[0],playerThree[1],playerThree[2],playerThree[3],playerThree[4], playerThree[5],playerThree[6]]
+    var sortedPlayerFour: [Card] = [playerFour[0],playerFour[1],playerFour[2],playerFour[3],playerFour[4],playerFour[5],playerFour[6]]
         
         //0 and 1 are the players cards and 2 to 6 are the boards card.
         
         
-        var board: [Card] = [newCard(num: generateRandomNumber()), newCard(num: generateRandomNumber()), newCard(num: generateRandomNumber()), newCard(num: generateRandomNumber()), newCard(num: generateRandomNumber())]
-        
-        
-        var playerOne: [Card] = [newCard(num: generateRandomNumber()), newCard(num: generateRandomNumber()), board[0], board[1], board[2], board[3], board[4]]
-        
-        var playerTwo: [Card] = [newCard(num: generateRandomNumber()), newCard(num: generateRandomNumber()), board[0], board[1], board[2], board[3], board[4]]
-        var playerThree: [Card] = [newCard(num: generateRandomNumber()), newCard(num: generateRandomNumber()), board[0],board[1],board[2],board[3],board[4]]
-        var playerFour: [Card] = [newCard(num: generateRandomNumber()), newCard(num: generateRandomNumber()), board[0],board[1],board[2],board[3],board[4]]
-        var sortedPlayerOne: [Card] = [playerOne[0],playerOne[1],playerOne[2],playerOne[3],playerOne[4], playerOne[5],playerOne[6]]
-        var sortedPlayerTwo: [Card] = [playerTwo[0],playerTwo[1],playerTwo[2],playerTwo[3],playerTwo[4], playerTwo[5], playerTwo[6]]
-        var sortedPlayerThree: [Card] = [playerThree[0],playerThree[1],playerThree[2],playerThree[3],playerThree[4], playerThree[5],playerThree[6]]
-        var sortedPlayerFour: [Card] = [playerFour[0],playerFour[1],playerFour[2],playerFour[3],playerFour[4],playerFour[5],playerFour[6]]
-    }
+    
+    
     
     class Card: NSObject
     {
@@ -142,6 +142,8 @@ class GameScene: SKScene {
             return suit1
         }
     }
+    
+  
     
     func checkSuit(player: Array<Card>) -> Bool
     {
