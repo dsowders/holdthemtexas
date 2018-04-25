@@ -70,6 +70,7 @@ class GameScene: SKScene {
     var playerOneBalance = 100
     var playerTwoBalance = 100
     
+    @IBOutlet weak var balanceLabel: UILabel!
     @IBOutlet weak var leftCardImage: UIImageView!
     @IBOutlet weak var rightCardImage: UIImageView!
     @IBAction func raiseButton(_ sender: UIButton) {
