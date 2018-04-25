@@ -56,6 +56,8 @@ class GameScene: SKScene {
     var playerThreeChips : Int = 0
     var playerFourChips : Int = 0
     
+    
+    
     var board: [Card] = []
     var playerOne: [Card] = []
     var playerTwo: [Card] = []
@@ -65,6 +67,28 @@ class GameScene: SKScene {
     var sortedPlayerTwo: [Card] = []
     var sortedPlayerThree: [Card] = []
     var sortedPlayerFour: [Card] = []
+    var playerOneBalance = 100
+    var playerTwoBalance = 100
+    
+    @IBOutlet weak var balanceLabel: UILabel!
+    @IBOutlet weak var leftCardImage: UIImageView!
+    @IBOutlet weak var rightCardImage: UIImageView!
+    @IBAction func raiseButton(_ sender: UIButton) {
+    }
+    @IBAction func checkButton(_ sender: UIButton) {
+    }
+    @IBAction func callButton(_ sender: UIButton) {
+    }
+    
+    // methods changing image of back of cards to the actual card image the object will relate to
+    // back is a placeholder until we know what the actual card will be
+    @IBAction func rightCard(_ sender: UIButton) {
+        leftCardImage.image = UIImage(named: "back")
+    }
+    @IBAction func leftCard(_ sender: UIButton) {
+        rightCardImage.image = UIImage(named: "back")
+    }
+    
     
     override func didMove(to view: SKView) {
        
