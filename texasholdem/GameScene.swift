@@ -50,6 +50,10 @@ class Card: NSObject
 
 
 class GameScene: SKScene {
+    var playerOneChips : Int
+    var playerTwoChips : Int
+    var playerThreeChips : Int
+    var playerFourChips : Int
     
     var board: [Card] = []
     var playerOne: [Card] = []
