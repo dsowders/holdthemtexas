@@ -209,4 +209,45 @@ class GameScene: SKScene {
         return -1
         
     }
+    // func straightFlush(player: Array<Any>) -> Int
+    //{
+    
+    // }
+    //func fourOfAKind(player: Array<Any>) -> Int
+    //{
+    
+    // }
+    //func fullHouse(player: Array<Any>) -> Int
+    //{
+    
+    //}
+    //func flush(player: Array<Any>) -> Int
+    //{
+    
+    //}
+    //func straight(player: Array<Any>) -> Int
+    //{
+    
+    //}
+    //func threeOfAKind(player: Array<Any>) -> Int
+    //{
+    
+    //}
+    //func twoPair(player: Array<Any>) -> Int
+    //{
+    
+    //}
+    //func onePair(player: Array<Any>) -> Int
+    //{
+    
+    //}
+    //func highCard(player: Array<Card>) -> Int
+    //{
+    
+    //}
+    
+    
+    //override var prefersStatusBarHidden: Bool {
+    //    return true
+    //}
 }
