@@ -9,11 +9,57 @@
 import SpriteKit
 import GameplayKit
 
+class Card: NSObject
+{
+    var name1: Int
+    var suit1: Int
+    
+    
+    // var image: UIImage
+    //0,1,2,3,4,5,6,7,8...50,51
+    //twoOfClubs,twoOfSpades,twoOfDiamonds,twoOfHearts,threeOfClubs,threeOfSpades,threeOfDiamonds,threeOfHearts
+    //fourOfClubs...aceOfDiamonds,aceOfHearts
+    init(numb: Int)
+    {
+        self.name1 = ((numb / 4) + 2)
+        self.suit1 = (numb % 4)
+    }
+    //2,3,4,5,6,7,8,9,10, Jack, Queen, King, Ace
+    //2,3,4,5,6,7,8,9,10, 11, 12, 13, 14, 15
+    // 0 = spades, 1 = clubs, 2 = hearts, 3 = diamonds
+    func getName() -> Int
+    {
+        return name1
+    }
+    func setName(num: Int)
+    {
+        name1 = num
+    }
+    //clubs, spades, diamonds, hearts
+    //0,1,2,3
+    //these are the suits^^
+    func setSuit(num: Int)
+    {
+        suit1 = num
+    }
+    func getSuit() -> Int
+    {
+        return suit1
+    }
+}
 
 
 class GameScene: SKScene {
     
-   
+    var board: [Card] = []
+    var playerOne: [Card] = []
+    var playerTwo: [Card] = []
+    var playerThree: [Card] = []
+    var playerFour: [Card] = []
+    var sortedPlayerOne: [Card] = []
+    var sortedPlayerTwo: [Card] = []
+    var sortedPlayerThree: [Card] = []
+    var sortedPlayerFour: [Card] = []
     
     override func didMove(to view: SKView) {
        
@@ -85,63 +131,26 @@ class GameScene: SKScene {
         }
     }
     
-    var board: [Card] = [newCard(num: generateRandomNumber()), newCard(num: generateRandomNumber()), newCard(num: generateRandomNumber()), newCard(num: generateRandomNumber()), newCard(num: generateRandomNumber())]
+    func makeEverything()
+    {
+     board = [newCard(num: generateRandomNumber()), newCard(num: generateRandomNumber()), newCard(num: generateRandomNumber()), newCard(num: generateRandomNumber()), newCard(num: generateRandomNumber())]
+    playerOne = [newCard(num: generateRandomNumber()), newCard(num: generateRandomNumber()), board[0], board[1], board[2], board[3], board[4]]
     
-    
-    var playerOne: [Card] = [newCard(num: generateRandomNumber()), newCard(num: generateRandomNumber()), board[0], board[1], board[2], board[3], board[4]]
-    
-    var playerTwo: [Card] = [newCard(num: generateRandomNumber()), newCard(num: generateRandomNumber()), board[0], board[1], board[2], board[3], board[4]]
-    var playerThree: [Card] = [newCard(num: generateRandomNumber()), newCard(num: generateRandomNumber()), board[0],board[1],board[2],board[3],board[4]]
-    var playerFour: [Card] = [newCard(num: generateRandomNumber()), newCard(num: generateRandomNumber()), board[0],board[1],board[2],board[3],board[4]]
-    var sortedPlayerOne: [Card] = [playerOne[0],playerOne[1],playerOne[2],playerOne[3],playerOne[4], playerOne[5],playerOne[6]]
-    var sortedPlayerTwo: [Card] = [playerTwo[0],playerTwo[1],playerTwo[2],playerTwo[3],playerTwo[4], playerTwo[5], playerTwo[6]]
-    var sortedPlayerThree: [Card] = [playerThree[0],playerThree[1],playerThree[2],playerThree[3],playerThree[4], playerThree[5],playerThree[6]]
-    var sortedPlayerFour: [Card] = [playerFour[0],playerFour[1],playerFour[2],playerFour[3],playerFour[4],playerFour[5],playerFour[6]]
-        
+     playerTwo = [newCard(num: generateRandomNumber()), newCard(num: generateRandomNumber()), board[0], board[1], board[2], board[3], board[4]]
+     playerThree = [newCard(num: generateRandomNumber()), newCard(num: generateRandomNumber()), board[0],board[1],board[2],board[3],board[4]]
+     playerFour = [newCard(num: generateRandomNumber()), newCard(num: generateRandomNumber()), board[0],board[1],board[2],board[3],board[4]]
+     sortedPlayerOne = [playerOne[0],playerOne[1],playerOne[2],playerOne[3],playerOne[4], playerOne[5],playerOne[6]]
+     sortedPlayerTwo = [playerTwo[0],playerTwo[1],playerTwo[2],playerTwo[3],playerTwo[4], playerTwo[5], playerTwo[6]]
+     sortedPlayerThree = [playerThree[0],playerThree[1],playerThree[2],playerThree[3],playerThree[4], playerThree[5],playerThree[6]]
+     sortedPlayerFour = [playerFour[0],playerFour[1],playerFour[2],playerFour[3],playerFour[4],playerFour[5],playerFour[6]]
+    }
         //0 and 1 are the players cards and 2 to 6 are the boards card.
         
         
     
     
     
-    class Card: NSObject
-    {
-        var name1: Int
-        var suit1: Int
-        
-        
-        // var image: UIImage
-        //0,1,2,3,4,5,6,7,8...50,51
-        //twoOfClubs,twoOfSpades,twoOfDiamonds,twoOfHearts,threeOfClubs,threeOfSpades,threeOfDiamonds,threeOfHearts
-        //fourOfClubs...aceOfDiamonds,aceOfHearts
-        init(numb: Int)
-        {
-            self.name1 = ((numb / 4) + 2)
-            self.suit1 = (numb % 4)
-        }
-        //2,3,4,5,6,7,8,9,10, Jack, Queen, King, Ace
-        //2,3,4,5,6,7,8,9,10, 11, 12, 13, 14, 15
-        // 0 = spades, 1 = clubs, 2 = hearts, 3 = diamonds
-        func getName() -> Int
-        {
-            return name1
-        }
-        func setName(num: Int)
-        {
-            name1 = num
-        }
-        //clubs, spades, diamonds, hearts
-        //0,1,2,3
-        //these are the suits^^
-        func setSuit(num: Int)
-        {
-            suit1 = num
-        }
-        func getSuit() -> Int
-        {
-            return suit1
-        }
-    }
+    
     
   
     
