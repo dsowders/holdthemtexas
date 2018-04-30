@@ -172,6 +172,11 @@ class GameScene: SKScene {
      sortedPlayerTwo = [playerTwo[0],playerTwo[1],playerTwo[2],playerTwo[3],playerTwo[4], playerTwo[5], playerTwo[6]]
      sortedPlayerThree = [playerThree[0],playerThree[1],playerThree[2],playerThree[3],playerThree[4], playerThree[5],playerThree[6]]
      sortedPlayerFour = [playerFour[0],playerFour[1],playerFour[2],playerFour[3],playerFour[4],playerFour[5],playerFour[6]]
+        
+        quicksort(c: sortedPlayerOne, a: 0, b: 6)
+        quicksort(c: sortedPlayerTwo, a: 0, b: 6)
+        quicksort(c: sortedPlayerThree, a: 0, b: 6)
+        quicksort(c: sortedPlayerFour, a: 0, b: 6)
     }
         //0 and 1 are the players cards and 2 to 6 are the boards card.
         
