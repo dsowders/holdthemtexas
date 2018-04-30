@@ -242,9 +242,16 @@ class GameScene: SKScene {
     {
     
     }
-    func fourOfAKind(player: Array<Any>) -> Int
+    func fourOfAKind(player: Array<Card>) -> Int
     {
-    
+        for i in 6...3
+        {
+            if (player[i].getName() == player[i - 1].getName() && player[i].getName() == player[i - 2].getName() && player[i].getName() == player[i - 3].getName())
+            {
+                return player[i].getName()
+            }
+        }
+        return -1
     }
     func fullHouse(player: Array<Any>) -> Int
     {
