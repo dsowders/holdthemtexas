@@ -69,15 +69,20 @@ class GameScene: SKScene {
     var sortedPlayerFour: [Card] = []
     var playerOneBalance = 100
     var playerTwoBalance = 100
+    var totalPot = 0
     
     @IBOutlet weak var balanceLabel: UILabel!
     @IBOutlet weak var leftCardImage: UIImageView!
     @IBOutlet weak var rightCardImage: UIImageView!
+    
     @IBAction func raiseButton(_ sender: UIButton) {
     }
     @IBAction func checkButton(_ sender: UIButton) {
     }
     @IBAction func callButton(_ sender: UIButton) {
+        totalPot = totalPot + 2
+        playerOneBalance = playerOneBalance - 2
+        balanceLabel.text = (String(playerOneBalance))
     }
     
     // methods changing image of back of cards to the actual card image the object will relate to
