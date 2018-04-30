@@ -308,6 +308,7 @@ class GameScene: SKScene {
         {
             return 5
         }
+        return -1
     }
     func threeOfAKind(player: Array<Card>) -> Int
     {
