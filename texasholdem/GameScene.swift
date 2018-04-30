@@ -177,6 +177,11 @@ class GameScene: SKScene {
      sortedPlayerTwo = [playerTwo[0],playerTwo[1],playerTwo[2],playerTwo[3],playerTwo[4], playerTwo[5], playerTwo[6]]
      sortedPlayerThree = [playerThree[0],playerThree[1],playerThree[2],playerThree[3],playerThree[4], playerThree[5],playerThree[6]]
      sortedPlayerFour = [playerFour[0],playerFour[1],playerFour[2],playerFour[3],playerFour[4],playerFour[5],playerFour[6]]
+        
+        quicksort(c: sortedPlayerOne, a: 0, b: 6)
+        quicksort(c: sortedPlayerTwo, a: 0, b: 6)
+        quicksort(c: sortedPlayerThree, a: 0, b: 6)
+        quicksort(c: sortedPlayerFour, a: 0, b: 6)
     }
         //0 and 1 are the players cards and 2 to 6 are the boards card.
         
@@ -238,4 +243,89 @@ class GameScene: SKScene {
         return -1
         
     }
+    func straightFlush(player: Array<Any>) -> Int
+    {
+    
+    }
+    func fourOfAKind(player: Array<Card>) -> Int
+    {
+        for i in 6...3
+        {
+            if (player[i].getName() == player[i - 1].getName() && player[i].getName() == player[i - 2].getName() && player[i].getName() == player[i - 3].getName())
+            {
+                return player[i].getName()
+            }
+        }
+        return -1
+    }
+    func fullHouse(player: Array<Card>) -> Int
+    {
+        
+    }
+    func flush(player: Array<Card>) -> Int
+    {
+        
+    }
+    func straight(player: Array<Card>) -> Int
+    {
+    
+    }
+    func threeOfAKind(player: Array<Card>) -> Int
+    {
+        for i in 6...2
+        {
+            if (player[i].getName() == player[i - 1].getName() && player[i].getName() == player[i - 2].getName())
+            {
+                return player[i].getName()
+            }
+        }
+        return -1
+    }
+    func twoPair(player: Array<Card>) -> Int
+    {
+        var a = -1
+        var b = -1
+        for i in 6...1
+        {
+            if (player[i].getName() == player[i - 1].getName())
+            {
+                a = i
+            }
+        }
+        for i in a...1
+        {
+            if (player[i].getName() == player[i - 1].getName())
+            {
+                b = i
+            }
+        }
+        if (b != -1)
+        {
+            return player[a].getName()
+        }
+        else
+        {
+            return -1
+        }
+    }
+    func onePair(player: Array<Card>) -> Int
+    {
+        for i in 6...1
+        {
+            if (player[i].getName() == player[i - 1].getName())
+            {
+                return player[i].getName()
+            }
+        }
+        return -1
+    }
+    func highCard(player: Array<Card>) -> Int
+    {
+        return player[6].getName()
+    }
+    
+    
+    //override var prefersStatusBarHidden: Bool {
+    //    return true
+    //}
 }
