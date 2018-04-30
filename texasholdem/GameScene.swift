@@ -262,9 +262,32 @@ class GameScene: SKScene {
     {
     
     }
-    func twoPair(player: Array<Any>) -> Int
+    func twoPair(player: Array<Card>) -> Int
     {
-        
+        var a = -1
+        var b = -1
+        for i in 6...1
+        {
+            if (player[i].getName() == player[i - 1].getName())
+            {
+                a = i
+            }
+        }
+        for i in a...1
+        {
+            if (player[i].getName() == player[i - 1].getName())
+            {
+                b = i
+            }
+        }
+        if (b != -1)
+        {
+            return player[a].getName()
+        }
+        else
+        {
+            return -1
+        }
     }
     func onePair(player: Array<Card>) -> Int
     {
