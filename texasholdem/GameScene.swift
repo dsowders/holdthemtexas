@@ -258,9 +258,16 @@ class GameScene: SKScene {
     {
     
     }
-    func threeOfAKind(player: Array<Any>) -> Int
+    func threeOfAKind(player: Array<Card>) -> Int
     {
-    
+        for i in 6...2
+        {
+            if (player[i].getName() == player[i - 1].getName() && player[i].getName() == player[i - 2].getName())
+            {
+                return player[i].getName()
+            }
+        }
+        return -1
     }
     func twoPair(player: Array<Any>) -> Int
     {
