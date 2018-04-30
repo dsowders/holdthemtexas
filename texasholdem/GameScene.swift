@@ -253,15 +253,15 @@ class GameScene: SKScene {
         }
         return -1
     }
-    func fullHouse(player: Array<Any>) -> Int
+    func fullHouse(player: Array<Card>) -> Int
     {
-    
+        
     }
-    func flush(player: Array<Any>) -> Int
+    func flush(player: Array<Card>) -> Int
     {
-    
+        
     }
-    func straight(player: Array<Any>) -> Int
+    func straight(player: Array<Card>) -> Int
     {
     
     }
