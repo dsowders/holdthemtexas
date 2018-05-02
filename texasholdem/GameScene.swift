@@ -72,15 +72,63 @@ class GameScene: SKScene {
     var sortedPlayerFour: [Card] = []
     var playerOneBalance = 100
     var playerTwoBalance = 100
+    var playerThreeBalance = 100
+    var playerFourBalance = 100
+    var totalPot = 0
+    var playerCount = 0
     
+    @IBOutlet weak var raiseText: UITextField!
     @IBOutlet weak var balanceLabel: UILabel!
     @IBOutlet weak var leftCardImage: UIImageView!
     @IBOutlet weak var rightCardImage: UIImageView!
+    
     @IBAction func raiseButton(_ sender: UIButton) {
+        if playerCount == 0
+        {
+            playerOneBalance = playerOneBalance - (Int(raiseText.text!)!)
+            balanceLabel.text = (String(playerOneBalance))
+        }
+        if playerCount == 1
+        {
+            playerTwoBalance = playerTwoBalance - (Int(raiseText.text!)!)
+            balanceLabel.text = (String(playerTwoBalance))
+        }
+        if playerCount == 2
+        {
+            playerThreeBalance = playerThreeBalance - (Int(raiseText.text!)!)
+            balanceLabel.text = (String(playerThreeBalance))
+        }
+        if playerCount == 3
+        {
+            playerFourBalance = playerFourBalance - (Int(raiseText.text!)!)
+            balanceLabel.text = (String(playerFourBalance))
+        }
+        totalPot = totalPot + (Int(raiseText.text!)!)
     }
     @IBAction func checkButton(_ sender: UIButton) {
     }
     @IBAction func callButton(_ sender: UIButton) {
+        totalPot = totalPot + 2
+        if playerCount == 0
+        {
+            playerOneBalance = playerOneBalance - 2
+            balanceLabel.text = (String(playerOneBalance))
+        }
+        if playerCount == 1
+        {
+            playerTwoBalance = playerTwoBalance - 2
+            balanceLabel.text = (String(playerTwoBalance))
+        }
+        if playerCount == 2
+        {
+            playerThreeBalance = playerThreeBalance - 2
+            balanceLabel.text = (String(playerThreeBalance))
+        }
+        if playerCount == 3
+        {
+            playerFourBalance = playerFourBalance - 2
+            balanceLabel.text = (String(playerFourBalance))
+        }
     }
     
     // methods changing image of back of cards to the actual card image the object will relate to
@@ -238,7 +286,7 @@ class GameScene: SKScene {
     func royalFlush(player: Array<Card>) -> Int
     {
         //use sortedPlayer
-        var royalFlushCards: [Card] = [player[2], player[3], player[4], player[5], player[6]]
+        let royalFlushCards: [Card] = [player[2], player[3], player[4], player[5], player[6]]
         var cardValues: [Int] = []
         for i in 2...6
         {
@@ -256,7 +304,7 @@ class GameScene: SKScene {
     }
     func straightFlush(player: Array<Any>) -> Int
     {
-     
+        
     }
     func fourOfAKind(player: Array<Card>) -> Int
     {
@@ -271,28 +319,44 @@ class GameScene: SKScene {
     }
     func fullHouse(player: Array<Card>) -> Int
     {
-        
+        let threeKindNum = threeOfAKind(player: player)
+        if threeKindNum == -1
+        {
+            return -1
+        }
+        var cardValues: [Int] = []
+        for i in 0...6
+        {
+            cardValues.append(player[i].getName())
+        }
+        cardValues = cardValues.filter{$0 != threeKindNum}
+        let twoKindNum = onePair(player: player)
+        if twoKindNum == -1
+        {
+            return -1
+        }
+        return threeKindNum
     }
     func flush(player: Array<Card>) -> Int //there are five of the same suit check to
     {
-        var count = 0 //counts the number of cards with same suit
-        var temp : Card = Card(numb: 0)
-        for i in 6...1
+        let temp : Card = Card(numb: 0)
+        for i in 0...6
         {
+            var tempArray: [Card] = []
             temp.setSuit(num: player[i].getSuit())
-            for j in 6...1
+            for j in 0...6
             {
                 if(player[i].getSuit() == player[j].getSuit())
                 {
-                    count = count + 1
+                    tempArray.append(player[j])
                 }
-                if(count == 5)
+                if(tempArray.count >= 5)
                 {
-                    return player[0].getName()
+                    return tempArray[tempArray.count - 1].getName()
                 }
             }
-            count = 0
         }
+        return -1
     }
     func straight(player: Array<Card>) -> Int
     {
