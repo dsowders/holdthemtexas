@@ -289,7 +289,7 @@ class GameScene: SKScene {
     }
     func straightFlush(player: Array<Any>) -> Int
     {
-     
+        
     }
     func fourOfAKind(player: Array<Card>) -> Int
     {
@@ -304,7 +304,23 @@ class GameScene: SKScene {
     }
     func fullHouse(player: Array<Card>) -> Int
     {
-        
+        var threeKindNum = threeOfAKind(player: player)
+        if threeKindNum == -1
+        {
+            return -1
+        }
+        var cardValues: [Int] = []
+        for i in 0...6
+        {
+            cardValues.append(player[i].getName())
+        }
+        cardValues = cardValues.filter{$0 != threeKindNum}
+        var twoKindNum = onePair(player: player)
+        if twoKindNum == -1
+        {
+            return -1
+        }
+        return threeKindNum
     }
     func flush(player: Array<Card>) -> Int //there are five of the same suit check to
     {
