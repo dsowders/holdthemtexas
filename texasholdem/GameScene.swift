@@ -63,7 +63,9 @@ class GameScene: SKScene {
     var playerThreeChips : Int = 0
     var playerFourChips : Int = 0
     
-
+    var dealerCardOne = SKSpriteNode()
+    
+    //put this make everything function i think
     
     
     var board: [Card] = []
@@ -214,6 +216,7 @@ class GameScene: SKScene {
     
     func makeEverything()
     {
+        dealerCardOne = self.childNode(withName: "dealerCardOne") as! SKSpriteNode
      board = [newCard(num: generateRandomNumber()), newCard(num: generateRandomNumber()), newCard(num: generateRandomNumber()), newCard(num: generateRandomNumber()), newCard(num: generateRandomNumber())]
     playerOne = [newCard(num: generateRandomNumber()), newCard(num: generateRandomNumber()), board[0], board[1], board[2], board[3], board[4]]
     
@@ -274,7 +277,7 @@ class GameScene: SKScene {
     func royalFlush(player: Array<Card>) -> Int
     {
         //use sortedPlayer
-        var royalFlushCards: [Card] = [player[2], player[3], player[4], player[5], player[6]]
+        let royalFlushCards: [Card] = [player[2], player[3], player[4], player[5], player[6]]
         var cardValues: [Int] = []
         for i in 2...6
         {
@@ -290,9 +293,70 @@ class GameScene: SKScene {
         return -1
         
     }
-    func straightFlush(player: Array<Any>) -> Int
+    func straightFlush(player: Array<Card>) -> Int
     {
-        
+        let temp : Card = Card(numb: 0)
+        for i in 0...6
+        {
+            var tempArrayYuh: [Card] = []
+            temp.setSuit(num: player[i].getSuit())
+            for j in 0...6
+            {
+                if(player[i].getSuit() == player[j].getSuit())
+                {
+                    tempArrayYuh.append(player[j])
+                }
+                if(tempArrayYuh.count >= 5)
+                {
+                    break
+                }
+            }
+        }
+        var tempArray: [Int] = []
+        for i in 0...4
+        {
+            tempArray.append(tempArrayYuh[i].getName())
+        }
+        if (tempArray.contains(10) && tempArray.contains(11) && tempArray.contains(12) && tempArray.contains(13) && tempArray.contains(14))
+        {
+            return 14
+        }
+        if (tempArray.contains(10) && tempArray.contains(11) && tempArray.contains(12) && tempArray.contains(13) && tempArray.contains(9))
+        {
+            return 13
+        }
+        if (tempArray.contains(10) && tempArray.contains(11) && tempArray.contains(12) && tempArray.contains(8) && tempArray.contains(9))
+        {
+            return 12
+        }
+        if (tempArray.contains(10) && tempArray.contains(11) && tempArray.contains(7) && tempArray.contains(8) && tempArray.contains(9))
+        {
+            return 11
+        }
+        if (tempArray.contains(10) && tempArray.contains(9) && tempArray.contains(8) && tempArray.contains(7) && tempArray.contains(6))
+        {
+            return 10
+        }
+        if (tempArray.contains(9) && tempArray.contains(8) && tempArray.contains(7) && tempArray.contains(6) && tempArray.contains(5))
+        {
+            return 9
+        }
+        if (tempArray.contains(8) && tempArray.contains(7) && tempArray.contains(6) && tempArray.contains(5) && tempArray.contains(4))
+        {
+            return 8
+        }
+        if (tempArray.contains(7) && tempArray.contains(6) && tempArray.contains(5) && tempArray.contains(4) && tempArray.contains(3))
+        {
+            return 7
+        }
+        if (tempArray.contains(6) && tempArray.contains(5) && tempArray.contains(4) && tempArray.contains(3) && tempArray.contains(2))
+        {
+            return 6
+        }
+        if (tempArray.contains(2) && tempArray.contains(3) && tempArray.contains(4) && tempArray.contains(5) && tempArray.contains(14))
+        {
+            return 5
+        }
     }
     func fourOfAKind(player: Array<Card>) -> Int
     {
@@ -307,7 +371,7 @@ class GameScene: SKScene {
     }
     func fullHouse(player: Array<Card>) -> Int
     {
-        var threeKindNum = threeOfAKind(player: player)
+        let threeKindNum = threeOfAKind(player: player)
         if threeKindNum == -1
         {
             return -1
@@ -318,7 +382,7 @@ class GameScene: SKScene {
             cardValues.append(player[i].getName())
         }
         cardValues = cardValues.filter{$0 != threeKindNum}
-        var twoKindNum = onePair(player: player)
+        let twoKindNum = onePair(player: player)
         if twoKindNum == -1
         {
             return -1
@@ -327,29 +391,29 @@ class GameScene: SKScene {
     }
     func flush(player: Array<Card>) -> Int //there are five of the same suit check to
     {
-        var count = 0 //counts the number of cards with same suit
-        var temp : Card = Card(numb: 0)
-        for i in 6...0
+        let temp : Card = Card(numb: 0)
+        for i in 0...6
         {
+            var tempArray: [Card] = []
             temp.setSuit(num: player[i].getSuit())
-            for j in 6...0
+            for j in 0...6
             {
                 if(player[i].getSuit() == player[j].getSuit())
                 {
-                    count = count + 1
+                    tempArray.append(player[j])
                 }
-                if(count == 5)
+                if(tempArray.count >= 5)
                 {
-                    return player[0].getName()
+                    return tempArray[tempArray.count - 1].getName()
                 }
             }
-            count = 0
         }
+        return -1
     }
     func straight(player: Array<Card>) -> Int
     {
         var cardValues: [Int] = []
-        for i in 2...6
+        for i in 0...6
         {
             cardValues.append(player[i].getName())
         }
