@@ -262,10 +262,10 @@ class GameScene: SKScene {
     {
         var count = 0 //counts the number of cards with same suit
         var temp : Card = Card(numb: 0)
-        for i in 6...1
+        for i in 6...0
         {
             temp.setSuit(num: player[i].getSuit())
-            for j in 6...1
+            for j in 6...0
             {
                 if(player[i].getSuit() == player[j].getSuit())
                 {
