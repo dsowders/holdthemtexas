@@ -56,7 +56,9 @@ class GameScene: SKScene {
     var playerThreeChips : Int = 0
     var playerFourChips : Int = 0
     
-
+    var dealerCardOne = SKSpriteNode()
+    
+    //put this make everything function i think
     
     
     var board: [Card] = []
@@ -139,8 +141,20 @@ class GameScene: SKScene {
     }
     
     
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?)
+    {
+        for touch in touches
+        {
+            let location = touch.location(in: self)
+            if(dealerCardOne.frame.contains(location))
+            {
+                dealerCardOne.color = .blue
+            }
+        }
+    }
+    
     override func didMove(to view: SKView) {
-       
+       makeEverything()
     }
 
     override func update(_ currentTime: TimeInterval) {
@@ -211,6 +225,7 @@ class GameScene: SKScene {
     
     func makeEverything()
     {
+        dealerCardOne = self.childNode(withName: "dealerCardOne") as! SKSpriteNode
      board = [newCard(num: generateRandomNumber()), newCard(num: generateRandomNumber()), newCard(num: generateRandomNumber()), newCard(num: generateRandomNumber()), newCard(num: generateRandomNumber())]
     playerOne = [newCard(num: generateRandomNumber()), newCard(num: generateRandomNumber()), board[0], board[1], board[2], board[3], board[4]]
     
