@@ -302,7 +302,7 @@ class GameScene: SKScene {
         return -1
         
     }
-    func straightFlush(player: Array<Any>) -> Int
+    func straightFlush(player: Array<Card>) -> Int
     {
             return -1
     }
@@ -361,7 +361,7 @@ class GameScene: SKScene {
     func straight(player: Array<Card>) -> Int
     {
         var cardValues: [Int] = []
-        for i in 2...6
+        for i in 0...6
         {
             cardValues.append(player[i].getName())
         }
