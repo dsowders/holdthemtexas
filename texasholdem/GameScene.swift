@@ -305,9 +305,10 @@ class GameScene: SKScene {
     func straightFlush(player: Array<Card>) -> Int
     {
         let temp : Card = Card(numb: 0)
+        var tempArrayYuh: [Card] = []
         for i in 0...6
         {
-            var tempArrayYuh: [Card] = []
+            tempArrayYuh = []
             temp.setSuit(num: player[i].getSuit())
             for j in 0...6
             {
@@ -322,7 +323,7 @@ class GameScene: SKScene {
             }
         }
         var tempArray: [Int] = []
-        for i in 0...4
+        for i in 0...tempArrayYuh.count
         {
             tempArray.append(tempArrayYuh[i].getName())
         }
