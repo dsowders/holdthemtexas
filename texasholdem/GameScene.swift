@@ -304,7 +304,7 @@ class GameScene: SKScene {
     }
     func straightFlush(player: Array<Any>) -> Int
     {
-        
+            return -1
     }
     func fourOfAKind(player: Array<Card>) -> Int
     {
