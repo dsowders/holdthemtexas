@@ -56,6 +56,7 @@ class GameScene: SKScene {
     var playerThreeChips : Int = 0
     var playerFourChips : Int = 0
     
+
     
     
     var board: [Card] = []
@@ -108,7 +109,7 @@ class GameScene: SKScene {
     }
     func generateRandomNumber() -> Int
     {
-        var num = Int(arc4random_uniform(52))
+        let num = Int(arc4random_uniform(52))
         
         if(arrayNumbers[num] == -1)
         {
@@ -123,14 +124,14 @@ class GameScene: SKScene {
     
     func newCard(num : Int) -> Card
     {
-        var newCard : Card = Card(numb: num)
+        let newCard : Card = Card(numb: num)
         return newCard
     }
     
     
     func partition(v: [Card], left: Int, right: Int) -> Int {
         var i = left
-        var temp : Card = Card(numb: 0)
+        let temp : Card = Card(numb: 0)
         for j in (left)...(right) {
             if v[j].getName() < v[left].getName() {
                 i += 1
@@ -240,7 +241,7 @@ class GameScene: SKScene {
     }
     func straightFlush(player: Array<Any>) -> Int
     {
-    
+     
     }
     func fourOfAKind(player: Array<Card>) -> Int
     {
@@ -257,9 +258,26 @@ class GameScene: SKScene {
     {
         
     }
-    func flush(player: Array<Card>) -> Int
+    func flush(player: Array<Card>) -> Int //there are five of the same suit check to
     {
-        
+        var count = 0 //counts the number of cards with same suit
+        var temp : Card = Card(numb: 0)
+        for i in 6...1
+        {
+            temp.setSuit(num: player[i].getSuit())
+            for j in 6...1
+            {
+                if(player[i].getSuit() == player[j].getSuit())
+                {
+                    count = count + 1
+                }
+                if(count == 5)
+                {
+                    return player[0].getName()
+                }
+            }
+            count = 0
+        }
     }
     func straight(player: Array<Card>) -> Int
     {
