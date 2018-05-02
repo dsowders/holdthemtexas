@@ -75,11 +75,33 @@ class GameScene: SKScene {
     var totalPot = 0
     var playerCount = 0
     
+    @IBOutlet weak var raiseText: UITextField!
     @IBOutlet weak var balanceLabel: UILabel!
     @IBOutlet weak var leftCardImage: UIImageView!
     @IBOutlet weak var rightCardImage: UIImageView!
     
     @IBAction func raiseButton(_ sender: UIButton) {
+        if playerCount == 0
+        {
+            playerOneBalance = playerOneBalance - (Int(raiseText.text!)!)
+            balanceLabel.text = (String(playerOneBalance))
+        }
+        if playerCount == 1
+        {
+            playerTwoBalance = playerTwoBalance - (Int(raiseText.text!)!)
+            balanceLabel.text = (String(playerTwoBalance))
+        }
+        if playerCount == 2
+        {
+            playerThreeBalance = playerThreeBalance - (Int(raiseText.text!)!)
+            balanceLabel.text = (String(playerThreeBalance))
+        }
+        if playerCount == 3
+        {
+            playerFourBalance = playerFourBalance - (Int(raiseText.text!)!)
+            balanceLabel.text = (String(playerFourBalance))
+        }
+        totalPot = totalPot + (Int(raiseText.text!)!)
     }
     @IBAction func checkButton(_ sender: UIButton) {
     }
