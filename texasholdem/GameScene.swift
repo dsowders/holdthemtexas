@@ -281,7 +281,52 @@ class GameScene: SKScene {
     }
     func straight(player: Array<Card>) -> Int
     {
-    
+        var cardValues: [Int] = []
+        for i in 2...6
+        {
+            cardValues.append(player[i].getName())
+        }
+        if (cardValues.contains(10) && cardValues.contains(11) && cardValues.contains(12) && cardValues.contains(13) && cardValues.contains(14))
+        {
+            return 14
+        }
+        if (cardValues.contains(10) && cardValues.contains(11) && cardValues.contains(12) && cardValues.contains(13) && cardValues.contains(9))
+        {
+            return 13
+        }
+        if (cardValues.contains(10) && cardValues.contains(11) && cardValues.contains(12) && cardValues.contains(8) && cardValues.contains(9))
+        {
+            return 12
+        }
+        if (cardValues.contains(10) && cardValues.contains(11) && cardValues.contains(7) && cardValues.contains(8) && cardValues.contains(9))
+        {
+            return 11
+        }
+        if (cardValues.contains(10) && cardValues.contains(9) && cardValues.contains(8) && cardValues.contains(7) && cardValues.contains(6))
+        {
+            return 10
+        }
+        if (cardValues.contains(9) && cardValues.contains(8) && cardValues.contains(7) && cardValues.contains(6) && cardValues.contains(5))
+        {
+            return 9
+        }
+        if (cardValues.contains(8) && cardValues.contains(7) && cardValues.contains(6) && cardValues.contains(5) && cardValues.contains(4))
+        {
+            return 8
+        }
+        if (cardValues.contains(7) && cardValues.contains(6) && cardValues.contains(5) && cardValues.contains(4) && cardValues.contains(3))
+        {
+            return 7
+        }
+        if (cardValues.contains(6) && cardValues.contains(5) && cardValues.contains(4) && cardValues.contains(3) && cardValues.contains(2))
+        {
+            return 6
+        }
+        if (cardValues.contains(2) && cardValues.contains(3) && cardValues.contains(4) && cardValues.contains(5) && cardValues.contains(14))
+        {
+            return 5
+        }
+        return -1
     }
     func threeOfAKind(player: Array<Card>) -> Int
     {
