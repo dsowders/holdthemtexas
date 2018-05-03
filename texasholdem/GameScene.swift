@@ -148,12 +148,19 @@ class GameScene: SKScene {
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?)
     {
+        var count = 0
         for touch in touches
         {
             let location = touch.location(in: self)
-            if(dealerCardOne.frame.contains(location))
+            if(dealerCardOne.frame.contains(location) && count == 0)
             {
                 dealerCardOne.color = .blue
+                count = 1
+            }
+            if(dealerCardOne.frame.contains(location) && count == 1)
+            {
+                dealerCardOne.color = .red
+                count = 0
             }
         }
     }
