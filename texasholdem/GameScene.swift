@@ -13,7 +13,7 @@ class Card: NSObject
 {
     var name1: Int
     var suit1: Int
-    
+    var num1: Int
     
     // var image: UIImage
     //0,1,2,3,4,5,6,7,8...50,51
@@ -21,6 +21,7 @@ class Card: NSObject
     //fourOfClubs...aceOfDiamonds,aceOfHearts
     init(numb: Int)
     {
+        self.num1 = numb
         self.name1 = ((numb / 4) + 2)
         self.suit1 = (numb % 4)
     }
@@ -45,6 +46,10 @@ class Card: NSObject
     func getSuit() -> Int
     {
         return suit1
+    }
+    func getNum() -> Int
+    {
+        return num1
     }
 }
 
@@ -286,18 +291,26 @@ class GameScene: SKScene {
     func royalFlush(player: Array<Card>) -> Int
     {
         //use sortedPlayer
-        let royalFlushCards: [Card] = [player[2], player[3], player[4], player[5], player[6]]
-        var cardValues: [Int] = []
-        for i in 2...6
+        var cardNums: [Int] = []
+        for i in 0...6
         {
-            cardValues.append(player[i].getName())
+            cardNums.append(player[i].getNum())
         }
-        if (cardValues.contains(10) && cardValues.contains(11) && cardValues.contains(12) && cardValues.contains(13) && cardValues.contains(14))
+        if (cardNums.contains(51) && cardNums.contains(47) && cardNums.contains(43) && cardNums.contains(39) && cardNums.contains(35))
         {
-            if (checkSuit(player: royalFlushCards))
-            {
-                return 1
-            }
+            return 1
+        }
+        if (cardNums.contains(50) && cardNums.contains(46) && cardNums.contains(42) && cardNums.contains(38) && cardNums.contains(34))
+        {
+            return 1
+        }
+        if (cardNums.contains(49) && cardNums.contains(45) && cardNums.contains(41) && cardNums.contains(37) && cardNums.contains(33))
+        {
+            return 1
+        }
+        if (cardNums.contains(48) && cardNums.contains(44) && cardNums.contains(40) && cardNums.contains(36) && cardNums.contains(32))
+        {
+            return 1
         }
         return -1
         
@@ -367,6 +380,7 @@ class GameScene: SKScene {
         {
             return 5
         }
+        return -1
     }
     func fourOfAKind(player: Array<Card>) -> Int
     {
