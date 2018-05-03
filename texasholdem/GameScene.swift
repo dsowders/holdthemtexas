@@ -56,15 +56,14 @@ class Card: NSObject
 
 class GameScene: SKScene {
     var arrayNumbers: [Int] = [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51]
+    
+    
     var playerOneChips : Int = 0
     var playerTwoChips : Int = 0
     var playerThreeChips : Int = 0
     var playerFourChips : Int = 0
     
     var dealerCardOne = SKSpriteNode()
-    
-    //put this make everything function i think
-    
     
     var board: [Card] = []
     var playerOne: [Card] = []
@@ -82,10 +81,6 @@ class GameScene: SKScene {
     var totalPot = 0
     var playerCount = 0
     
-    @IBOutlet weak var raiseText: UITextField!
-    @IBOutlet weak var balanceLabel: UILabel!
-    @IBOutlet weak var leftCardImage: UIImageView!
-    @IBOutlet weak var rightCardImage: UIImageView!
     
     @IBAction func raiseButton(_ sender: UIButton) {
         if playerCount == 0
@@ -109,8 +104,6 @@ class GameScene: SKScene {
             balanceLabel.text = (String(playerFourBalance))
         }
         totalPot = totalPot + (Int(raiseText.text!)!)
-    }
-    @IBAction func checkButton(_ sender: UIButton) {
     }
     @IBAction func callButton(_ sender: UIButton) {
         totalPot = totalPot + 2
@@ -138,12 +131,6 @@ class GameScene: SKScene {
     
     // methods changing image of back of cards to the actual card image the object will relate to
     // back is a placeholder until we know what the actual card will be
-    @IBAction func rightCard(_ sender: UIButton) {
-        leftCardImage.image = UIImage(named: "back")
-    }
-    @IBAction func leftCard(_ sender: UIButton) {
-        rightCardImage.image = UIImage(named: "back")
-    }
     
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?)
