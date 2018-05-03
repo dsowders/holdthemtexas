@@ -13,7 +13,7 @@ class Card: NSObject
 {
     var name1: Int
     var suit1: Int
-    
+    var num1: Int
     
     // var image: UIImage
     //0,1,2,3,4,5,6,7,8...50,51
@@ -21,6 +21,7 @@ class Card: NSObject
     //fourOfClubs...aceOfDiamonds,aceOfHearts
     init(numb: Int)
     {
+        self.num1 = numb
         self.name1 = ((numb / 4) + 2)
         self.suit1 = (numb % 4)
     }
@@ -45,6 +46,10 @@ class Card: NSObject
     func getSuit() -> Int
     {
         return suit1
+    }
+    func getNum() -> Int
+    {
+        return num1
     }
 }
 
@@ -293,25 +298,96 @@ class GameScene: SKScene {
     func royalFlush(player: Array<Card>) -> Int
     {
         //use sortedPlayer
-        let royalFlushCards: [Card] = [player[2], player[3], player[4], player[5], player[6]]
-        var cardValues: [Int] = []
-        for i in 2...6
+        var cardNums: [Int] = []
+        for i in 0...6
         {
-            cardValues.append(player[i].getName())
+            cardNums.append(player[i].getNum())
         }
-        if (cardValues.contains(10) && cardValues.contains(11) && cardValues.contains(12) && cardValues.contains(13) && cardValues.contains(14))
+        if (cardNums.contains(51) && cardNums.contains(47) && cardNums.contains(43) && cardNums.contains(39) && cardNums.contains(35))
         {
-            if (checkSuit(player: royalFlushCards))
-            {
-                return 1
-            }
+            return 1
+        }
+        if (cardNums.contains(50) && cardNums.contains(46) && cardNums.contains(42) && cardNums.contains(38) && cardNums.contains(34))
+        {
+            return 1
+        }
+        if (cardNums.contains(49) && cardNums.contains(45) && cardNums.contains(41) && cardNums.contains(37) && cardNums.contains(33))
+        {
+            return 1
+        }
+        if (cardNums.contains(48) && cardNums.contains(44) && cardNums.contains(40) && cardNums.contains(36) && cardNums.contains(32))
+        {
+            return 1
         }
         return -1
         
     }
     func straightFlush(player: Array<Card>) -> Int
     {
-            return -1
+        let temp : Card = Card(numb: 0)
+        var tempArrayYuh: [Card] = []
+        for i in 0...6
+        {
+            tempArrayYuh = []
+            temp.setSuit(num: player[i].getSuit())
+            for j in 0...6
+            {
+                if(player[i].getSuit() == player[j].getSuit())
+                {
+                    tempArrayYuh.append(player[j])
+                }
+                if(tempArrayYuh.count >= 5)
+                {
+                    break
+                }
+            }
+        }
+        var tempArray: [Int] = []
+        for i in 0...tempArrayYuh.count
+        {
+            tempArray.append(tempArrayYuh[i].getName())
+        }
+        if (tempArray.contains(10) && tempArray.contains(11) && tempArray.contains(12) && tempArray.contains(13) && tempArray.contains(14))
+        {
+            return 14
+        }
+        if (tempArray.contains(10) && tempArray.contains(11) && tempArray.contains(12) && tempArray.contains(13) && tempArray.contains(9))
+        {
+            return 13
+        }
+        if (tempArray.contains(10) && tempArray.contains(11) && tempArray.contains(12) && tempArray.contains(8) && tempArray.contains(9))
+        {
+            return 12
+        }
+        if (tempArray.contains(10) && tempArray.contains(11) && tempArray.contains(7) && tempArray.contains(8) && tempArray.contains(9))
+        {
+            return 11
+        }
+        if (tempArray.contains(10) && tempArray.contains(9) && tempArray.contains(8) && tempArray.contains(7) && tempArray.contains(6))
+        {
+            return 10
+        }
+        if (tempArray.contains(9) && tempArray.contains(8) && tempArray.contains(7) && tempArray.contains(6) && tempArray.contains(5))
+        {
+            return 9
+        }
+        if (tempArray.contains(8) && tempArray.contains(7) && tempArray.contains(6) && tempArray.contains(5) && tempArray.contains(4))
+        {
+            return 8
+        }
+        if (tempArray.contains(7) && tempArray.contains(6) && tempArray.contains(5) && tempArray.contains(4) && tempArray.contains(3))
+        {
+            return 7
+        }
+        if (tempArray.contains(6) && tempArray.contains(5) && tempArray.contains(4) && tempArray.contains(3) && tempArray.contains(2))
+        {
+            return 6
+        }
+        if (tempArray.contains(2) && tempArray.contains(3) && tempArray.contains(4) && tempArray.contains(5) && tempArray.contains(14))
+        {
+            return 5
+        }
+        return -1
     }
     func fourOfAKind(player: Array<Card>) -> Int
     {
