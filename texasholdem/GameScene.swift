@@ -13,7 +13,7 @@ class Card: NSObject
 {
     var name1: Int
     var suit1: Int
-    
+    var num1: Int
     
     // var image: UIImage
     //0,1,2,3,4,5,6,7,8...50,51
@@ -21,6 +21,7 @@ class Card: NSObject
     //fourOfClubs...aceOfDiamonds,aceOfHearts
     init(numb: Int)
     {
+        self.num1 = numb
         self.name1 = ((numb / 4) + 2)
         self.suit1 = (numb % 4)
     }
@@ -46,20 +47,23 @@ class Card: NSObject
     {
         return suit1
     }
+    func getNum() -> Int
+    {
+        return num1
+    }
 }
 
 
 class GameScene: SKScene {
     var arrayNumbers: [Int] = [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51]
+    
+    
     var playerOneChips : Int = 0
     var playerTwoChips : Int = 0
     var playerThreeChips : Int = 0
     var playerFourChips : Int = 0
     
     var dealerCardOne = SKSpriteNode()
-    
-    //put this make everything function i think
-    
     
     var board: [Card] = []
     var playerOne: [Card] = []
@@ -77,10 +81,6 @@ class GameScene: SKScene {
     var totalPot = 0
     var playerCount = 0
     
-    @IBOutlet weak var raiseText: UITextField!
-    @IBOutlet weak var balanceLabel: UILabel!
-    @IBOutlet weak var leftCardImage: UIImageView!
-    @IBOutlet weak var rightCardImage: UIImageView!
     
     @IBAction func raiseButton(_ sender: UIButton) {
         if playerCount == 0
@@ -104,8 +104,6 @@ class GameScene: SKScene {
             balanceLabel.text = (String(playerFourBalance))
         }
         totalPot = totalPot + (Int(raiseText.text!)!)
-    }
-    @IBAction func checkButton(_ sender: UIButton) {
     }
     @IBAction func callButton(_ sender: UIButton) {
         totalPot = totalPot + 2
@@ -133,12 +131,6 @@ class GameScene: SKScene {
     
     // methods changing image of back of cards to the actual card image the object will relate to
     // back is a placeholder until we know what the actual card will be
-    @IBAction func rightCard(_ sender: UIButton) {
-        leftCardImage.image = UIImage(named: "back")
-    }
-    @IBAction func leftCard(_ sender: UIButton) {
-        rightCardImage.image = UIImage(named: "back")
-    }
     
 
     override func update(_ currentTime: TimeInterval) {
@@ -270,18 +262,26 @@ class GameScene: SKScene {
     func royalFlush(player: Array<Card>) -> Int
     {
         //use sortedPlayer
-        let royalFlushCards: [Card] = [player[2], player[3], player[4], player[5], player[6]]
-        var cardValues: [Int] = []
-        for i in 2...6
+        var cardNums: [Int] = []
+        for i in 0...6
         {
-            cardValues.append(player[i].getName())
+            cardNums.append(player[i].getNum())
         }
-        if (cardValues.contains(10) && cardValues.contains(11) && cardValues.contains(12) && cardValues.contains(13) && cardValues.contains(14))
+        if (cardNums.contains(51) && cardNums.contains(47) && cardNums.contains(43) && cardNums.contains(39) && cardNums.contains(35))
         {
-            if (checkSuit(player: royalFlushCards))
-            {
-                return 1
-            }
+            return 1
+        }
+        if (cardNums.contains(50) && cardNums.contains(46) && cardNums.contains(42) && cardNums.contains(38) && cardNums.contains(34))
+        {
+            return 1
+        }
+        if (cardNums.contains(49) && cardNums.contains(45) && cardNums.contains(41) && cardNums.contains(37) && cardNums.contains(33))
+        {
+            return 1
+        }
+        if (cardNums.contains(48) && cardNums.contains(44) && cardNums.contains(40) && cardNums.contains(36) && cardNums.contains(32))
+        {
+            return 1
         }
         return -1
         
@@ -289,9 +289,10 @@ class GameScene: SKScene {
     func straightFlush(player: Array<Card>) -> Int
     {
         let temp : Card = Card(numb: 0)
+        var tempArrayYuh: [Card] = []
         for i in 0...6
         {
-            var tempArrayYuh: [Card] = []
+            tempArrayYuh = []
             temp.setSuit(num: player[i].getSuit())
             for j in 0...6
             {
@@ -306,7 +307,7 @@ class GameScene: SKScene {
             }
         }
         var tempArray: [Int] = []
-        for i in 0...4
+        for i in 0...tempArrayYuh.count
         {
             tempArray.append(tempArrayYuh[i].getName())
         }
@@ -350,6 +351,7 @@ class GameScene: SKScene {
         {
             return 5
         }
+        return -1
     }
     func fourOfAKind(player: Array<Card>) -> Int
     {
