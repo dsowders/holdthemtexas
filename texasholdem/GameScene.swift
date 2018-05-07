@@ -76,6 +76,12 @@ class GameScene: SKScene {
     var playerFourChips : Int = 0
     
     var dealerCardOne = SKSpriteNode()
+    var dealerCardTwo = SKSpriteNode()
+    var dealerCardThree = SKSpriteNode()
+    var dealerCardFour = SKSpriteNode()
+    var dealerCardFive = SKSpriteNode()
+    
+    var playerCardOne
     
     var board: [Card] = []
     var playerOne: [Card] = []
@@ -149,7 +155,13 @@ class GameScene: SKScene {
     var queenofhearts = SKTexture(image: #imageLiteral(resourceName: "queen_of_hearts2"))
     var kingofhearts = SKTexture(image: #imageLiteral(resourceName: "king_of_hearts2"))
     
-    
+    func play(bool: Bool)
+    {
+        while bool == true
+        {
+            
+        }
+    }
     
     @IBAction func raiseButton(_ sender: UIButton) {
         if playerCount == 0
