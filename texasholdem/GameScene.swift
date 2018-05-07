@@ -9,6 +9,18 @@
 import SpriteKit
 import GameplayKit
 
+class Texture: SKTexture
+{
+    init(image: UIImage)
+    {
+        
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+}
+
 class Card: NSObject
 {
     var name1: Int
@@ -80,6 +92,63 @@ class GameScene: SKScene {
     var playerFourBalance = 100
     var totalPot = 0
     var playerCount = 0
+   
+    var aceofdiamonds = SKTexture(image: #imageLiteral(resourceName: "ace_of_diamonds"))
+    var twoofdiamonds = SKTexture(image: #imageLiteral(resourceName: "2_of_diamonds"))
+    var threeofdiamonds = SKTexture(image: #imageLiteral(resourceName: "3_of_diamonds"))
+    var fourofdiamonds = SKTexture(image: #imageLiteral(resourceName: "4_of_diamonds"))
+    var fiveofdiamonds = SKTexture(image: #imageLiteral(resourceName: "5_of_diamonds"))
+    var sixofdiamonds = SKTexture(image: #imageLiteral(resourceName: "6_of_diamonds"))
+    var sevenofdiamonds = SKTexture(image: #imageLiteral(resourceName: "7_of_diamonds"))
+    var eightofdiamonds = SKTexture(image: #imageLiteral(resourceName: "8_of_diamonds"))
+    var nineofdiamonds = SKTexture(image: #imageLiteral(resourceName: "9_of_diamonds"))
+    var tenofdiamonds = SKTexture(image: #imageLiteral(resourceName: "10_of_diamonds"))
+    var jackofdiamonds = SKTexture(image: #imageLiteral(resourceName: "jack_of_diamonds2"))
+    var queenofdiamonds = SKTexture(image: #imageLiteral(resourceName: "queen_of_diamonds2"))
+    var kingofdiamonds = SKTexture(image: #imageLiteral(resourceName: "king_of_diamonds2"))
+    
+    var aceofclubs = SKTexture(image: #imageLiteral(resourceName: "ace_of_clubs"))
+    var twoofclubs = SKTexture(image:#imageLiteral(resourceName: "2_of_clubs"))
+    var threeofclubs = SKTexture(image: #imageLiteral(resourceName: "3_of_clubs"))
+    var fourofclubs = SKTexture(image: #imageLiteral(resourceName: "4_of_clubs"))
+    var fiveofclubs = SKTexture(image: #imageLiteral(resourceName: "5_of_clubs"))
+    var sixofclubs = SKTexture(image: #imageLiteral(resourceName: "6_of_clubs"))
+    var sevenofclubs = SKTexture(image: #imageLiteral(resourceName: "7_of_clubs"))
+    var eightofclubs = SKTexture(image: #imageLiteral(resourceName: "8_of_clubs"))
+    var nineofclubs = SKTexture(image: #imageLiteral(resourceName: "9_of_clubs"))
+    var tenofclubs = SKTexture(image: #imageLiteral(resourceName: "10_of_clubs"))
+    var jackofclubs = SKTexture(image: #imageLiteral(resourceName: "jack_of_clubs2"))
+    var queenofclubs = SKTexture(image: #imageLiteral(resourceName: "queen_of_clubs2"))
+    var kingofclubs = SKTexture(image: #imageLiteral(resourceName: "king_of_clubs2"))
+    
+    var aceofspades = SKTexture(image: #imageLiteral(resourceName: "ace_of_spades"))
+    var twoofspades = SKTexture(image: #imageLiteral(resourceName: "2_of_spades"))
+    var threeofspades = SKTexture(image: #imageLiteral(resourceName: "3_of_spades"))
+    var fourofspades = SKTexture(image: #imageLiteral(resourceName: "4_of_spades"))
+    var fiveofspades = SKTexture(image: #imageLiteral(resourceName: "5_of_spades"))
+    var sixofspades = SKTexture(image: #imageLiteral(resourceName: "6_of_spades"))
+    var sevenofspades = SKTexture(image: #imageLiteral(resourceName: "7_of_spades"))
+    var eightofspades = SKTexture(image: #imageLiteral(resourceName: "8_of_spades"))
+    var nineofspades = SKTexture(image: #imageLiteral(resourceName: "9_of_spades"))
+    var tenofspades = SKTexture(image: #imageLiteral(resourceName: "10_of_spades"))
+    var jackofspades = SKTexture(image: #imageLiteral(resourceName: "jack_of_spades2"))
+    var queenofspades = SKTexture(image: #imageLiteral(resourceName: "queen_of_spades2"))
+    var kingofspades = SKTexture(image: #imageLiteral(resourceName: "king_of_spades2"))
+    
+    var aceofhearts = SKTexture(image: #imageLiteral(resourceName: "ace_of_hearts"))
+    var twoofhearts = SKTexture(image: #imageLiteral(resourceName: "2_of_hearts"))
+    var threeofhearts = SKTexture(image: #imageLiteral(resourceName: "3_of_hearts"))
+    var fourofhearts = SKTexture(image: #imageLiteral(resourceName: "4_of_hearts"))
+    var fiveofhearts = SKTexture(image: #imageLiteral(resourceName: "5_of_hearts"))
+    var sixofhearts = SKTexture(image: #imageLiteral(resourceName: "6_of_hearts"))
+    var sevenofhearts = SKTexture(image: #imageLiteral(resourceName: "7_of_hearts"))
+    var eightofhearts = SKTexture(image: #imageLiteral(resourceName: "8_of_hearts"))
+    var nineofhearts = SKTexture(image: #imageLiteral(resourceName: "9_of_hearts"))
+    var tenofherats = SKTexture(image: #imageLiteral(resourceName: "10_of_hearts"))
+    var jackofhearts = SKTexture(image: #imageLiteral(resourceName: "jack_of_hearts2"))
+    var queenofhearts = SKTexture(image: #imageLiteral(resourceName: "queen_of_hearts2"))
+    var kingofhearts = SKTexture(image: #imageLiteral(resourceName: "king_of_hearts2"))
+    
     
     
     @IBAction func raiseButton(_ sender: UIButton) {
@@ -133,7 +202,7 @@ class GameScene: SKScene {
     // back is a placeholder until we know what the actual card will be
     
     
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?)
+    override func changeBackground(_ touches: Set<UITouch>, with event: UIEvent?)
     {
         var count = 0
         for touch in touches
@@ -141,7 +210,7 @@ class GameScene: SKScene {
             let location = touch.location(in: self)
             if(dealerCardOne.frame.contains(location) && count == 0)
             {
-                dealerCardOne.color = .blue
+                dealerCardOne.texture =
                 count = 1
             }
             if(dealerCardOne.frame.contains(location) && count == 1)
@@ -225,6 +294,7 @@ class GameScene: SKScene {
     func makeEverything()
     {
         dealerCardOne = self.childNode(withName: "dealerCardOne") as! SKSpriteNode
+        
      board = [newCard(num: generateRandomNumber()), newCard(num: generateRandomNumber()), newCard(num: generateRandomNumber()), newCard(num: generateRandomNumber()), newCard(num: generateRandomNumber())]
     playerOne = [newCard(num: generateRandomNumber()), newCard(num: generateRandomNumber()), board[0], board[1], board[2], board[3], board[4]]
     
