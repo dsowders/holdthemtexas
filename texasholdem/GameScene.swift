@@ -168,40 +168,6 @@ class GameScene: SKScene {
     // methods changing image of back of cards to the actual card image the object will relate to
     // back is a placeholder until we know what the actual card will be
     
-    
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?)
-    {
-        var flippedOne = 0
-        var flippedTwo = 0
-        if(playerCount == 0 && turn == 0)
-        var cardOne = playerOne[0].getNum()
-        var cardTwo = playerOne[1].getNum()
-        
-    
-        for touch in touches
-        {
-            let location = touch.location(in: self)
-            if(playerCardOne.frame.contains(location) && flippedOne == 0)
-            {
-                playerCardOne.texture = cardTextures[cardOne]
-                flippedOne = 1
-            }
-            if(playerCardOne.frame.contains(location) && flippedTwo == 1)
-            {
-                playerCardOne.texture = back
-                flippedTwo = 0
-            }
-            if(playerCardTwo.frame.contains(location) && flippedTwo == 0)
-            {
-                playerCardTwo.texture = cardTextures[cardTwo]
-            }
-        }
-        if(playerCount ==
-    }
-    
-    override func didMove(to view: SKView) {
-       makeEverything()
-    }
 
     override func update(_ currentTime: TimeInterval) {
         // Called before each frame is rendered
