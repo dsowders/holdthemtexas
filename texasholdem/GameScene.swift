@@ -168,6 +168,142 @@ class GameScene: SKScene {
     // methods changing image of back of cards to the actual card image the object will relate to
     // back is a placeholder until we know what the actual card will be
     
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?)
+    {
+        
+        if(playerCount == 0 && turn == 0)
+        {
+            let cardOne = playerOne[0].getNum()
+            let cardTwo = playerOne[1].getNum()
+        var flippedOne = 0
+        var flippedTwo = 0
+        for touch in touches
+        {
+            let location = touch.location(in: self)
+            if(playerCardOne.frame.contains(location) && flippedOne == 0)
+            {
+                playerCardOne.texture = cardTextures[cardOne]
+                flippedOne = 1
+            }
+            if(playerCardOne.frame.contains(location) && flippedTwo == 1)
+            {
+                playerCardOne.texture = back
+                flippedOne = 0
+            }
+            if(playerCardTwo.frame.contains(location) && flippedTwo == 0)
+            {
+                playerCardTwo.texture = cardTextures[cardTwo]
+                flippedTwo = 1
+            }
+            if(playerCardTwo.frame.contains(location) && flippedTwo == 0)
+            {
+                playerCardTwo.texture = back
+                flippedTwo = 0
+            }
+        }
+        }
+        if(playerCount == 1 && turn == 1)
+        {
+            let cardOne = playerTwo[0].getNum()
+            let cardTwo = playerTwo[1].getNum()
+        var flippedOne = 0
+        var flippedTwo = 0
+        for touch in touches
+        {
+            let location = touch.location(in: self)
+            if(playerCardOne.frame.contains(location) && flippedOne == 0)
+            {
+                playerCardOne.texture = cardTextures[cardOne]
+                flippedOne = 1
+            }
+            if(playerCardOne.frame.contains(location) && flippedTwo == 1)
+            {
+                playerCardOne.texture = back
+                flippedTwo = 0
+            }
+            if(playerCardTwo.frame.contains(location) && flippedTwo == 0)
+            {
+                playerCardTwo.texture = cardTextures[cardTwo]
+                flippedOne = 1
+            }
+            if(playerCardTwo.frame.contains(location) && flippedTwo == 0)
+            {
+                playerCardTwo.texture = back
+                flippedTwo = 0
+            }
+            
+        }
+        }
+        if(playerCount == 2 && turn == 2)
+        {
+            let cardOne = playerThree[0].getNum()
+            let cardTwo = playerThree[1].getNum()
+            var flippedOne = 0
+            var flippedTwo = 0
+            for touch in touches
+            {
+                let location = touch.location(in: self)
+                if(playerCardOne.frame.contains(location) && flippedOne == 0)
+                {
+                    playerCardOne.texture = cardTextures[cardOne]
+                    flippedOne = 1
+                }
+                if(playerCardOne.frame.contains(location) && flippedTwo == 1)
+                {
+                    playerCardOne.texture = back
+                    flippedTwo = 0
+                }
+                if(playerCardTwo.frame.contains(location) && flippedTwo == 0)
+                {
+                    playerCardTwo.texture = cardTextures[cardTwo]
+                    flippedOne = 1
+                }
+                if(playerCardTwo.frame.contains(location) && flippedTwo == 0)
+                {
+                    playerCardTwo.texture = back
+                    flippedTwo = 0
+                }
+                
+            }
+        }
+        if(playerCount == 3 && turn == 3)
+        {
+            let cardOne = playerFour[0].getNum()
+            let cardTwo = playerFour[1].getNum()
+            var flippedOne = 0
+            var flippedTwo = 0
+            for touch in touches
+            {
+                let location = touch.location(in: self)
+                if(playerCardOne.frame.contains(location) && flippedOne == 0)
+                {
+                    playerCardOne.texture = cardTextures[cardOne]
+                    flippedOne = 1
+                }
+                if(playerCardOne.frame.contains(location) && flippedTwo == 1)
+                {
+                    playerCardOne.texture = back
+                    flippedTwo = 0
+                }
+                if(playerCardTwo.frame.contains(location) && flippedTwo == 0)
+                {
+                    playerCardTwo.texture = cardTextures[cardTwo]
+                    flippedOne = 1
+                }
+                if(playerCardTwo.frame.contains(location) && flippedTwo == 0)
+                {
+                    playerCardTwo.texture = back
+                    flippedTwo = 0
+                }
+                
+            }
+        }
+    }
+    
+    override func didMove(to view: SKView) {
+       makeEverything()
+    }
 
     override func update(_ currentTime: TimeInterval) {
         // Called before each frame is rendered
@@ -238,7 +374,8 @@ class GameScene: SKScene {
     func makeEverything()
     {
         playerCardOne = self.childNode(withName: "playerCardOne") as! SKSpriteNode
-        
+        playerCardTwo = self.childNode(withName: "playerCardOne") as! SKSpriteNode
+ 
      board = [newCard(num: generateRandomNumber()), newCard(num: generateRandomNumber()), newCard(num: generateRandomNumber()), newCard(num: generateRandomNumber()), newCard(num: generateRandomNumber())]
     playerOne = [newCard(num: generateRandomNumber()), newCard(num: generateRandomNumber()), board[0], board[1], board[2], board[3], board[4]]
     
