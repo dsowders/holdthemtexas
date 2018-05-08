@@ -544,6 +544,15 @@ class GameScene: SKScene {
         return player[6].getName()
     }
     
+    func determineWinner() -> Array<Int>
+    {
+        var cardValues: [Int] = []
+        cardValues = [royalFlush(player: sortedPlayerOne), royalFlush(player: sortedPlayerTwo), royalFlush(player: sortedPlayerThree), royalFlush(player: sortedPlayerFour)]
+        return []
+    }
+    
+    
+    
     
     //override var prefersStatusBarHidden: Bool {
     //    return true
