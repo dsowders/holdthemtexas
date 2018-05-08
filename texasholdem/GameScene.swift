@@ -9,6 +9,18 @@
 import SpriteKit
 import GameplayKit
 
+class Texture: SKTexture
+{
+    init(image: UIImage)
+    {
+        
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+}
+
 class Card: NSObject
 {
     var name1: Int
@@ -56,15 +68,14 @@ class Card: NSObject
 
 class GameScene: SKScene {
     var arrayNumbers: [Int] = [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51]
+    
+    
     var playerOneChips : Int = 0
     var playerTwoChips : Int = 0
     var playerThreeChips : Int = 0
     var playerFourChips : Int = 0
     
     var dealerCardOne = SKSpriteNode()
-    
-    //put this make everything function i think
-    
     
     var board: [Card] = []
     var playerOne: [Card] = []
@@ -81,11 +92,64 @@ class GameScene: SKScene {
     var playerFourBalance = 100
     var totalPot = 0
     var playerCount = 0
+   
+    var aceofdiamonds = SKTexture(image: #imageLiteral(resourceName: "ace_of_diamonds"))
+    var twoofdiamonds = SKTexture(image: #imageLiteral(resourceName: "2_of_diamonds"))
+    var threeofdiamonds = SKTexture(image: #imageLiteral(resourceName: "3_of_diamonds"))
+    var fourofdiamonds = SKTexture(image: #imageLiteral(resourceName: "4_of_diamonds"))
+    var fiveofdiamonds = SKTexture(image: #imageLiteral(resourceName: "5_of_diamonds"))
+    var sixofdiamonds = SKTexture(image: #imageLiteral(resourceName: "6_of_diamonds"))
+    var sevenofdiamonds = SKTexture(image: #imageLiteral(resourceName: "7_of_diamonds"))
+    var eightofdiamonds = SKTexture(image: #imageLiteral(resourceName: "8_of_diamonds"))
+    var nineofdiamonds = SKTexture(image: #imageLiteral(resourceName: "9_of_diamonds"))
+    var tenofdiamonds = SKTexture(image: #imageLiteral(resourceName: "10_of_diamonds"))
+    var jackofdiamonds = SKTexture(image: #imageLiteral(resourceName: "jack_of_diamonds2"))
+    var queenofdiamonds = SKTexture(image: #imageLiteral(resourceName: "queen_of_diamonds2"))
+    var kingofdiamonds = SKTexture(image: #imageLiteral(resourceName: "king_of_diamonds2"))
     
-    @IBOutlet weak var raiseText: UITextField!
-    @IBOutlet weak var balanceLabel: UILabel!
-    @IBOutlet weak var leftCardImage: UIImageView!
-    @IBOutlet weak var rightCardImage: UIImageView!
+    var aceofclubs = SKTexture(image: #imageLiteral(resourceName: "ace_of_clubs"))
+    var twoofclubs = SKTexture(image:#imageLiteral(resourceName: "2_of_clubs"))
+    var threeofclubs = SKTexture(image: #imageLiteral(resourceName: "3_of_clubs"))
+    var fourofclubs = SKTexture(image: #imageLiteral(resourceName: "4_of_clubs"))
+    var fiveofclubs = SKTexture(image: #imageLiteral(resourceName: "5_of_clubs"))
+    var sixofclubs = SKTexture(image: #imageLiteral(resourceName: "6_of_clubs"))
+    var sevenofclubs = SKTexture(image: #imageLiteral(resourceName: "7_of_clubs"))
+    var eightofclubs = SKTexture(image: #imageLiteral(resourceName: "8_of_clubs"))
+    var nineofclubs = SKTexture(image: #imageLiteral(resourceName: "9_of_clubs"))
+    var tenofclubs = SKTexture(image: #imageLiteral(resourceName: "10_of_clubs"))
+    var jackofclubs = SKTexture(image: #imageLiteral(resourceName: "jack_of_clubs2"))
+    var queenofclubs = SKTexture(image: #imageLiteral(resourceName: "queen_of_clubs2"))
+    var kingofclubs = SKTexture(image: #imageLiteral(resourceName: "king_of_clubs2"))
+    
+    var aceofspades = SKTexture(image: #imageLiteral(resourceName: "ace_of_spades"))
+    var twoofspades = SKTexture(image: #imageLiteral(resourceName: "2_of_spades"))
+    var threeofspades = SKTexture(image: #imageLiteral(resourceName: "3_of_spades"))
+    var fourofspades = SKTexture(image: #imageLiteral(resourceName: "4_of_spades"))
+    var fiveofspades = SKTexture(image: #imageLiteral(resourceName: "5_of_spades"))
+    var sixofspades = SKTexture(image: #imageLiteral(resourceName: "6_of_spades"))
+    var sevenofspades = SKTexture(image: #imageLiteral(resourceName: "7_of_spades"))
+    var eightofspades = SKTexture(image: #imageLiteral(resourceName: "8_of_spades"))
+    var nineofspades = SKTexture(image: #imageLiteral(resourceName: "9_of_spades"))
+    var tenofspades = SKTexture(image: #imageLiteral(resourceName: "10_of_spades"))
+    var jackofspades = SKTexture(image: #imageLiteral(resourceName: "jack_of_spades2"))
+    var queenofspades = SKTexture(image: #imageLiteral(resourceName: "queen_of_spades2"))
+    var kingofspades = SKTexture(image: #imageLiteral(resourceName: "king_of_spades2"))
+    
+    var aceofhearts = SKTexture(image: #imageLiteral(resourceName: "ace_of_hearts"))
+    var twoofhearts = SKTexture(image: #imageLiteral(resourceName: "2_of_hearts"))
+    var threeofhearts = SKTexture(image: #imageLiteral(resourceName: "3_of_hearts"))
+    var fourofhearts = SKTexture(image: #imageLiteral(resourceName: "4_of_hearts"))
+    var fiveofhearts = SKTexture(image: #imageLiteral(resourceName: "5_of_hearts"))
+    var sixofhearts = SKTexture(image: #imageLiteral(resourceName: "6_of_hearts"))
+    var sevenofhearts = SKTexture(image: #imageLiteral(resourceName: "7_of_hearts"))
+    var eightofhearts = SKTexture(image: #imageLiteral(resourceName: "8_of_hearts"))
+    var nineofhearts = SKTexture(image: #imageLiteral(resourceName: "9_of_hearts"))
+    var tenofherats = SKTexture(image: #imageLiteral(resourceName: "10_of_hearts"))
+    var jackofhearts = SKTexture(image: #imageLiteral(resourceName: "jack_of_hearts2"))
+    var queenofhearts = SKTexture(image: #imageLiteral(resourceName: "queen_of_hearts2"))
+    var kingofhearts = SKTexture(image: #imageLiteral(resourceName: "king_of_hearts2"))
+    
+    
     
     @IBAction func raiseButton(_ sender: UIButton) {
         if playerCount == 0
@@ -109,8 +173,6 @@ class GameScene: SKScene {
             balanceLabel.text = (String(playerFourBalance))
         }
         totalPot = totalPot + (Int(raiseText.text!)!)
-    }
-    @IBAction func checkButton(_ sender: UIButton) {
     }
     @IBAction func callButton(_ sender: UIButton) {
         totalPot = totalPot + 2
@@ -138,15 +200,9 @@ class GameScene: SKScene {
     
     // methods changing image of back of cards to the actual card image the object will relate to
     // back is a placeholder until we know what the actual card will be
-    @IBAction func rightCard(_ sender: UIButton) {
-        leftCardImage.image = UIImage(named: "back")
-    }
-    @IBAction func leftCard(_ sender: UIButton) {
-        rightCardImage.image = UIImage(named: "back")
-    }
     
     
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?)
+    override func changeBackground(_ touches: Set<UITouch>, with event: UIEvent?)
     {
         var count = 0
         for touch in touches
@@ -154,7 +210,7 @@ class GameScene: SKScene {
             let location = touch.location(in: self)
             if(dealerCardOne.frame.contains(location) && count == 0)
             {
-                dealerCardOne.color = .blue
+                dealerCardOne.texture =
                 count = 1
             }
             if(dealerCardOne.frame.contains(location) && count == 1)
@@ -238,6 +294,7 @@ class GameScene: SKScene {
     func makeEverything()
     {
         dealerCardOne = self.childNode(withName: "dealerCardOne") as! SKSpriteNode
+        
      board = [newCard(num: generateRandomNumber()), newCard(num: generateRandomNumber()), newCard(num: generateRandomNumber()), newCard(num: generateRandomNumber()), newCard(num: generateRandomNumber())]
     playerOne = [newCard(num: generateRandomNumber()), newCard(num: generateRandomNumber()), board[0], board[1], board[2], board[3], board[4]]
     
