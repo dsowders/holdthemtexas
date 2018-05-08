@@ -171,13 +171,45 @@ class GameScene: SKScene {
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?)
     {
-        var flippedOne = 0
-        var flippedTwo = 0
+        
         if(playerCount == 0 && turn == 0)
+        {
         var cardOne = playerOne[0].getNum()
         var cardTwo = playerOne[1].getNum()
-        
-    
+        var flippedOne = 0
+        var flippedTwo = 0
+        for touch in touches
+        {
+            let location = touch.location(in: self)
+            if(playerCardOne.frame.contains(location) && flippedOne == 0)
+            {
+                playerCardOne.texture = cardTextures[cardOne]
+                flippedOne = 1
+            }
+            if(playerCardOne.frame.contains(location) && flippedTwo == 1)
+            {
+                playerCardOne.texture = back
+                flippedOne = 0
+            }
+            if(playerCardTwo.frame.contains(location) && flippedTwo == 0)
+            {
+                playerCardTwo.texture = cardTextures[cardTwo]
+                flippedTwo = 1
+            }
+            if(playerCardTwo.frame.contains(location) && flippedTwo == 0)
+            {
+                playercardTwo.texture = #imageLiteral(resourceName: "back")
+                flippedTwo = 
+                
+            }
+        }
+        }
+        if(playerCount == 1 && turn == 1)
+        {
+        var cardOne = playerTwo[0].getNum()
+        var cardTwo = playerTwo[1].getNum()
+        var flippedOne = 0
+        var flippedTwo = 0
         for touch in touches
         {
             let location = touch.location(in: self)
@@ -196,7 +228,7 @@ class GameScene: SKScene {
                 playerCardTwo.texture = cardTextures[cardTwo]
             }
         }
-        if(playerCount ==
+        }
     }
     
     override func didMove(to view: SKView) {
