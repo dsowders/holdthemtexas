@@ -689,11 +689,11 @@ class GameScene: SKScene {
         var cardValues: [Int] = []
         cardValues = [royalFlush(player: sortedPlayerOne), royalFlush(player: sortedPlayerTwo), royalFlush(player: sortedPlayerThree), royalFlush(player: sortedPlayerFour)]
         var maxNum = cardValues.max()
-        var allPlayerWithMaxScore = cardValues.filter{ $0 == maxNum }
-        var indexForPlayerWithMaxScore = cardValues.indices.filter { cardValues[$0] == maxNum }
-        if (indexForPlayerWithMaxScore != [])
+        if (maxNum != -1)
         {
-            
+            var allPlayerWithMaxScore = cardValues.filter{ $0 == maxNum }
+            var indexForPlayerWithMaxScore = cardValues.indices.filter { cardValues[$0] == maxNum }
+            return indexForPlayerWithMaxScore
         }
 
     }*/
