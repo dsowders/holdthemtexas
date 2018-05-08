@@ -205,8 +205,8 @@ class GameScene: SKScene {
         }
         if(playerCount == 1 && turn == 1)
         {
-        var cardOne = playerTwo[0].getNum()
-        var cardTwo = playerTwo[1].getNum()
+            let cardOne = playerTwo[0].getNum()
+            let cardTwo = playerTwo[1].getNum()
         var flippedOne = 0
         var flippedTwo = 0
         for touch in touches
@@ -238,7 +238,7 @@ class GameScene: SKScene {
         if(playerCount == 2 && turn == 2)
         {
             var cardOne = playerThree[0].getNum()
-            var cardTwo = playerThree[1].getNum()
+            let cardTwo = playerThree[1].getNum()
             var flippedOne = 0
             var flippedTwo = 0
             for touch in touches
