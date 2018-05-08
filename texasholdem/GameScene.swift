@@ -9,17 +9,7 @@
 import SpriteKit
 import GameplayKit
 
-class Texture: SKTexture
-{
-    init(image: UIImage)
-    {
-        
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-}
+
 
 class Card: NSObject
 {
@@ -68,6 +58,11 @@ class Card: NSObject
 
 class GameScene: SKScene {
     var arrayNumbers: [Int] = [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51]
+    //0-12 is a suit spades
+    //13-25 is a suit clubs
+    //26-39 is a suit hearts
+    //39-51 is a suit diamonds
+    
     
     
     var playerOneChips : Int = 0
@@ -81,7 +76,8 @@ class GameScene: SKScene {
     var dealerCardFour = SKSpriteNode()
     var dealerCardFive = SKSpriteNode()
     
-    var playerCardOne
+    var playerCardOne = SKSpriteNode()
+    var playerCardTwo = SKSpriteNode()
     
     var board: [Card] = []
     var playerOne: [Card] = []
@@ -99,6 +95,8 @@ class GameScene: SKScene {
     var totalPot = 0
     var playerCount = 0
    
+    var back = SKTexture(image: #imageLiteral(resourceName: "back"))
+    
     var aceofdiamonds = SKTexture(image: #imageLiteral(resourceName: "ace_of_diamonds"))
     var twoofdiamonds = SKTexture(image: #imageLiteral(resourceName: "2_of_diamonds"))
     var threeofdiamonds = SKTexture(image: #imageLiteral(resourceName: "3_of_diamonds"))
@@ -150,10 +148,12 @@ class GameScene: SKScene {
     var sevenofhearts = SKTexture(image: #imageLiteral(resourceName: "7_of_hearts"))
     var eightofhearts = SKTexture(image: #imageLiteral(resourceName: "8_of_hearts"))
     var nineofhearts = SKTexture(image: #imageLiteral(resourceName: "9_of_hearts"))
-    var tenofherats = SKTexture(image: #imageLiteral(resourceName: "10_of_hearts"))
+    var tenofhearts = SKTexture(image: #imageLiteral(resourceName: "10_of_hearts"))
     var jackofhearts = SKTexture(image: #imageLiteral(resourceName: "jack_of_hearts2"))
     var queenofhearts = SKTexture(image: #imageLiteral(resourceName: "queen_of_hearts2"))
     var kingofhearts = SKTexture(image: #imageLiteral(resourceName: "king_of_hearts2"))
+    
+    var cardTextures : [SKTexture] = []
     
     func play(bool: Bool)
     {
@@ -163,72 +163,33 @@ class GameScene: SKScene {
         }
     }
     
-    @IBAction func raiseButton(_ sender: UIButton) {
-        if playerCount == 0
-        {
-            playerOneBalance = playerOneBalance - (Int(raiseText.text!)!)
-            balanceLabel.text = (String(playerOneBalance))
-        }
-        if playerCount == 1
-        {
-            playerTwoBalance = playerTwoBalance - (Int(raiseText.text!)!)
-            balanceLabel.text = (String(playerTwoBalance))
-        }
-        if playerCount == 2
-        {
-            playerThreeBalance = playerThreeBalance - (Int(raiseText.text!)!)
-            balanceLabel.text = (String(playerThreeBalance))
-        }
-        if playerCount == 3
-        {
-            playerFourBalance = playerFourBalance - (Int(raiseText.text!)!)
-            balanceLabel.text = (String(playerFourBalance))
-        }
-        totalPot = totalPot + (Int(raiseText.text!)!)
-    }
-    @IBAction func callButton(_ sender: UIButton) {
-        totalPot = totalPot + 2
-        if playerCount == 0
-        {
-            playerOneBalance = playerOneBalance - 2
-            balanceLabel.text = (String(playerOneBalance))
-        }
-        if playerCount == 1
-        {
-            playerTwoBalance = playerTwoBalance - 2
-            balanceLabel.text = (String(playerTwoBalance))
-        }
-        if playerCount == 2
-        {
-            playerThreeBalance = playerThreeBalance - 2
-            balanceLabel.text = (String(playerThreeBalance))
-        }
-        if playerCount == 3
-        {
-            playerFourBalance = playerFourBalance - 2
-            balanceLabel.text = (String(playerFourBalance))
-        }
-    }
     
     // methods changing image of back of cards to the actual card image the object will relate to
     // back is a placeholder until we know what the actual card will be
     
     
-    override func changeBackground(_ touches: Set<UITouch>, with event: UIEvent?)
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?)
     {
-        var count = 0
+        var flippedOne = 0
+        var flippedTwo = 0
+        var cardOne = playerOne[0].getNum()
+        var cardTwo = playerOne[
         for touch in touches
         {
             let location = touch.location(in: self)
-            if(dealerCardOne.frame.contains(location) && count == 0)
+            if(playerCardOne.frame.contains(location) && flippedOne == 0)
             {
-                dealerCardOne.texture =
-                count = 1
+                playerCardOne.texture = cardTextures[cardOne]
+                flippedOne = 1
             }
-            if(dealerCardOne.frame.contains(location) && count == 1)
+            if(playerCardOne.frame.contains(location) && flippedTwo == 1)
             {
-                dealerCardOne.color = .red
-                count = 0
+                playerCardOne.texture = back
+                flippedTwo = 0
+            }
+            if(playerCardTwo.frame.contains(location) && flippedTwo == 0)
+            {
+                playerCardTwo.texture = cardTextures[cardTwo]
             }
         }
     }
@@ -305,7 +266,7 @@ class GameScene: SKScene {
     
     func makeEverything()
     {
-        dealerCardOne = self.childNode(withName: "dealerCardOne") as! SKSpriteNode
+        playerCardOne = self.childNode(withName: "playerCardOne") as! SKSpriteNode
         
      board = [newCard(num: generateRandomNumber()), newCard(num: generateRandomNumber()), newCard(num: generateRandomNumber()), newCard(num: generateRandomNumber()), newCard(num: generateRandomNumber())]
     playerOne = [newCard(num: generateRandomNumber()), newCard(num: generateRandomNumber()), board[0], board[1], board[2], board[3], board[4]]
@@ -322,6 +283,8 @@ class GameScene: SKScene {
         quicksort(c: sortedPlayerTwo, a: 0, b: 6)
         quicksort(c: sortedPlayerThree, a: 0, b: 6)
         quicksort(c: sortedPlayerFour, a: 0, b: 6)
+        
+       cardTextures = [aceofspades, twoofspades, threeofspades, fourofspades, fiveofspades, sixofspades, sevenofspades, eightofspades, nineofspades, tenofspades, jackofspades, queenofspades, kingofspades, aceofclubs, twoofclubs, threeofclubs, fourofclubs, fiveofclubs, sixofclubs, sevenofclubs, eightofclubs, nineofclubs, tenofclubs, jackofclubs, queenofclubs, kingofclubs, aceofhearts, twoofhearts, threeofhearts, fourofhearts, fiveofhearts, sixofhearts, sevenofhearts, eightofhearts, nineofhearts, tenofhearts, jackofhearts, queenofhearts, kingofhearts, aceofdiamonds, twoofdiamonds, threeofdiamonds, fourofdiamonds, fiveofdiamonds, sixofdiamonds, sevenofdiamonds, eightofdiamonds, nineofdiamonds, tenofdiamonds, jackofdiamonds, queenofdiamonds, kingofdiamonds]
     }
         //0 and 1 are the players cards and 2 to 6 are the boards card.
         
