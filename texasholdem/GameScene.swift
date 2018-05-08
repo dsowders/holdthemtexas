@@ -64,7 +64,6 @@ class GameScene: SKScene {
     //39-51 is a suit diamonds
     
     
-    
     var playerOneChips : Int = 0
     var playerTwoChips : Int = 0
     var playerThreeChips : Int = 0
@@ -94,6 +93,8 @@ class GameScene: SKScene {
     var playerFourBalance = 100
     var totalPot = 0
     var playerCount = 0
+    
+    var turn = 0
    
     var back = SKTexture(image: #imageLiteral(resourceName: "back"))
     
@@ -172,8 +173,11 @@ class GameScene: SKScene {
     {
         var flippedOne = 0
         var flippedTwo = 0
+        if(playerCount == 0 && turn == 0)
         var cardOne = playerOne[0].getNum()
-        var cardTwo = playerOne[
+        var cardTwo = playerOne[1].getNum()
+        
+    
         for touch in touches
         {
             let location = touch.location(in: self)
@@ -192,6 +196,7 @@ class GameScene: SKScene {
                 playerCardTwo.texture = cardTextures[cardTwo]
             }
         }
+        if(playerCount ==
     }
     
     override func didMove(to view: SKView) {
