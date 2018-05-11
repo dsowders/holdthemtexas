@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3FD9487520A601D000A17109 /* pokertableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FD9487420A601D000A17109 /* pokertableViewController.swift */; };
 		E8100F0D207687FF00180483 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8100F0C207687FF00180483 /* AppDelegate.swift */; };
 		E8100F0F207687FF00180483 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = E8100F0E207687FF00180483 /* GameScene.sks */; };
 		E8100F11207687FF00180483 /* Actions.sks in Resources */ = {isa = PBXBuildFile; fileRef = E8100F10207687FF00180483 /* Actions.sks */; };
@@ -40,6 +41,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3FD9487420A601D000A17109 /* pokertableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = pokertableViewController.swift; sourceTree = "<group>"; };
 		E8100F09207687FF00180483 /* texasholdem.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = texasholdem.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E8100F0C207687FF00180483 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E8100F0E207687FF00180483 /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
@@ -115,6 +117,7 @@
 				E8100F12207687FF00180483 /* GameScene.swift */,
 				E8100F14207687FF00180483 /* GameViewController.swift */,
 				E8100F16207687FF00180483 /* Main.storyboard */,
+				3FD9487420A601D000A17109 /* pokertableViewController.swift */,
 				E8100F44207688F700180483 /* rulecontroller.swift */,
 				E8100F42207688DA00180483 /* playercontroller.swift */,
 				E8100F40207688B200180483 /* menucontroller.swift */,
@@ -279,6 +282,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3FD9487520A601D000A17109 /* pokertableViewController.swift in Sources */,
 				E8100F41207688B200180483 /* menucontroller.swift in Sources */,
 				E8100F13207687FF00180483 /* GameScene.swift in Sources */,
 				E8100F15207687FF00180483 /* GameViewController.swift in Sources */,
