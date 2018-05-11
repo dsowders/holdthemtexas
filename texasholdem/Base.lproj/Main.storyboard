@@ -10,21 +10,6 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Game View Controller-->
-        <scene sceneID="tXr-a1-R10">
-            <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="SZV-WD-TEh" sceneMemberID="firstResponder"/>
-                <viewController id="BV1-FR-VrT" customClass="GameViewController" customModule="texasholdem" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" multipleTouchEnabled="YES" contentMode="scaleToFill" id="3se-qz-xqx" customClass="SKView">
-                        <rect key="frame" x="0.0" y="0.0" width="667" height="375"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                        <viewLayoutGuide key="safeArea" id="4qk-I5-YsI"/>
-                    </view>
-                </viewController>
-            </objects>
-            <point key="canvasLocation" x="3200.1499250374814" y="124"/>
-        </scene>
         <!--Rulecontroller-->
         <scene sceneID="hWD-tp-j9h">
             <objects>
@@ -117,7 +102,7 @@
                                 <color key="backgroundColor" red="1" green="0.15923816120669609" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <state key="normal" title="Button"/>
                                 <connections>
-                                    <segue destination="BV1-FR-VrT" kind="presentation" id="5oK-o8-Vml"/>
+                                    <segue destination="Zqs-89-bGH" kind="show" id="FtC-Zl-iPP"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -128,6 +113,21 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="96Y-RV-UNw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2328.4857571214393" y="124"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="3E0-WR-K5t">
+            <objects>
+                <viewController id="Zqs-89-bGH" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Pb6-sC-OMu">
+                        <rect key="frame" x="0.0" y="0.0" width="667" height="375"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="c7x-sc-IQL"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="2Oc-I3-KsR" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3242" y="124"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="PxU-l0-m6B">
