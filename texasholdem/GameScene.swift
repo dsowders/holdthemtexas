@@ -616,6 +616,96 @@ class GameScene: SKScene {
         return player[6].getName()
     }
     
+    func determineWinner() -> Array<Int> //returns array of winners
+    {
+        var cardValues: [Int] = []
+        cardValues = [royalFlush(player: sortedPlayerOne), royalFlush(player: sortedPlayerTwo), royalFlush(player: sortedPlayerThree), royalFlush(player: sortedPlayerFour)]
+        var maxNum = cardValues.max()
+        if (maxNum != -1)
+        {
+            let indexForPlayerWithMaxScore = cardValues.indices.filter { cardValues[$0] == maxNum }
+            return indexForPlayerWithMaxScore
+        }
+        cardValues = []
+        cardValues = [straightFlush(player: sortedPlayerOne), straightFlush(player: sortedPlayerTwo), straightFlush(player: sortedPlayerThree), straightFlush(player: sortedPlayerFour)]
+        maxNum = cardValues.max()
+        if (maxNum != -1)
+        {
+            let indexForPlayerWithMaxScore = cardValues.indices.filter { cardValues[$0] == maxNum }
+            return indexForPlayerWithMaxScore
+        }
+        cardValues = []
+        cardValues = [fourOfAKind(player: sortedPlayerOne), fourOfAKind(player: sortedPlayerTwo), fourOfAKind(player: sortedPlayerThree), fourOfAKind(player: sortedPlayerFour)]
+        maxNum = cardValues.max()
+        if (maxNum != -1)
+        {
+            let indexForPlayerWithMaxScore = cardValues.indices.filter { cardValues[$0] == maxNum }
+            return indexForPlayerWithMaxScore
+        }
+        cardValues = []
+        cardValues = [fullHouse(player: sortedPlayerOne), fullHouse(player: sortedPlayerTwo), fullHouse(player: sortedPlayerThree), fullHouse(player: sortedPlayerFour)]
+        maxNum = cardValues.max()
+        if (maxNum != -1)
+        {
+            let indexForPlayerWithMaxScore = cardValues.indices.filter { cardValues[$0] == maxNum }
+            return indexForPlayerWithMaxScore
+        }
+        cardValues = []
+        cardValues = [flush(player: sortedPlayerOne), flush(player: sortedPlayerTwo), flush(player: sortedPlayerThree), flush(player: sortedPlayerFour)]
+        maxNum = cardValues.max()
+        if (maxNum != -1)
+        {
+            let indexForPlayerWithMaxScore = cardValues.indices.filter { cardValues[$0] == maxNum }
+            return indexForPlayerWithMaxScore
+        }
+        cardValues = []
+        cardValues = [straight(player: sortedPlayerOne), straight(player: sortedPlayerTwo), straight(player: sortedPlayerThree), straight(player: sortedPlayerFour)]
+        maxNum = cardValues.max()
+        if (maxNum != -1)
+        {
+            let indexForPlayerWithMaxScore = cardValues.indices.filter { cardValues[$0] == maxNum }
+            return indexForPlayerWithMaxScore
+        }
+        cardValues = []
+        cardValues = [threeOfAKind(player: sortedPlayerOne), threeOfAKind(player: sortedPlayerTwo), threeOfAKind(player: sortedPlayerThree), threeOfAKind(player: sortedPlayerFour)]
+        maxNum = cardValues.max()
+        if (maxNum != -1)
+        {
+            let indexForPlayerWithMaxScore = cardValues.indices.filter { cardValues[$0] == maxNum }
+            return indexForPlayerWithMaxScore
+        }
+        cardValues = []
+        cardValues = [twoPair(player: sortedPlayerOne), twoPair(player: sortedPlayerTwo), twoPair(player: sortedPlayerThree), twoPair(player: sortedPlayerFour)]
+        maxNum = cardValues.max()
+        if (maxNum != -1)
+        {
+            let indexForPlayerWithMaxScore = cardValues.indices.filter { cardValues[$0] == maxNum }
+            return indexForPlayerWithMaxScore
+        }
+        cardValues = []
+        cardValues = [onePair(player: sortedPlayerOne), onePair(player: sortedPlayerTwo), onePair(player: sortedPlayerThree), onePair(player: sortedPlayerFour)]
+        maxNum = cardValues.max()
+        if (maxNum != -1)
+        {
+            let indexForPlayerWithMaxScore = cardValues.indices.filter { cardValues[$0] == maxNum }
+            return indexForPlayerWithMaxScore
+        }
+        cardValues = []
+        cardValues = [highCard(player: sortedPlayerOne), highCard(player: sortedPlayerTwo), highCard(player: sortedPlayerThree), highCard(player: sortedPlayerFour)]
+        maxNum = cardValues.max()
+        if (maxNum != -1)
+        {
+            let indexForPlayerWithMaxScore = cardValues.indices.filter { cardValues[$0] == maxNum }
+            return indexForPlayerWithMaxScore
+        }
+        
+        
+        return []
+
+    }
+    
+    
+    
     
     //override var prefersStatusBarHidden: Bool {
     //    return true
