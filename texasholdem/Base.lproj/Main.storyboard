@@ -148,16 +148,16 @@
                                 <rect key="frame" x="311" y="115" width="42" height="73"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aXg-Rx-7gj">
-                                <rect key="frame" x="253" y="267" width="65" height="93"/>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5BM-VE-LPt">
+                                <rect key="frame" x="258" y="267" width="65" height="93"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" backgroundImage="back"/>
                                 <connections>
-                                    <action selector="playerCardOne:" destination="Zqs-89-bGH" eventType="touchUpInside" id="ayQ-zu-wlY"/>
+                                    <action selector="playerCardOne:" destination="Zqs-89-bGH" eventType="touchUpInside" id="L1W-cU-GJm"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5BM-VE-LPt">
-                                <rect key="frame" x="340" y="267" width="65" height="93"/>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6gE-hH-mSJ">
+                                <rect key="frame" x="335" y="267" width="65" height="93"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" backgroundImage="back"/>
                             </button>
@@ -172,12 +172,12 @@
                         <outlet property="cardOne" destination="csG-UM-Vba" id="ot8-gJ-pZz"/>
                         <outlet property="cardThree" destination="8rb-ZE-d2d" id="Ygn-c5-Dv7"/>
                         <outlet property="cardTwo" destination="lnA-Fp-S01" id="ztR-32-aCQ"/>
-                        <outlet property="playerCardOneA" destination="aXg-Rx-7gj" id="vk0-ws-jWq"/>
+                        <outlet property="playerCardOneA" destination="5BM-VE-LPt" id="ZYF-hL-5iK"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2Oc-I3-KsR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3096.7016491754125" y="124"/>
+            <point key="canvasLocation" x="2998.6506746626687" y="458.39999999999998"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="PxU-l0-m6B">
