@@ -62,8 +62,13 @@ class pokertableViewController: UIViewController {
     @IBOutlet weak var cardThree: UIImageView!
     @IBOutlet weak var cardFour: UIImageView!
     @IBOutlet weak var cardFive: UIImageView!
-    
-    
+   
+    @IBAction func raiseButton(_ sender: UIButton) {
+    }
+    @IBAction func callCheckButton(_ sender: UIButton) {
+    }
+    @IBAction func foldButton(_ sender: UIButton) {
+    }
     
     var board: [Card] = []
     var playerOne: [Card] = []
