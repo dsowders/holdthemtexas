@@ -63,6 +63,8 @@ class pokertableViewController: UIViewController {
     @IBOutlet weak var cardFour: UIImageView!
     @IBOutlet weak var cardFive: UIImageView!
     
+    @IBOutlet weak var leftCard: UIImageView!
+    @IBOutlet weak var rightCard: UIImageView!
     
     var board: [Card] = []
     var playerOne: [Card] = []
@@ -115,12 +117,31 @@ class pokertableViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+
     
-    @IBOutlet weak var playerCardOneA: UIButton!
     @IBAction func playerCardOne(_ sender: UIButton) {
-        if flippedOne
+        
+        if !flippedOne && turn == 0
         {
-            playerCardOneA.image = 
+            leftCard.image = images[playerOne[0].getNum()]
+            flippedOne = !flippedOne
+        }
+        else
+        {
+            leftCard.image = #imageLiteral(resourceName: "back")
+            flippedOne = !flippedOne
+        }
+    }
+    @IBAction func rightCard(_ sender: UIButton) {
+        if !flippedTwo && turn == 0
+        {
+            rightCard.image = images[playerOne[1].getNum()]
+            flippedTwo = !flippedTwo
+        }
+        else
+        {
+            rightCard.image = #imageLiteral(resourceName: "back")
+            flippedTwo = !flippedTwo
         }
     }
     
