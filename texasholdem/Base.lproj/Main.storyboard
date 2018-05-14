@@ -111,21 +111,68 @@
             </objects>
             <point key="canvasLocation" x="2328.4857571214393" y="124"/>
         </scene>
-        <!--View Controller-->
+        <!--Pokertable View Controller-->
         <scene sceneID="3E0-WR-K5t">
             <objects>
-                <viewController id="Zqs-89-bGH" sceneMemberID="viewController">
+                <viewController id="Zqs-89-bGH" customClass="pokertableViewController" customModule="texasholdem" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Pb6-sC-OMu">
                         <rect key="frame" x="0.0" y="0.0" width="667" height="375"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="pokertablemydudes" translatesAutoresizingMaskIntoConstraints="NO" id="3wG-gd-b0Z">
+                                <rect key="frame" x="0.0" y="-56" width="667" height="431"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="back" translatesAutoresizingMaskIntoConstraints="NO" id="IRK-Yh-WAh">
+                                <rect key="frame" x="420" y="115" width="44" height="73"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="back" translatesAutoresizingMaskIntoConstraints="NO" id="0LM-TA-WPP">
+                                <rect key="frame" x="365" y="115" width="44" height="73"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="back" translatesAutoresizingMaskIntoConstraints="NO" id="csG-UM-Vba">
+                                <rect key="frame" x="203" y="115" width="43" height="73"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="back" translatesAutoresizingMaskIntoConstraints="NO" id="lnA-Fp-S01">
+                                <rect key="frame" x="258" y="115" width="45" height="73"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="back" translatesAutoresizingMaskIntoConstraints="NO" id="8rb-ZE-d2d">
+                                <rect key="frame" x="311" y="115" width="42" height="73"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aXg-Rx-7gj">
+                                <rect key="frame" x="253" y="267" width="65" height="93"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" backgroundImage="back"/>
+                                <connections>
+                                    <action selector="playerCardOne:" destination="Zqs-89-bGH" eventType="touchUpInside" id="ayQ-zu-wlY"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5BM-VE-LPt">
+                                <rect key="frame" x="340" y="267" width="65" height="93"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" backgroundImage="back"/>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="c7x-sc-IQL"/>
                     </view>
                     <navigationItem key="navigationItem" id="Jc5-Wh-jmG"/>
+                    <connections>
+                        <outlet property="cardFive" destination="IRK-Yh-WAh" id="q7C-cU-sOk"/>
+                        <outlet property="cardFour" destination="0LM-TA-WPP" id="eHM-5v-O8x"/>
+                        <outlet property="cardOne" destination="csG-UM-Vba" id="ot8-gJ-pZz"/>
+                        <outlet property="cardThree" destination="8rb-ZE-d2d" id="Ygn-c5-Dv7"/>
+                        <outlet property="cardTwo" destination="lnA-Fp-S01" id="ztR-32-aCQ"/>
+                        <outlet property="playerCardOneA" destination="aXg-Rx-7gj" id="vk0-ws-jWq"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2Oc-I3-KsR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3097" y="124"/>
+            <point key="canvasLocation" x="3096.7016491754125" y="124"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="PxU-l0-m6B">
@@ -146,4 +193,8 @@
             <point key="canvasLocation" x="497" y="125"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="back" width="729" height="1024"/>
+        <image name="pokertablemydudes" width="1920" height="1080"/>
+    </resources>
 </document>
