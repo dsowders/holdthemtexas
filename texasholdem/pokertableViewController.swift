@@ -81,14 +81,12 @@ class pokertableViewController: UIViewController {
     var playerFourBalance = 100
     var totalPot = 0
     var playerCount = 0
-    
     var flippedOne = false
     var flippedTwo = false
-    
     var images: [UIImage] = []
+    var numberOfPlayers = 0
     
-    var turn = 0
-    
+    @IBOutlet weak var playerCounterLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -121,7 +119,7 @@ class pokertableViewController: UIViewController {
     
     @IBAction func playerCardOne(_ sender: UIButton) {
         
-        if !flippedOne && turn == 0
+        if !flippedOne && playerCount == 0
         {
             leftCard.image = images[playerOne[0].getNum()]
             flippedOne = !flippedOne
@@ -133,7 +131,7 @@ class pokertableViewController: UIViewController {
         }
     }
     @IBAction func rightCard(_ sender: UIButton) {
-        if !flippedTwo && turn == 0
+        if !flippedTwo && playerCount == 0
         {
             rightCard.image = images[playerOne[1].getNum()]
             flippedTwo = !flippedTwo
@@ -145,6 +143,36 @@ class pokertableViewController: UIViewController {
         }
     }
     
+    @IBAction func endTurn(_ sender: UIButton) {
+        if(playerCount + 1 > numberOfPlayers )
+        {
+            playerCount = 0
+        }
+        else
+        {
+            playerCount = playerCount + 1
+        }
+        if(playerCount == 0)
+        {
+            playerCounterLabel.text = "Player One"
+        }
+        if(playerCount == 1)
+        {
+            playerCounterLabel.text = "Player Two"
+        }
+        if(playerCount == 2)
+        {
+            playerCounterLabel.text = "Player Three"
+        }
+        if(playerCount == 3)
+        {
+            playerCounterLabel.text = "Player Four"
+        }
+        
+        leftCard.image = #imageLiteral(resourceName: "back")
+        rightCard.image = #imageLiteral(resourceName: "back")
+        
+    }
     
 
     func checkForNegative(num: Int, arr: Array<Int>) -> Bool
