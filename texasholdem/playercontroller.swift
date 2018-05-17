@@ -7,7 +7,7 @@
 //
 
 import UIKit
-
+var importantvar = 0
 class playercontroller: UIViewController {
 
     override func viewDidLoad() {
@@ -15,7 +15,10 @@ class playercontroller: UIViewController {
 
         // Do any additional setup after loading the view.
     }
-
+  
+    @IBOutlet weak var numberofPlayersLabel: UILabel!
+    
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
