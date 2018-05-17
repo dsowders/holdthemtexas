@@ -84,13 +84,27 @@ class pokertableViewController: UIViewController {
     var flippedOne = false
     var flippedTwo = false
     var images: [UIImage] = []
-    var numberOfPlayers = 0
+    var numberOfPlayers = 3
     
-    @IBOutlet weak var playerCounterLabel: UILabel!
+    @IBOutlet weak var playerOneLabel: UILabel!
+    @IBOutlet weak var playerFourLabel: UILabel!
+    @IBOutlet weak var playerThreeLabel: UILabel!
+    @IBOutlet weak var playerTwoLabel: UILabel!
+    
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        playerOneLabel.layer.cornerRadius = 20
+        playerTwoLabel.layer.cornerRadius = 20
+        playerThreeLabel.layer.cornerRadius = 20
+        playerFourLabel.layer.cornerRadius = 20
+        playerOneLabel.layer.masksToBounds = true
+        playerTwoLabel.layer.masksToBounds = true
+        playerThreeLabel.layer.masksToBounds = true
+        playerFourLabel.layer.masksToBounds = true
+        
         board = [newCard(num: generateRandomNumber()), newCard(num: generateRandomNumber()), newCard(num: generateRandomNumber()), newCard(num: generateRandomNumber()), newCard(num: generateRandomNumber())]
         playerOne = [newCard(num: generateRandomNumber()), newCard(num: generateRandomNumber()), board[0], board[1], board[2], board[3], board[4]]
         
@@ -106,7 +120,6 @@ class pokertableViewController: UIViewController {
         quicksort(c: sortedPlayerTwo, a: 0, b: 6)
         quicksort(c: sortedPlayerThree, a: 0, b: 6)
         quicksort(c: sortedPlayerFour, a: 0, b: 6)
-        
         images = [#imageLiteral(resourceName: "ace_of_clubs"),#imageLiteral(resourceName: "2_of_clubs"), #imageLiteral(resourceName: "3_of_clubs"),#imageLiteral(resourceName: "4_of_clubs"), #imageLiteral(resourceName: "5_of_clubs"),#imageLiteral(resourceName: "6_of_clubs"),#imageLiteral(resourceName: "7_of_clubs"),#imageLiteral(resourceName: "8_of_clubs"),#imageLiteral(resourceName: "9_of_clubs"),#imageLiteral(resourceName: "10_of_clubs"),#imageLiteral(resourceName: "jack_of_clubs2"),#imageLiteral(resourceName: "queen_of_clubs2"),#imageLiteral(resourceName: "king_of_clubs2"),#imageLiteral(resourceName: "ace_of_spades"),#imageLiteral(resourceName: "2_of_spades"),#imageLiteral(resourceName: "3_of_spades"),#imageLiteral(resourceName: "4_of_spades"),#imageLiteral(resourceName: "5_of_spades"),#imageLiteral(resourceName: "6_of_spades"),#imageLiteral(resourceName: "7_of_spades"),#imageLiteral(resourceName: "8_of_spades"),#imageLiteral(resourceName: "9_of_spades"),#imageLiteral(resourceName: "10_of_spades"),#imageLiteral(resourceName: "jack_of_spades2"),#imageLiteral(resourceName: "queen_of_spades2"),#imageLiteral(resourceName: "king_of_spades2"),#imageLiteral(resourceName: "ace_of_hearts"),#imageLiteral(resourceName: "2_of_hearts"),#imageLiteral(resourceName: "3_of_hearts"),#imageLiteral(resourceName: "3_of_hearts"),#imageLiteral(resourceName: "4_of_hearts"), #imageLiteral(resourceName: "5_of_hearts"),#imageLiteral(resourceName: "6_of_hearts"),#imageLiteral(resourceName: "7_of_hearts"),#imageLiteral(resourceName: "8_of_hearts"),#imageLiteral(resourceName: "9_of_hearts"),#imageLiteral(resourceName: "10_of_hearts"),#imageLiteral(resourceName: "jack_of_hearts2"),#imageLiteral(resourceName: "queen_of_hearts2"),#imageLiteral(resourceName: "king_of_hearts2"),#imageLiteral(resourceName: "ace_of_diamonds"),#imageLiteral(resourceName: "2_of_diamonds"),#imageLiteral(resourceName: "3_of_diamonds"),#imageLiteral(resourceName: "4_of_diamonds"),#imageLiteral(resourceName: "5_of_diamonds"),#imageLiteral(resourceName: "6_of_diamonds"),#imageLiteral(resourceName: "7_of_diamonds"),#imageLiteral(resourceName: "8_of_diamonds"),#imageLiteral(resourceName: "9_of_diamonds"),#imageLiteral(resourceName: "10_of_diamonds"),#imageLiteral(resourceName: "jack_of_diamonds2"),#imageLiteral(resourceName: "queen_of_diamonds2"),#imageLiteral(resourceName: "king_of_diamonds2")]
         
     }
@@ -115,6 +128,15 @@ class pokertableViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+func backLeft()
+{
+    leftCard.image = #imageLiteral(resourceName: "back")
+}
+    
+func backRight()
+{
+    rightCard.image = #imageLiteral(resourceName: "back")
+}
 
     
     @IBAction func playerCardOne(_ sender: UIButton) {
@@ -124,11 +146,42 @@ class pokertableViewController: UIViewController {
             leftCard.image = images[playerOne[0].getNum()]
             flippedOne = !flippedOne
         }
-        else
+        else if flippedOne && playerCount == 0
         {
-            leftCard.image = #imageLiteral(resourceName: "back")
+            backLeft()
             flippedOne = !flippedOne
         }
+        if !flippedOne && playerCount == 1
+        {
+            leftCard.image = images[playerTwo[0].getNum()]
+            flippedOne = !flippedOne
+        }
+        else if flippedOne && playerCount == 1
+        {
+            backLeft()
+            flippedOne = !flippedOne
+        }
+        if !flippedOne && playerCount == 2
+        {
+            leftCard.image = images[playerThree[0].getNum()]
+            flippedOne = !flippedOne
+        }
+        else if flippedOne && playerCount == 2
+        {
+            backLeft()
+            flippedOne = !flippedOne
+        }
+        if !flippedOne && playerCount == 3
+        {
+            leftCard.image = images[playerFour[0].getNum()]
+            flippedOne = !flippedOne
+        }
+        else if flippedOne && playerCount == 3
+        {
+            backLeft()
+            flippedOne = !flippedOne
+        }
+        
     }
     @IBAction func rightCard(_ sender: UIButton) {
         if !flippedTwo && playerCount == 0
@@ -136,9 +189,39 @@ class pokertableViewController: UIViewController {
             rightCard.image = images[playerOne[1].getNum()]
             flippedTwo = !flippedTwo
         }
-        else
+        else if flippedTwo && playerCount == 0
         {
-            rightCard.image = #imageLiteral(resourceName: "back")
+            backRight()
+            flippedTwo = !flippedTwo
+        }
+        if !flippedTwo && playerCount == 1
+        {
+            rightCard.image = images[playerTwo[1].getNum()]
+            flippedTwo = !flippedTwo
+        }
+        else if flippedTwo && playerCount == 1
+        {
+            backRight()
+            flippedTwo = !flippedTwo
+        }
+        if !flippedTwo && playerCount == 2
+        {
+            rightCard.image = images[playerThree[1].getNum()]
+            flippedTwo = !flippedTwo
+        }
+        else if flippedTwo && playerCount == 2
+        {
+            backRight()
+            flippedTwo = !flippedTwo
+        }
+        if !flippedTwo && playerCount == 3
+        {
+            rightCard.image = images[playerFour[1].getNum()]
+            flippedTwo = !flippedTwo
+        }
+        else if flippedTwo && playerCount == 3
+        {
+            backRight()
             flippedTwo = !flippedTwo
         }
     }
@@ -152,26 +235,39 @@ class pokertableViewController: UIViewController {
         {
             playerCount = playerCount + 1
         }
-        if(playerCount == 0)
+        if(playerCount == 3)
         {
-            playerCounterLabel.text = "Player One"
+            playerFourLabel.textColor = .blue
+            playerOneLabel.textColor = .white
+            playerTwoLabel.textColor = .white
+            playerThreeLabel.textColor = .white
         }
         if(playerCount == 1)
         {
-            playerCounterLabel.text = "Player Two"
+            playerTwoLabel.textColor = .blue
+            playerOneLabel.textColor = .white
+            playerThreeLabel.textColor = .white
+            playerFourLabel.textColor = .white
         }
         if(playerCount == 2)
         {
-            playerCounterLabel.text = "Player Three"
+            playerThreeLabel.textColor = .blue
+            playerFourLabel.textColor = .white
+            playerTwoLabel.textColor = .white
+            playerOneLabel.textColor = .white
         }
-        if(playerCount == 3)
+        if(playerCount == 0)
         {
-            playerCounterLabel.text = "Player Four"
+            playerOneLabel.textColor = .blue
+            playerTwoLabel.textColor = .white
+            playerThreeLabel.textColor = .white
+            playerFourLabel.textColor = .white
         }
         
         leftCard.image = #imageLiteral(resourceName: "back")
+        flippedOne = false
         rightCard.image = #imageLiteral(resourceName: "back")
-        
+        flippedTwo = false
     }
     
 
