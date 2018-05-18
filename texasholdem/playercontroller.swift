@@ -7,7 +7,7 @@
 //
 
 import UIKit
-var importantvar = 0
+var importantvar = 2
 class playercontroller: UIViewController {
 
     override func viewDidLoad() {
@@ -17,6 +17,28 @@ class playercontroller: UIViewController {
     }
   
     @IBOutlet weak var numberofPlayersLabel: UILabel!
+    
+    @IBAction func plusButton(_ sender: UIButton) {
+        if(importantvar + 1 > 4)
+        {
+            importantvar = 4
+        }
+        else
+        {
+        importantvar += 1
+        }
+        numberofPlayersLabel.text = "\(importantvar)"
+    }
+    @IBAction func subtractButton(_ sender: UIButton) {
+       if(importantvar - 1 < 2)
+       {
+        importantvar = 2
+    }
+       else{
+        importantvar -= 1
+        }
+        numberofPlayersLabel.text = "\(importantvar)"
+    }
     
     
     override func didReceiveMemoryWarning() {

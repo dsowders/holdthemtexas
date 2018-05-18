@@ -84,7 +84,25 @@ class pokertableViewController: UIViewController {
     var flippedOne = false
     var flippedTwo = false
     var images: [UIImage] = []
-    var numberOfPlayers = 3
+    var numberOfPlayers = importantvar - 1
+    
+    var a = 0
+    var b = 0
+    var c = 0
+    var d = 0
+    var a1 = 0
+    var b1 = 0
+    var c1 = 0
+    var d1 = 0
+    var playerOneFolded = false
+    var playerTwoFolded = false
+    var playerThreeFolded = false
+    var playerFourFolded = false
+    var cardsFlopped = 0 //actually zero
+    var currBet = 0
+
+    
+    
     
     @IBOutlet weak var playerOneLabel: UILabel!
     @IBOutlet weak var playerFourLabel: UILabel!
@@ -92,10 +110,45 @@ class pokertableViewController: UIViewController {
     @IBOutlet weak var playerTwoLabel: UILabel!
     
     
+    @IBAction func foldButton(_ sender: UIButton) {
+        if(playerCount == 0)
+        {
+            playerOneFolded = true
+            playerOneLabel.textColor = .gray
+        }
+        if playerCount == 1
+        {
+            playerTwoFolded = true
+            playerTwoLabel.textColor = .gray
+        }
+        if(playerCount == 2)
+        {
+            playerThreeFolded = true
+            playerThreeLabel.textColor = .gray
+        }
+        if(playerCount == 3)
+        {
+            playerFourFolded = true
+            playerFourLabel.textColor = .gray
+        }
+    }
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        makeEverything()
+        if(numberOfPlayers == 1)
+        {
+            playerThreeLabel.text = ""
+            playerFourLabel.text = ""
+            playerThreeLabel.backgroundColor = .clear
+            playerFourLabel.backgroundColor = .clear
+        }
+        if(numberOfPlayers == 2)
+        {
+            playerFourLabel.text = ""
+            playerFourLabel.backgroundColor = .clear
+        }
         playerOneLabel.layer.cornerRadius = 20
         playerTwoLabel.layer.cornerRadius = 20
         playerThreeLabel.layer.cornerRadius = 20
@@ -127,6 +180,11 @@ class pokertableViewController: UIViewController {
         quicksort(c: sortedPlayerTwo, a: 0, b: 6)
         quicksort(c: sortedPlayerThree, a: 0, b: 6)
         quicksort(c: sortedPlayerFour, a: 0, b: 6)
+        
+        playerOneLabel.textColor = .blue
+        playerTwoLabel.textColor = .white
+        playerThreeLabel.textColor = .white
+        playerFourLabel.textColor = .white
     }
 
     override func didReceiveMemoryWarning() {
@@ -232,36 +290,66 @@ func backRight()
     }
     
     @IBAction func endTurn(_ sender: UIButton) {
-        if(playerCount + 1 > numberOfPlayers )
+        
+        
+        if(playerOneFolded == true && playerCount == 0)
+        {
+            playerCount = 1
+            
+        }
+         if(playerTwoFolded == true && playerCount == 1)
+        {
+            playerCount = 2
+        }
+        if(playerThreeFolded == true && playerCount == 2)
+            {
+                playerCount = 3
+            }
+         if(playerFourFolded == true && playerCount == 3)
         {
             playerCount = 0
         }
-        else
+         if(playerOneFolded == true && playerCount == 0)
         {
-            playerCount = playerCount + 1
+            playerCount = 1
         }
-        if(playerCount == 3)
+        if(playerTwoFolded == true && playerCount == 1)
+        {
+            playerCount = 2
+        }
+        if(playerCount + 1 > numberOfPlayers )
+        {
+            playerCount = 0
+            
+        }
+        else 
+         {
+            playerCount = playerCount + 1
+            
+        }
+        
+        if(playerCount == 3 && playerFourFolded != true)
         {
             playerFourLabel.textColor = .blue
             playerOneLabel.textColor = .white
             playerTwoLabel.textColor = .white
             playerThreeLabel.textColor = .white
         }
-        if(playerCount == 1)
+        if(playerCount == 1 && playerOneFolded != true)
         {
             playerTwoLabel.textColor = .blue
             playerOneLabel.textColor = .white
             playerThreeLabel.textColor = .white
             playerFourLabel.textColor = .white
         }
-        if(playerCount == 2)
+        if(playerCount == 2 && playerThreeFolded != true)
         {
             playerThreeLabel.textColor = .blue
             playerFourLabel.textColor = .white
             playerTwoLabel.textColor = .white
             playerOneLabel.textColor = .white
         }
-        if(playerCount == 0)
+        if(playerCount == 0 && playerOneFolded != true)
         {
             playerOneLabel.textColor = .blue
             playerTwoLabel.textColor = .white
@@ -273,6 +361,7 @@ func backRight()
         flippedOne = false
         rightCard.image = #imageLiteral(resourceName: "back")
         flippedTwo = false
+        print(playerCount)
     }
     
 
