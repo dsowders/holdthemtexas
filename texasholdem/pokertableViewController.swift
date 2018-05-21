@@ -101,6 +101,10 @@ class pokertableViewController: UIViewController {
     var cardsFlopped = 0 //actually zero
     var currBet = 0
 
+    var prevZero = true
+    var prevOne = false
+    var prevTwo = false
+    var prevThree = false
     
     
     
@@ -131,6 +135,10 @@ class pokertableViewController: UIViewController {
             playerFourFolded = true
             playerFourLabel.textColor = .gray
         }
+        print(playerOneFolded)
+        print(playerTwoFolded)
+        print(playerThreeFolded)
+        print(playerFourFolded)
     }
     
     
@@ -290,7 +298,7 @@ func backRight()
     }
     
     @IBAction func endTurn(_ sender: UIButton) {
-        print(playerCount)
+        
         /*
         if(playerOneFolded == true && playerCount == 0)
         {
@@ -410,9 +418,16 @@ func backRight()
         rightCard.image = #imageLiteral(resourceName: "back")
         flippedOne = false
         flippedTwo = false //this resets the cards instantly
-        if(playerCount == 0 && playerOneFolded != true)//it is player one's turn and they have not folded
+        playerCount = whosTurn()
+        print(playerCount)
+        if(playerCount == 0)
         {
-            playerOneLabel.textColor = .blue //set text color to blue
+            
+            playerOneLabel.textColor = .blue
+            if(playerFourFolded != true)
+            {
+                playerFourLabel.textColor = .white
+            }
             if(playerTwoFolded != true)
             {
                 playerTwoLabel.textColor = .white
@@ -421,20 +436,15 @@ func backRight()
             {
                 playerThreeLabel.textColor = .white
             }
-            if(playerFourFolded != true)
-            {
-                playerFourLabel.textColor = .white
-            }
-            playerCount = playerCount + 1
+         prevOne = false
+         prevTwo = false
+         prevThree = false
+         prevZero = true
             return
         }
-        if(playerOneFolded == true && playerCount == 0)
+        if(playerCount == 1)//it is player one's turn and they have not folded
         {
-            playerCount = 1
-        }
-        if(playerCount == 1 && playerTwoFolded != true)
-        {
-            playerTwoLabel.textColor = .blue
+            playerTwoLabel.textColor = .blue //set text color to blue
             if(playerOneFolded != true)
             {
                 playerOneLabel.textColor = .white
@@ -447,15 +457,13 @@ func backRight()
             {
                 playerFourLabel.textColor = .white
             }
-            playerCount = playerCount + 1
+         prevOne = true
+         prevTwo = false
+         prevThree = false
+         prevZero = false
             return
         }
-        if(playerTwoFolded == true && playerCount == 1)
-        {
-            playerCount = 2
-        }
-        
-        if(playerCount == 2 && playerThreeFolded != true)
+        if(playerCount == 2)
         {
             playerThreeLabel.textColor = .blue
             if(playerOneFolded != true)
@@ -470,15 +478,14 @@ func backRight()
             {
                 playerFourLabel.textColor = .white
             }
-            playerCount = playerCount + 1
+            prevOne = false
+            prevTwo = true
+            prevThree = false
+            prevZero = false
             return
+         
         }
-        if(playerCount == 2 && playerThreeFolded == true)
-        {
-            playerCount = 3
-        }
-        
-        if(playerCount == 3 && playerFourFolded != true)
+        if(playerCount ==  3)
         {
             playerFourLabel.textColor = .blue
             if(playerOneFolded != true)
@@ -493,36 +500,76 @@ func backRight()
             {
                 playerThreeLabel.textColor = .white
             }
-            playerCount = 0
+         prevOne = false
+         prevTwo = false
+         prevThree = true
+         prevZero = false
+            
             return
         }
-        if(playerCount == 3 && playerFourFolded == true)
-        {
-            playerCount =
-        }
+    
         
+ 
         
     }
     
-    func whosTurn()
+    func whosTurn() -> Int
     {
-        if(playerCount == 0 && playerOneFolded == true)//if it is player ones turn and they have folded make it player twos turn
+        if (prevZero == true && playerTwoFolded == true)//if prev one turn and two foled
         {
-            playerCount = 1
+            if(playerThreeFolded == true)//if player three has folded
+            {
+                
+                return 3//return four
+            }
+            
+            return 2//return three
         }
-        if(playerCount == 1 && playerTwoFolded == true)//if it is players twos turn and they have folded make it player
+        if(prevOne == true && playerThreeFolded == true)//previously two turn and three is folded
         {
-            playerCount = 2
+            if(playerFourFolded == true)
+            {
+                
+                return 0 //return one
+            }
+            
+            return 3//return four
         }
-        if(playerCount == 2 && playerThreeFolded == true)
+        if(prevTwo == true && playerFourFolded == true)//previously three turn and four folded
         {
-            playerCount = 3
+            if(playerOneFolded == true)
+            {               
+                return 1//return two
+            }
+            
+            return 0//return player one
         }
-        if(playerCount == 3 && playerFourFolded == true)
+        if(prevThree == true && playerOneFolded == true)//previously fours turn and one folded
         {
-        playerCount = 0
-        whosTurn()
+            if(playerTwoFolded == true)
+            {
+                return 2
+            }
+            
+            return 1//return player two
         }
+        if prevZero
+        {
+            return 1
+        }
+        if prevOne
+        {
+            return 2
+        }
+        if prevTwo
+        {
+            return 3
+        }
+        if prevThree
+        {
+            return 0
+        }
+        return 0
     }
     
     
