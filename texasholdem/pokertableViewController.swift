@@ -290,81 +290,242 @@ func backRight()
     }
     
     @IBAction func endTurn(_ sender: UIButton) {
-        
-        
+        print(playerCount)
+        /*
         if(playerOneFolded == true && playerCount == 0)
         {
             playerCount = 1
-            
+            return
         }
-         if(playerTwoFolded == true && playerCount == 1)
+         if(playerTwoFolded == true && playerCount == 1)//player count is two
         {
             playerCount = 2
+            return
         }
         if(playerThreeFolded == true && playerCount == 2)
             {
                 playerCount = 3
+                return
             }
          if(playerFourFolded == true && playerCount == 3)
         {
             playerCount = 0
+            return
         }
          if(playerOneFolded == true && playerCount == 0)
         {
             playerCount = 1
+            return
         }
         if(playerTwoFolded == true && playerCount == 1)
         {
             playerCount = 2
+            return
+            
         }
-        if(playerCount + 1 > numberOfPlayers )
+        if(playerCount + 1 > numberOfPlayers )//playerscount is 1
         {
             playerCount = 0
-            
         }
-        else 
-         {
+        else{
             playerCount = playerCount + 1
-            
         }
         
-        if(playerCount == 3 && playerFourFolded != true)
+        
+        if(playerCount == 0 && playerOneFolded != true)
         {
-            playerFourLabel.textColor = .blue
-            playerOneLabel.textColor = .white
-            playerTwoLabel.textColor = .white
-            playerThreeLabel.textColor = .white
+            playerOneLabel.textColor = .blue
+            if(playerTwoFolded != true)
+            {
+                playerTwoLabel.textColor = .white
+            }
+            if(playerThreeFolded != true)
+            {
+                playerThreeLabel.textColor = .white
+            }
+            if(playerFourFolded != true)
+            {
+                playerFourLabel.textColor = .white
+            }
         }
-        if(playerCount == 1 && playerOneFolded != true)
+        if(playerCount == 1 && playerTwoFolded != true)
         {
             playerTwoLabel.textColor = .blue
-            playerOneLabel.textColor = .white
-            playerThreeLabel.textColor = .white
-            playerFourLabel.textColor = .white
+            if(playerOneFolded != true)
+            {
+                playerOneLabel.textColor = .white
+            }
+            if(playerThreeFolded != true)
+            {
+                playerThreeLabel.textColor = .white
+            }
+            if(playerFourFolded != true)
+            {
+                playerFourLabel.textColor = .white
+            }
         }
         if(playerCount == 2 && playerThreeFolded != true)
         {
             playerThreeLabel.textColor = .blue
-            playerFourLabel.textColor = .white
+            if(playerFourFolded != true)
+            {
+                playerFourLabel.textColor = .white
+            }
+            if(playerTwoFolded != true)
+            {
             playerTwoLabel.textColor = .white
+            }
+            if(playerOneFolded != true)
+            {
             playerOneLabel.textColor = .white
+            }
         }
-        if(playerCount == 0 && playerOneFolded != true)
+        if(playerCount == 3 && playerFourFolded != true)
         {
-            playerOneLabel.textColor = .blue
-            playerTwoLabel.textColor = .white
+            playerFourLabel.textColor = .blue
+            if(playerOneFolded != true)
+            {
+                playerOneLabel.textColor = .white
+            }
+            if(playerTwoFolded != true)
+            {
+                playerTwoLabel.textColor = .white
+            }
+            if(playerThreeFolded != true)
+            {
             playerThreeLabel.textColor = .white
-            playerFourLabel.textColor = .white
+            }
         }
+        
         
         leftCard.image = #imageLiteral(resourceName: "back")
         flippedOne = false
         rightCard.image = #imageLiteral(resourceName: "back")
         flippedTwo = false
-        print(playerCount)
+        */
+        
+        //so what we need to do is make start out with player one.
+        //if they are folded we need to skip them
+        leftCard.image = #imageLiteral(resourceName: "back")
+        rightCard.image = #imageLiteral(resourceName: "back")
+        flippedOne = false
+        flippedTwo = false //this resets the cards instantly
+        if(playerCount == 0 && playerOneFolded != true)//it is player one's turn and they have not folded
+        {
+            playerOneLabel.textColor = .blue //set text color to blue
+            if(playerTwoFolded != true)
+            {
+                playerTwoLabel.textColor = .white
+            }
+            if(playerThreeFolded != true)
+            {
+                playerThreeLabel.textColor = .white
+            }
+            if(playerFourFolded != true)
+            {
+                playerFourLabel.textColor = .white
+            }
+            playerCount = playerCount + 1
+            return
+        }
+        if(playerOneFolded == true && playerCount == 0)
+        {
+            playerCount = 1
+        }
+        if(playerCount == 1 && playerTwoFolded != true)
+        {
+            playerTwoLabel.textColor = .blue
+            if(playerOneFolded != true)
+            {
+                playerOneLabel.textColor = .white
+            }
+            if(playerThreeFolded != true)
+            {
+                playerThreeLabel.textColor = .white
+            }
+            if(playerFourFolded != true)
+            {
+                playerFourLabel.textColor = .white
+            }
+            playerCount = playerCount + 1
+            return
+        }
+        if(playerTwoFolded == true && playerCount == 1)
+        {
+            playerCount = 2
+        }
+        
+        if(playerCount == 2 && playerThreeFolded != true)
+        {
+            playerThreeLabel.textColor = .blue
+            if(playerOneFolded != true)
+            {
+                playerOneLabel.textColor = .white
+            }
+            if(playerTwoFolded != true)
+            {
+                playerTwoLabel.textColor = .white
+            }
+            if(playerFourFolded != true)
+            {
+                playerFourLabel.textColor = .white
+            }
+            playerCount = playerCount + 1
+            return
+        }
+        if(playerCount == 2 && playerThreeFolded == true)
+        {
+            playerCount = 3
+        }
+        
+        if(playerCount == 3 && playerFourFolded != true)
+        {
+            playerFourLabel.textColor = .blue
+            if(playerOneFolded != true)
+            {
+                playerOneLabel.textColor = .white
+            }
+            if(playerTwoFolded != true)
+            {
+                playerTwoLabel.textColor = .white
+            }
+            if(playerThreeFolded != true)
+            {
+                playerThreeLabel.textColor = .white
+            }
+            playerCount = 0
+            return
+        }
+        if(playerCount == 3 && playerFourFolded == true)
+        {
+            playerCount =
+        }
+        
+        
     }
     
-
+    func whosTurn()
+    {
+        if(playerCount == 0 && playerOneFolded == true)//if it is player ones turn and they have folded make it player twos turn
+        {
+            playerCount = 1
+        }
+        if(playerCount == 1 && playerTwoFolded == true)//if it is players twos turn and they have folded make it player
+        {
+            playerCount = 2
+        }
+        if(playerCount == 2 && playerThreeFolded == true)
+        {
+            playerCount = 3
+        }
+        if(playerCount == 3 && playerFourFolded == true)
+        {
+        playerCount = 0
+        whosTurn()
+        }
+    }
+    
+    
     func checkForNegative(num: Int, arr: Array<Int>) -> Bool
     {
         if(arr[num] == -1)
