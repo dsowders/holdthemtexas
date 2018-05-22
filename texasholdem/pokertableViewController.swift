@@ -51,6 +51,7 @@ class pokertableViewController: UIViewController {
     //spades
     //hearts
     //diamonds
+    @IBOutlet weak var typeInBetLabel: UILabel!
     
     var playerOneChips : Int = 0
     var playerTwoChips : Int = 0
@@ -86,6 +87,11 @@ class pokertableViewController: UIViewController {
     var images: [UIImage] = []
     var numberOfPlayers = importantvar - 1
     
+    var playerOneName = " Player One"
+    var playerTwoName = " Player Two"
+    var playerThreeName = " Player Three"
+    var playerFourName = " Player Four"
+    
     var a = 0
     var b = 0
     var c = 0
@@ -99,20 +105,45 @@ class pokertableViewController: UIViewController {
     var playerThreeFolded = false
     var playerFourFolded = false
     var cardsFlopped = 0 //actually zero
-    var currBet = 0
+    var currBet = -1
 
     var prevZero = true
     var prevOne = false
     var prevTwo = false
     var prevThree = false
+    var raiseAmount0 = 0
+    var raiseAmount1 = 0
+    var raiseAmount2 = 0
+    var raiseAmount3 = 0
     
     
     
+    func breadandbutter()
+    {
+        
+    }
+    
+    func updatePlayerOneBet()
+    {
+        if(playerOneFolded == true)
+        {
+            a1 = currBet
+        }
+    }
+    
+    var raiseAmount = 0
+    
+    
+    
+    
+    
+    
+    
+    @IBOutlet weak var typeInBetTextField: UITextField!
     @IBOutlet weak var playerOneLabel: UILabel!
     @IBOutlet weak var playerFourLabel: UILabel!
     @IBOutlet weak var playerThreeLabel: UILabel!
     @IBOutlet weak var playerTwoLabel: UILabel!
-    
     
     @IBAction func foldButton(_ sender: UIButton) {
         if(playerCount == 0)
@@ -144,6 +175,7 @@ class pokertableViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         makeEverything()
         if(numberOfPlayers == 1)
         {
@@ -157,22 +189,38 @@ class pokertableViewController: UIViewController {
             playerFourLabel.text = ""
             playerFourLabel.backgroundColor = .clear
         }
+        
+       
+        
+        images = [#imageLiteral(resourceName: "ace_of_clubs"),#imageLiteral(resourceName: "2_of_clubs"), #imageLiteral(resourceName: "3_of_clubs"),#imageLiteral(resourceName: "4_of_clubs"), #imageLiteral(resourceName: "5_of_clubs"),#imageLiteral(resourceName: "6_of_clubs"),#imageLiteral(resourceName: "7_of_clubs"),#imageLiteral(resourceName: "8_of_clubs"),#imageLiteral(resourceName: "9_of_clubs"),#imageLiteral(resourceName: "10_of_clubs"),#imageLiteral(resourceName: "jack_of_clubs2"),#imageLiteral(resourceName: "queen_of_clubs2"),#imageLiteral(resourceName: "king_of_clubs2"),#imageLiteral(resourceName: "ace_of_spades"),#imageLiteral(resourceName: "2_of_spades"),#imageLiteral(resourceName: "3_of_spades"),#imageLiteral(resourceName: "4_of_spades"),#imageLiteral(resourceName: "5_of_spades"),#imageLiteral(resourceName: "6_of_spades"),#imageLiteral(resourceName: "7_of_spades"),#imageLiteral(resourceName: "8_of_spades"),#imageLiteral(resourceName: "9_of_spades"),#imageLiteral(resourceName: "10_of_spades"),#imageLiteral(resourceName: "jack_of_spades2"),#imageLiteral(resourceName: "queen_of_spades2"),#imageLiteral(resourceName: "king_of_spades2"),#imageLiteral(resourceName: "ace_of_hearts"),#imageLiteral(resourceName: "2_of_hearts"),#imageLiteral(resourceName: "3_of_hearts"),#imageLiteral(resourceName: "3_of_hearts"),#imageLiteral(resourceName: "4_of_hearts"), #imageLiteral(resourceName: "5_of_hearts"),#imageLiteral(resourceName: "6_of_hearts"),#imageLiteral(resourceName: "7_of_hearts"),#imageLiteral(resourceName: "8_of_hearts"),#imageLiteral(resourceName: "9_of_hearts"),#imageLiteral(resourceName: "10_of_hearts"),#imageLiteral(resourceName: "jack_of_hearts2"),#imageLiteral(resourceName: "queen_of_hearts2"),#imageLiteral(resourceName: "king_of_hearts2"),#imageLiteral(resourceName: "ace_of_diamonds"),#imageLiteral(resourceName: "2_of_diamonds"),#imageLiteral(resourceName: "3_of_diamonds"),#imageLiteral(resourceName: "4_of_diamonds"),#imageLiteral(resourceName: "5_of_diamonds"),#imageLiteral(resourceName: "6_of_diamonds"),#imageLiteral(resourceName: "7_of_diamonds"),#imageLiteral(resourceName: "8_of_diamonds"),#imageLiteral(resourceName: "9_of_diamonds"),#imageLiteral(resourceName: "10_of_diamonds"),#imageLiteral(resourceName: "jack_of_diamonds2"),#imageLiteral(resourceName: "queen_of_diamonds2"),#imageLiteral(resourceName: "king_of_diamonds2")]
+        
+    }
+
+    func makeEverything()
+    {
+        currentBetLabel.layer.cornerRadius = 20
         playerOneLabel.layer.cornerRadius = 20
         playerTwoLabel.layer.cornerRadius = 20
         playerThreeLabel.layer.cornerRadius = 20
         playerFourLabel.layer.cornerRadius = 20
+        youOweLabel.layer.cornerRadius = 20
         playerOneLabel.layer.masksToBounds = true
         playerTwoLabel.layer.masksToBounds = true
         playerThreeLabel.layer.masksToBounds = true
         playerFourLabel.layer.masksToBounds = true
+        currentBetLabel.layer.masksToBounds = true
+        youOweLabel.layer.masksToBounds = true
         
-       
-        images = [#imageLiteral(resourceName: "ace_of_clubs"),#imageLiteral(resourceName: "2_of_clubs"), #imageLiteral(resourceName: "3_of_clubs"),#imageLiteral(resourceName: "4_of_clubs"), #imageLiteral(resourceName: "5_of_clubs"),#imageLiteral(resourceName: "6_of_clubs"),#imageLiteral(resourceName: "7_of_clubs"),#imageLiteral(resourceName: "8_of_clubs"),#imageLiteral(resourceName: "9_of_clubs"),#imageLiteral(resourceName: "10_of_clubs"),#imageLiteral(resourceName: "jack_of_clubs2"),#imageLiteral(resourceName: "queen_of_clubs2"),#imageLiteral(resourceName: "king_of_clubs2"),#imageLiteral(resourceName: "ace_of_spades"),#imageLiteral(resourceName: "2_of_spades"),#imageLiteral(resourceName: "3_of_spades"),#imageLiteral(resourceName: "4_of_spades"),#imageLiteral(resourceName: "5_of_spades"),#imageLiteral(resourceName: "6_of_spades"),#imageLiteral(resourceName: "7_of_spades"),#imageLiteral(resourceName: "8_of_spades"),#imageLiteral(resourceName: "9_of_spades"),#imageLiteral(resourceName: "10_of_spades"),#imageLiteral(resourceName: "jack_of_spades2"),#imageLiteral(resourceName: "queen_of_spades2"),#imageLiteral(resourceName: "king_of_spades2"),#imageLiteral(resourceName: "ace_of_hearts"),#imageLiteral(resourceName: "2_of_hearts"),#imageLiteral(resourceName: "3_of_hearts"),#imageLiteral(resourceName: "3_of_hearts"),#imageLiteral(resourceName: "4_of_hearts"), #imageLiteral(resourceName: "5_of_hearts"),#imageLiteral(resourceName: "6_of_hearts"),#imageLiteral(resourceName: "7_of_hearts"),#imageLiteral(resourceName: "8_of_hearts"),#imageLiteral(resourceName: "9_of_hearts"),#imageLiteral(resourceName: "10_of_hearts"),#imageLiteral(resourceName: "jack_of_hearts2"),#imageLiteral(resourceName: "queen_of_hearts2"),#imageLiteral(resourceName: "king_of_hearts2"),#imageLiteral(resourceName: "ace_of_diamonds"),#imageLiteral(resourceName: "2_of_diamonds"),#imageLiteral(resourceName: "3_of_diamonds"),#imageLiteral(resourceName: "4_of_diamonds"),#imageLiteral(resourceName: "5_of_diamonds"),#imageLiteral(resourceName: "6_of_diamonds"),#imageLiteral(resourceName: "7_of_diamonds"),#imageLiteral(resourceName: "8_of_diamonds"),#imageLiteral(resourceName: "9_of_diamonds"),#imageLiteral(resourceName: "10_of_diamonds"),#imageLiteral(resourceName: "jack_of_diamonds2"),#imageLiteral(resourceName: "queen_of_diamonds2"),#imageLiteral(resourceName: "king_of_diamonds2")]
         
-    }
-    
-    func makeEverything()
-    {
+        typeInBetTextField?.isHidden = true
+        typeInBetLabel?.isHidden = true
+        okayButtonBackground.alpha = 0.0
+        
+        playerOneLabel.text = " Player One: \(playerOneBalance)"
+        playerTwoLabel.text = " Player Two: \(playerTwoBalance)"
+        playerThreeLabel.text = " Player Two: \(playerThreeBalance)"
+        playerFourLabel.text = " Player Two: \(playerFourBalance)"
+        
         board = [newCard(num: generateRandomNumber()), newCard(num: generateRandomNumber()), newCard(num: generateRandomNumber()), newCard(num: generateRandomNumber()), newCard(num: generateRandomNumber())]
         playerOne = [newCard(num: generateRandomNumber()), newCard(num: generateRandomNumber()), board[0], board[1], board[2], board[3], board[4]]
         
@@ -193,6 +241,15 @@ class pokertableViewController: UIViewController {
         playerTwoLabel.textColor = .white
         playerThreeLabel.textColor = .white
         playerFourLabel.textColor = .white
+    }
+    func createAlert(title: String, message: String)
+    {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Okay", style: .default, handler: { (ACTION) in
+            alert.dismiss(animated: true, completion : nil)
+        }
+        ))
+        self.present(alert, animated: true, completion: nil)
     }
 
     override func didReceiveMemoryWarning() {
@@ -295,131 +352,265 @@ func backRight()
             backRight()
             flippedTwo = !flippedTwo
         }
+        
+    }
+    var prevBet = 0
+    var isBet = false
+    var israise = false
+    @IBOutlet weak var youOweLabel: UILabel!
+    @IBOutlet weak var currentBetLabel: UILabel!
+    @IBOutlet weak var okayButtonBackground: UIImageView!
+    func updateBalance(num: Int)
+    {
+
+    }
+    @IBAction func okayButton(_ sender: UIButton)
+    {
+        if((isBet && (Int(typeInBetTextField.text!)!) == 0) || (isBet && (Int(typeInBetTextField.text!)!) < 0))
+        {
+            createAlert(title: "You are attempting to make a bet that is 0 or less than the current bet.", message: "Increase bet amount.")
+            okayButtonBackground.alpha = 0.0
+            typeInBetTextField?.isHidden = true
+            typeInBetLabel?.isHidden = true
+            return
+        }
+        
+        if(isBet == true)// meaning this is the first bet of the game.
+        {
+            if(playerCount == 0)
+            {
+                
+                a1 = (Int(typeInBetTextField.text!)!)//current bet is the one that is
+                currBet = a1
+                bet(num: a1)//changes the player one balance
+                raise(num: a1) //makes other players have to reach this value
+                
+            }
+            if(playerCount == 1)
+            {
+                b1 = (Int(typeInBetTextField.text!)!)//current bet is the one that is
+                currBet = b1
+                bet(num: b1)
+                raise(num: b1)
+            }
+            if(playerCount == 2)
+            {
+                c1 = (Int(typeInBetTextField.text!)!)//current bet is the one that is
+                currBet = c1
+                bet(num: c1)
+                
+                raise(num: c1)
+            }
+            if(playerCount == 3)
+            {
+                d1 = (Int(typeInBetTextField.text!)!)//current bet is the one that is
+                currBet = d1
+                bet(num: d1)
+                raise(num: d1)
+            }
+            okayButtonBackground.alpha = 0.0
+            typeInBetTextField?.isHidden = true
+            typeInBetLabel?.isHidden = true
+            return
+            if(israise == true && (Int(typeInBetTextField.text!)!) < currBet)
+            {
+                createAlert(title: "This raise is not larger than the current bet.", message: "Increase the raise.")
+                okayButtonBackground.alpha = 0.0
+                typeInBetTextField?.isHidden = true
+                typeInBetLabel?.isHidden = true
+                return
+                
+            }
+            if(israise == true)
+            {
+                if(playerCount == 0)
+                {
+                    
+                    a1 = (Int(typeInBetTextField.text!)!)//current bet is the one that is
+                    currBet = a1
+                    bet(num: a1)//changes the player one balance
+                    raise(num: a1) //makes other players have to reach this value
+                    
+                    
+                }
+                if(playerCount == 1)
+                {
+                    b1 = (Int(typeInBetTextField.text!)!)//current bet is the one that is
+                    currBet = b1
+                    bet(num: b1)
+                    raise(num: b1)
+    
+                }
+                if(playerCount == 2)
+                {
+                    c1 = (Int(typeInBetTextField.text!)!)//current bet is the one that is
+                    currBet = c1
+                    bet(num: c1)
+                    raise(num: c1)
+                   
+                }
+                if(playerCount == 3)
+                {
+                    d1 = (Int(typeInBetTextField.text!)!)//current bet is the one that is
+                    currBet = d1
+                    bet(num: d1)
+                    raise(num: d1)
+                   
+                }
+                okayButtonBackground.alpha = 0.0
+                typeInBetTextField?.isHidden = true
+                typeInBetLabel?.isHidden = true
+                youOweLabel.text = " You Owe: 0"
+            }
+        }
+    }
+    @IBAction func betButton(_ sender: UIButton)
+    {
+        if(currBet == -1)
+        {
+            okayButtonBackground.alpha = 1.0
+            typeInBetLabel?.isHidden = false
+            typeInBetTextField?.isHidden = false //this reveals all the things because it is the first thing
+            isBet = true
+            return
+        }
+        if(playerCount == 0)
+        {
+            bet(num: raiseAmount0)
+            okayButtonBackground.alpha = 0.0
+            typeInBetTextField?.isHidden = true
+            typeInBetLabel?.isHidden = true
+            youOweLabel.text = " You Owe: \(currBet - raiseAmount0)"
+        }
+        if(playerCount == 1)
+        {
+            bet(num: raiseAmount1)
+            okayButtonBackground.alpha = 0.0
+            typeInBetTextField?.isHidden = true
+            typeInBetLabel?.isHidden = true
+            youOweLabel.text = " You Owe: \(currBet - raiseAmount1)"
+        }
+        if(playerCount == 2)
+        {
+            bet(num: raiseAmount2)
+            okayButtonBackground.alpha = 0.0
+            typeInBetTextField?.isHidden = true
+            typeInBetLabel?.isHidden = true
+            youOweLabel.text = " You Owe: \(currBet - raiseAmount2)"
+        }
+        if(playerCount == 3)
+        {
+            bet(num: raiseAmount3)
+            okayButtonBackground.alpha = 0.0
+            typeInBetTextField?.isHidden = true
+            typeInBetLabel?.isHidden = true
+            youOweLabel.text = " You Owe: \(currBet - raiseAmount3)"
+        }
+        
+        /*
+ if(playerCount == 0)
+ {
+ 
+ }
+ if(playerCount == 1)
+ {
+ 
+ }
+ if(playerCount == 2)
+ {
+ 
+ }
+ if(playerCount == 3)
+ {
+ 
+ }*/
+    }
+    var placedBet0 = false
+    var placedBet1 = false
+    var placedBet2 = false
+    var placedBet3 = false
+    @IBAction func raiseButton(_ sender: UIButton) {
+        okayButtonBackground.alpha = 1.0
+        typeInBetLabel?.isHidden = false
+        typeInBetTextField?.isHidden = false //this reveals all the things because it is the first thing
+        israise = true
+    }
+    
+    func bet(num: Int) //takes an integer and removes that integer from the balances of the players
+    {
+        if(playerCount == 0)//it is player 0 placing the bet
+        {
+            playerOneBalance = playerOneBalance - num
+            playerOneLabel.text = " Player One: \(playerOneBalance)"
+            currentBetLabel.text = " Current Bet: \(currBet)"
+            placedBet0 = true
+        }
+        if(playerCount == 1)
+        {
+            playerTwoBalance = playerTwoBalance - num
+            currentBetLabel.text = " Current Bet: \(currBet)"
+            playerTwoLabel.text = " Player Two: \(playerTwoBalance)"
+            placedBet1 = true
+        }
+        if(playerCount == 2)
+        {
+            playerThreeBalance = playerThreeBalance - num
+            currentBetLabel.text = " Current Bet: \(currBet)"
+            playerThreeLabel.text = " Player Three: \(playerThreeBalance)"
+            placedBet2 = true
+        }
+        if(playerCount == 3)
+        {
+            playerFourBalance = playerFourBalance - num
+            currentBetLabel.text = " Current Bet: \(currBet)"
+            playerFourLabel.text = " Player Four: \(playerFourBalance)"
+            placedBet3 = true
+        }
+    }
+    func raise(num: Int) //increases the other players raise amount
+    {
+        if(playerCount == 0)
+        {
+            raiseAmount1 = a1 - b1//player two must match the bet by this much
+            raiseAmount2 = a1 - c1//player three must match the bet by this much
+            raiseAmount3 = a1 - d1 //player four must match the bet by this much
+            raiseAmount0 = 0 // this is player ones raise therefore he has just placed the bet for this much
+            
+        }
+        if(playerCount == 1)
+        {
+            raiseAmount1 = 0
+            raiseAmount2 = b1 - c1
+            raiseAmount3 = b1 - d1
+            raiseAmount0 = b1 - a1
+        }
+        if(playerCount == 2)
+        {
+            raiseAmount1 = c1 - b1
+            raiseAmount2 = 0
+            raiseAmount3 = c1 - d1
+            raiseAmount0 = c1 - a1
+        }
+        if(playerCount == 3)
+        {
+            raiseAmount1 = d1 - b1
+            raiseAmount2 = d1 - c1
+            raiseAmount3 = 0
+            raiseAmount0 = d1 - a1
+        }
     }
     
     @IBAction func endTurn(_ sender: UIButton) {
         
-        /*
-        if(playerOneFolded == true && playerCount == 0)
-        {
-            playerCount = 1
-            return
-        }
-         if(playerTwoFolded == true && playerCount == 1)//player count is two
-        {
-            playerCount = 2
-            return
-        }
-        if(playerThreeFolded == true && playerCount == 2)
-            {
-                playerCount = 3
-                return
-            }
-         if(playerFourFolded == true && playerCount == 3)
-        {
-            playerCount = 0
-            return
-        }
-         if(playerOneFolded == true && playerCount == 0)
-        {
-            playerCount = 1
-            return
-        }
-        if(playerTwoFolded == true && playerCount == 1)
-        {
-            playerCount = 2
-            return
-            
-        }
-        if(playerCount + 1 > numberOfPlayers )//playerscount is 1
-        {
-            playerCount = 0
-        }
-        else{
-            playerCount = playerCount + 1
-        }
-        
-        
-        if(playerCount == 0 && playerOneFolded != true)
-        {
-            playerOneLabel.textColor = .blue
-            if(playerTwoFolded != true)
-            {
-                playerTwoLabel.textColor = .white
-            }
-            if(playerThreeFolded != true)
-            {
-                playerThreeLabel.textColor = .white
-            }
-            if(playerFourFolded != true)
-            {
-                playerFourLabel.textColor = .white
-            }
-        }
-        if(playerCount == 1 && playerTwoFolded != true)
-        {
-            playerTwoLabel.textColor = .blue
-            if(playerOneFolded != true)
-            {
-                playerOneLabel.textColor = .white
-            }
-            if(playerThreeFolded != true)
-            {
-                playerThreeLabel.textColor = .white
-            }
-            if(playerFourFolded != true)
-            {
-                playerFourLabel.textColor = .white
-            }
-        }
-        if(playerCount == 2 && playerThreeFolded != true)
-        {
-            playerThreeLabel.textColor = .blue
-            if(playerFourFolded != true)
-            {
-                playerFourLabel.textColor = .white
-            }
-            if(playerTwoFolded != true)
-            {
-            playerTwoLabel.textColor = .white
-            }
-            if(playerOneFolded != true)
-            {
-            playerOneLabel.textColor = .white
-            }
-        }
-        if(playerCount == 3 && playerFourFolded != true)
-        {
-            playerFourLabel.textColor = .blue
-            if(playerOneFolded != true)
-            {
-                playerOneLabel.textColor = .white
-            }
-            if(playerTwoFolded != true)
-            {
-                playerTwoLabel.textColor = .white
-            }
-            if(playerThreeFolded != true)
-            {
-            playerThreeLabel.textColor = .white
-            }
-        }
-        
-        
-        leftCard.image = #imageLiteral(resourceName: "back")
-        flippedOne = false
-        rightCard.image = #imageLiteral(resourceName: "back")
-        flippedTwo = false
-        */
-        
-        //so what we need to do is make start out with player one.
-        //if they are folded we need to skip them
         leftCard.image = #imageLiteral(resourceName: "back")
         rightCard.image = #imageLiteral(resourceName: "back")
         flippedOne = false
         flippedTwo = false //this resets the cards instantly
+        
         playerCount = whosTurn()
         print(playerCount)
+       
+        
         if(playerCount == 0)
         {
             
@@ -436,12 +627,15 @@ func backRight()
             {
                 playerThreeLabel.textColor = .white
             }
+            youOweLabel.text =  " You Owe: \(raiseAmount0) "
+            
          prevOne = false
          prevTwo = false
          prevThree = false
          prevZero = true
             return
         }
+        
         if(playerCount == 1)//it is player one's turn and they have not folded
         {
             playerTwoLabel.textColor = .blue //set text color to blue
@@ -457,12 +651,15 @@ func backRight()
             {
                 playerFourLabel.textColor = .white
             }
+            youOweLabel.text =  " You Owe: \(raiseAmount1) "
+            
          prevOne = true
          prevTwo = false
          prevThree = false
          prevZero = false
             return
         }
+        
         if(playerCount == 2)
         {
             playerThreeLabel.textColor = .blue
@@ -478,6 +675,8 @@ func backRight()
             {
                 playerFourLabel.textColor = .white
             }
+            youOweLabel.text =  " You Owe: \(raiseAmount2) "
+            
             prevOne = false
             prevTwo = true
             prevThree = false
@@ -500,6 +699,9 @@ func backRight()
             {
                 playerThreeLabel.textColor = .white
             }
+            youOweLabel.text =  " You Owe: \(raiseAmount3) "
+        
+            
          prevOne = false
          prevTwo = false
          prevThree = true
@@ -552,6 +754,22 @@ func backRight()
             }
             
             return 1//return player two
+        }
+        if prevZero && placedBet0 == false && playerOneFolded == false{
+                createAlert(title: "You are trying to end your turn without placing a bet!", message: "Place a bet or fold.")
+            return 0
+        }
+        if prevOne && placedBet1 == false && playerTwoFolded == false{
+            createAlert(title: "You are trying to end your turn without placing a bet!", message: "Place a bet or fold.")
+            return 1
+        }
+        if prevTwo && placedBet2 == false && playerThreeFolded == false{
+            createAlert(title: "You are trying to end your turn without placing a bet!", message: "Place a bet or fold.")
+            return 2
+        }
+        if prevThree && placedBet3 == false && playerFourFolded == false{
+            createAlert(title: "You are trying to end your turn without placing a bet!", message: "Place a bet or fold.")
+            return 3
         }
         if prevZero
         {
@@ -1002,5 +1220,4 @@ func backRight()
         return []
         
     }
-    
 }
