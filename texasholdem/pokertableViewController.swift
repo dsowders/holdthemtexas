@@ -111,10 +111,10 @@ class pokertableViewController: UIViewController {
     var prevOne = false
     var prevTwo = false
     var prevThree = false
-    var raiseAmount0 = 0
-    var raiseAmount1 = 0
-    var raiseAmount2 = 0
-    var raiseAmount3 = 0
+    var putIn0 = 0
+    var putIn1 = 0
+    var putIn2 = 0
+    var putIn3 = 0
     
     
     
@@ -218,8 +218,8 @@ class pokertableViewController: UIViewController {
         
         playerOneLabel.text = " Player One: \(playerOneBalance)"
         playerTwoLabel.text = " Player Two: \(playerTwoBalance)"
-        playerThreeLabel.text = " Player Two: \(playerThreeBalance)"
-        playerFourLabel.text = " Player Two: \(playerFourBalance)"
+        playerThreeLabel.text = " Player Three: \(playerThreeBalance)"
+        playerFourLabel.text = " Player Four: \(playerFourBalance)"
         
         board = [newCard(num: generateRandomNumber()), newCard(num: generateRandomNumber()), newCard(num: generateRandomNumber()), newCard(num: generateRandomNumber()), newCard(num: generateRandomNumber())]
         playerOne = [newCard(num: generateRandomNumber()), newCard(num: generateRandomNumber()), board[0], board[1], board[2], board[3], board[4]]
@@ -356,13 +356,21 @@ func backRight()
     }
     var prevBet = 0
     var isBet = false
-    var israise = false
+    var isRaise = false
     @IBOutlet weak var youOweLabel: UILabel!
     @IBOutlet weak var currentBetLabel: UILabel!
     @IBOutlet weak var okayButtonBackground: UIImageView!
     func updateBalance(num: Int)
     {
 
+    }
+    func allSame() -> Bool
+    {
+        if(true)
+        {
+        return true
+        }
+        return true
     }
     @IBAction func okayButton(_ sender: UIButton)
     {
@@ -374,45 +382,66 @@ func backRight()
             typeInBetLabel?.isHidden = true
             return
         }
-        
         if(isBet == true)// meaning this is the first bet of the game.
         {
             if(playerCount == 0)
             {
-                
-                a1 = (Int(typeInBetTextField.text!)!)//current bet is the one that is
-                currBet = a1
-                bet(num: a1)//changes the player one balance
-                raise(num: a1) //makes other players have to reach this value
-                
+                currBet = (Int(typeInBetTextField.text!)!)
+                currentBetLabel.text = " Current Bet: \(currBet)"
+                playerOneBalance = playerOneBalance - currBet
+                putIn0 = currBet
+                youOweLabel.text = " You Owe: \(currBet - putIn0)"
+                playerOneLabel.text = " \(playerOneName): \(playerOneBalance)"
+                placedBet0 = true
+                placedBet1 = false
+                placedBet2 = false
+                placedBet3 = false
             }
             if(playerCount == 1)
             {
-                b1 = (Int(typeInBetTextField.text!)!)//current bet is the one that is
-                currBet = b1
-                bet(num: b1)
-                raise(num: b1)
+                currBet = (Int(typeInBetTextField.text!)!)
+                currentBetLabel.text = " Current Bet: \(currBet)"
+                playerTwoBalance = playerTwoBalance - currBet
+                putIn1 = currBet
+                youOweLabel.text = " You Owe: \(currBet - putIn1)"
+                playerTwoLabel.text = " \(playerTwoName): \(playerTwoBalance)"
+                placedBet0 = false
+                placedBet1 = true
+                placedBet2 = false
+                placedBet3 = false
             }
             if(playerCount == 2)
             {
-                c1 = (Int(typeInBetTextField.text!)!)//current bet is the one that is
-                currBet = c1
-                bet(num: c1)
-                
-                raise(num: c1)
+                currBet = (Int(typeInBetTextField.text!)!)
+                currentBetLabel.text = " Current Bet: \(currBet)"
+                playerThreeBalance = playerThreeBalance - currBet
+                putIn2 = currBet
+                youOweLabel.text = " You Owe: \(currBet - putIn2)"
+                playerThreeLabel.text = " \(playerThreeName): \(playerThreeBalance)"
+                placedBet0 = false
+                placedBet1 = false
+                placedBet2 = true
+                placedBet3 = false
             }
             if(playerCount == 3)
             {
-                d1 = (Int(typeInBetTextField.text!)!)//current bet is the one that is
-                currBet = d1
-                bet(num: d1)
-                raise(num: d1)
+               currBet = (Int(typeInBetTextField.text!)!)
+                currentBetLabel.text = " Current Bet: \(currBet)"
+                playerFourBalance = playerFourBalance - currBet
+                putIn3 = currBet
+                youOweLabel.text = " You Owe: \(currBet - putIn3)"
+                playerFourLabel.text = " \(playerFourName): \(playerFourBalance)"
+                placedBet0 = false
+                placedBet1 = false
+                placedBet2 = false
+                placedBet3 = true
             }
             okayButtonBackground.alpha = 0.0
             typeInBetTextField?.isHidden = true
             typeInBetLabel?.isHidden = true
             return
-            if(israise == true && (Int(typeInBetTextField.text!)!) < currBet)
+        }
+            if(isRaise == true && (Int(typeInBetTextField.text!)!) < currBet)
             {
                 createAlert(title: "This raise is not larger than the current bet.", message: "Increase the raise.")
                 okayButtonBackground.alpha = 0.0
@@ -421,48 +450,59 @@ func backRight()
                 return
                 
             }
-            if(israise == true)
+            if(isRaise == true)
             {
                 if(playerCount == 0)
                 {
                     
-                    a1 = (Int(typeInBetTextField.text!)!)//current bet is the one that is
-                    currBet = a1
-                    bet(num: a1)//changes the player one balance
-                    raise(num: a1) //makes other players have to reach this value
-                    
+                    currBet = (Int(typeInBetTextField.text!)!)
+                    playerOneBalance = playerOneBalance - (currBet - putIn0)
+                    putIn0 = currBet + putIn0
+                    placedBet0 = true
+                    placedBet1 = false
+                    placedBet2 = false
+                    placedBet3 = false
                     
                 }
                 if(playerCount == 1)
                 {
-                    b1 = (Int(typeInBetTextField.text!)!)//current bet is the one that is
-                    currBet = b1
-                    bet(num: b1)
-                    raise(num: b1)
-    
+                    
+                    currBet = (Int(typeInBetTextField.text!)!)
+                    playerTwoBalance = playerTwoBalance - (currBet - putIn1)
+                    putIn1 = currBet + putIn1
+                    placedBet0 = false
+                    placedBet1 = true
+                    placedBet2 = false
+                    placedBet3 = false
                 }
                 if(playerCount == 2)
                 {
-                    c1 = (Int(typeInBetTextField.text!)!)//current bet is the one that is
-                    currBet = c1
-                    bet(num: c1)
-                    raise(num: c1)
-                   
+                    
+                    currBet = (Int(typeInBetTextField.text!)!)
+                    playerThreeBalance = playerThreeBalance - (currBet - putIn2)
+                    putIn2 = currBet + putIn2
+                    placedBet0 = false
+                    placedBet1 = false
+                    placedBet2 = true
+                    placedBet3 = false
                 }
                 if(playerCount == 3)
                 {
-                    d1 = (Int(typeInBetTextField.text!)!)//current bet is the one that is
-                    currBet = d1
-                    bet(num: d1)
-                    raise(num: d1)
-                   
+                    
+                    currBet = (Int(typeInBetTextField.text!)!)
+                    playerFourBalance = playerFourBalance - (currBet - putIn3)
+                    putIn3 = currBet + putIn3
+                    placedBet0 = false
+                    placedBet1 = false
+                    placedBet2 = false
+                    placedBet3 = true
                 }
                 okayButtonBackground.alpha = 0.0
                 typeInBetTextField?.isHidden = true
                 typeInBetLabel?.isHidden = true
                 youOweLabel.text = " You Owe: 0"
             }
-        }
+        
     }
     @IBAction func betButton(_ sender: UIButton)
     {
@@ -476,35 +516,49 @@ func backRight()
         }
         if(playerCount == 0)
         {
-            bet(num: raiseAmount0)
+            
+            playerOneBalance = playerOneBalance - (currBet - putIn0)
+            putIn0 = currBet + putIn0
             okayButtonBackground.alpha = 0.0
             typeInBetTextField?.isHidden = true
             typeInBetLabel?.isHidden = true
-            youOweLabel.text = " You Owe: \(currBet - raiseAmount0)"
+            youOweLabel.text = " You Owe: \(0)"
+            playerOneLabel.text = " \(playerOneName): \(playerOneBalance)"
+            placedBet0 = true
         }
         if(playerCount == 1)
         {
-            bet(num: raiseAmount1)
+            playerTwoBalance = playerTwoBalance - (currBet - putIn1)
+            putIn1 = currBet + putIn1
             okayButtonBackground.alpha = 0.0
             typeInBetTextField?.isHidden = true
             typeInBetLabel?.isHidden = true
-            youOweLabel.text = " You Owe: \(currBet - raiseAmount1)"
+            youOweLabel.text = " You Owe: \(0)"
+            playerTwoLabel.text = " \(playerTwoName): \(playerTwoBalance)"
+            placedBet1 = true
         }
         if(playerCount == 2)
         {
-            bet(num: raiseAmount2)
+            
+            playerThreeBalance = playerThreeBalance - (currBet - putIn2)
+            putIn2 = currBet + putIn2
             okayButtonBackground.alpha = 0.0
             typeInBetTextField?.isHidden = true
             typeInBetLabel?.isHidden = true
-            youOweLabel.text = " You Owe: \(currBet - raiseAmount2)"
+            youOweLabel.text = " You Owe: \(0)"
+            playerThreeLabel.text = " \(playerThreeName): \(playerThreeBalance)"
+            placedBet2 = true
         }
         if(playerCount == 3)
         {
-            bet(num: raiseAmount3)
+            playerFourBalance = playerFourBalance - (currBet - putIn3)
+            putIn3 = currBet + putIn3
             okayButtonBackground.alpha = 0.0
             typeInBetTextField?.isHidden = true
             typeInBetLabel?.isHidden = true
-            youOweLabel.text = " You Owe: \(currBet - raiseAmount3)"
+            youOweLabel.text = " You Owe: \(0)"
+            playerFourLabel.text = " \(playerFourName): \(playerFourBalance)"
+            placedBet3 = true
         }
         
         /*
@@ -533,71 +587,7 @@ func backRight()
         okayButtonBackground.alpha = 1.0
         typeInBetLabel?.isHidden = false
         typeInBetTextField?.isHidden = false //this reveals all the things because it is the first thing
-        israise = true
-    }
-    
-    func bet(num: Int) //takes an integer and removes that integer from the balances of the players
-    {
-        if(playerCount == 0)//it is player 0 placing the bet
-        {
-            playerOneBalance = playerOneBalance - num
-            playerOneLabel.text = " Player One: \(playerOneBalance)"
-            currentBetLabel.text = " Current Bet: \(currBet)"
-            placedBet0 = true
-        }
-        if(playerCount == 1)
-        {
-            playerTwoBalance = playerTwoBalance - num
-            currentBetLabel.text = " Current Bet: \(currBet)"
-            playerTwoLabel.text = " Player Two: \(playerTwoBalance)"
-            placedBet1 = true
-        }
-        if(playerCount == 2)
-        {
-            playerThreeBalance = playerThreeBalance - num
-            currentBetLabel.text = " Current Bet: \(currBet)"
-            playerThreeLabel.text = " Player Three: \(playerThreeBalance)"
-            placedBet2 = true
-        }
-        if(playerCount == 3)
-        {
-            playerFourBalance = playerFourBalance - num
-            currentBetLabel.text = " Current Bet: \(currBet)"
-            playerFourLabel.text = " Player Four: \(playerFourBalance)"
-            placedBet3 = true
-        }
-    }
-    func raise(num: Int) //increases the other players raise amount
-    {
-        if(playerCount == 0)
-        {
-            raiseAmount1 = a1 - b1//player two must match the bet by this much
-            raiseAmount2 = a1 - c1//player three must match the bet by this much
-            raiseAmount3 = a1 - d1 //player four must match the bet by this much
-            raiseAmount0 = 0 // this is player ones raise therefore he has just placed the bet for this much
-            
-        }
-        if(playerCount == 1)
-        {
-            raiseAmount1 = 0
-            raiseAmount2 = b1 - c1
-            raiseAmount3 = b1 - d1
-            raiseAmount0 = b1 - a1
-        }
-        if(playerCount == 2)
-        {
-            raiseAmount1 = c1 - b1
-            raiseAmount2 = 0
-            raiseAmount3 = c1 - d1
-            raiseAmount0 = c1 - a1
-        }
-        if(playerCount == 3)
-        {
-            raiseAmount1 = d1 - b1
-            raiseAmount2 = d1 - c1
-            raiseAmount3 = 0
-            raiseAmount0 = d1 - a1
-        }
+        isRaise = true
     }
     
     @IBAction func endTurn(_ sender: UIButton) {
@@ -627,7 +617,7 @@ func backRight()
             {
                 playerThreeLabel.textColor = .white
             }
-            youOweLabel.text =  " You Owe: \(raiseAmount0) "
+            youOweLabel.text =  " You Owe: \(currBet - putIn0) "
             
          prevOne = false
          prevTwo = false
@@ -651,7 +641,7 @@ func backRight()
             {
                 playerFourLabel.textColor = .white
             }
-            youOweLabel.text =  " You Owe: \(raiseAmount1) "
+            youOweLabel.text =  " You Owe: \(currBet - putIn1) "
             
          prevOne = true
          prevTwo = false
@@ -675,7 +665,7 @@ func backRight()
             {
                 playerFourLabel.textColor = .white
             }
-            youOweLabel.text =  " You Owe: \(raiseAmount2) "
+            youOweLabel.text =  " You Owe: \(currBet - putIn2) "
             
             prevOne = false
             prevTwo = true
@@ -699,7 +689,7 @@ func backRight()
             {
                 playerThreeLabel.textColor = .white
             }
-            youOweLabel.text =  " You Owe: \(raiseAmount3) "
+            youOweLabel.text =  " You Owe: \(currBet - putIn3) "
         
             
          prevOne = false
