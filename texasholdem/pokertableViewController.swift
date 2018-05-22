@@ -60,6 +60,8 @@ class pokertableViewController: UIViewController {
     @IBOutlet weak var leftCard: UIImageView!
     @IBOutlet weak var rightCard: UIImageView!
     
+    
+    var realPot = 0
     var winners: [Int] = []
     var board: [Card] = []
     var playerOne: [Card] = []
@@ -99,7 +101,7 @@ class pokertableViewController: UIViewController {
     var prevOne = false
     var prevTwo = false
     var prevThree = false
-    var putIn0 = -1
+    var putIn0 = nil
     var putIn1 = 0
     var putIn2 = 0
     var putIn3 = 0
@@ -109,7 +111,7 @@ class pokertableViewController: UIViewController {
     var put3 = 0
 
     
-    var isBet = false
+    var isBet = true
     var isRaise = false
     
     
@@ -142,7 +144,7 @@ class pokertableViewController: UIViewController {
                 isRaise = false
                 currBet = 0
                 currentBetLabel.text = " Current Bet: \(currBet)"
-                putIn0 = -1
+                putIn0 = nil
                 putIn1 = 0
                 putIn2 = 0
                 putIn3 = 0
@@ -154,6 +156,7 @@ class pokertableViewController: UIViewController {
                 placedBet1 = false
                 placedBet2 = false
                 placedBet3 = false
+                realPot = pot
                 
             }
             if(putIn0 == putIn1) && (putIn1 == putIn2) && (putIn2 == putIn3) && (cardsFlopped == 3)
@@ -181,7 +184,7 @@ class pokertableViewController: UIViewController {
                 isRaise = false
                 currBet = 0
                 currentBetLabel.text = " Current Bet: \(currBet)"
-                putIn0 = -1
+                putIn0 = nil
                 putIn1 = 0
                 putIn2 = 0
                 putIn3 = 0
@@ -193,6 +196,7 @@ class pokertableViewController: UIViewController {
                 placedBet1 = false
                 placedBet2 = false
                 placedBet3 = false
+                realPot = pot
                 
             }
             if(putIn0 == putIn1) && (putIn1 == putIn2) && (putIn2 == putIn3) && (cardsFlopped == 4)
@@ -220,7 +224,7 @@ class pokertableViewController: UIViewController {
                 isRaise = false
                 currBet = 0
                 currentBetLabel.text = " Current Bet: \(currBet)"
-                putIn0 = -1
+                putIn0 = nil
                 putIn1 = 0
                 putIn2 = 0
                 putIn3 = 0
@@ -232,6 +236,7 @@ class pokertableViewController: UIViewController {
                 placedBet1 = false
                 placedBet2 = false
                 placedBet3 = false
+                realPot = pot
             }
             if(putIn0 == putIn1) && (putIn1 == putIn2) && (putIn2 == putIn3) && (cardsFlopped == 5)
             {
@@ -316,7 +321,7 @@ class pokertableViewController: UIViewController {
                 isRaise = false
                 currBet = 0
                 currentBetLabel.text = " Current Bet: \(currBet)"
-                putIn0 = -1
+                putIn0 = nil
                 putIn1 = 0
                 putIn2 = 0
                 putIn3 = 0
@@ -451,7 +456,7 @@ class pokertableViewController: UIViewController {
         playerThreeFolded = false
         playerFourFolded = false
         isRaise = false
-        isBet = false
+        isBet = true
         
         currentBetLabel.text = " Current Bet: \(currBet)"
         youOweLabel.text = " You Owe: \(currBet)"
@@ -459,7 +464,7 @@ class pokertableViewController: UIViewController {
         putIn3 = 0
         putIn2 = 0
         putIn1 = 0
-        putIn0 = -1
+        putIn0 = nil
         put1 = 0
         put0 = 0
         put2 = 0
@@ -634,6 +639,30 @@ func backRight()
     
     @IBAction func okayButton(_ sender: UIButton)
     {
+        if(isBet == true)
+        {
+            currBet = (Int(typeInBetTextField.text!)!)
+            updatePutin()
+            playerOneBalance = playerOneBalance - (currBet)
+            if(currBet == 0)
+            {
+                putIn0 = nil
+            }
+            else{
+                putIn0 = currBet
+            }
+            placedBet0 = true
+            placedBet1 = false
+            placedBet2 = false
+            placedBet3 = false
+            playerOneLabel.text = " \(playerOneName): \(playerOneBalance)"
+            currentBetLabel.text = " Current Bet: \(currBet)"
+            okayButtonBackground.alpha = 0.0
+            typeInBetTextField?.isHidden = true
+            typeInBetLabel?.isHidden = true
+            youOweLabel.text = " You Owe: 0"
+            isBet = false
+        }
         
             if(isRaise == true && (Int(typeInBetTextField.text!)!) < currBet)
             {
@@ -652,7 +681,7 @@ func backRight()
                     
                     currBet = (Int(typeInBetTextField.text!)!)
                     updatePutin()
-                    if(putIn0 == -1 )
+                    if(putIn0 == nil )
                     {
                         playerOneBalance = playerOneBalance - (currBet)
                     }
@@ -726,10 +755,19 @@ func backRight()
     }
     @IBAction func betButton(_ sender: UIButton)
     {
+        if(playerCount == 0 && putIn0 == -1 && isBet == false)
+        {
+            putIn0 = 0
+            okayButtonBackground.alpha = 1.0
+            typeInBetLabel?.isHidden = false
+            typeInBetTextField?.isHidden = false //this reveals all the things because it is the first thing
+            isBet = true
+            return
+        }
         
         if(playerCount == 0)
         {
-            if(putIn0 == -1 )
+            if(putIn0 == -1)
             {
                 playerOneBalance = playerOneBalance - (currBet)
             }
@@ -743,7 +781,6 @@ func backRight()
             youOweLabel.text = " You Owe: \(0)"
             playerOneLabel.text = " \(playerOneName): \(playerOneBalance)"
             placedBet0 = true
-           
         }
         if(playerCount == 1)
         {
@@ -755,7 +792,6 @@ func backRight()
             youOweLabel.text = " You Owe: \(0)"
             playerTwoLabel.text = " \(playerTwoName): \(playerTwoBalance)"
             placedBet1 = true
-            print(putIn1)
         }
         if(playerCount == 2)
         {
@@ -815,6 +851,10 @@ func backRight()
     
     func calculatePot() -> Int
     {
+        if(putIn0 == -1)
+        {
+            return 0
+        }
         if(playerOneFolded)
         {
             if(playerTwoFolded)
@@ -881,8 +921,19 @@ func backRight()
             {
                 playerThreeLabel.textColor = .white
             }
+            if(putIn0 == -1)
+            {
+                youOweLabel.text = " You Owe: \(currBet)"
+                
+            }
+            else{
             youOweLabel.text =  " You Owe: \(currBet - putIn0) "
-            pot = calculatePot()
+            }
+            pot = realPot + calculatePot()
+            if(pot < 0 )
+            {
+                pot = 0
+            }
             potLabel.text = " Pot: \(pot)"
          prevOne = false
          prevTwo = false
@@ -908,7 +959,11 @@ func backRight()
                 playerFourLabel.textColor = .white
             }
             youOweLabel.text =  " You Owe: \(currBet - putIn1) "
-            pot = calculatePot()
+            pot = realPot + calculatePot()
+            if(pot < 0 )
+            {
+                pot = 0
+            }
             potLabel.text = " Pot: \(pot)"
          prevOne = true
          prevTwo = false
@@ -934,7 +989,7 @@ func backRight()
                 playerFourLabel.textColor = .white
             }
             youOweLabel.text =  " You Owe: \(currBet - putIn2) "
-            pot = calculatePot()
+            pot = realPot + calculatePot()
             potLabel.text = " Pot: \(pot)"
             prevOne = false
             prevTwo = true
@@ -961,7 +1016,11 @@ func backRight()
                 playerThreeLabel.textColor = .white
             }
             youOweLabel.text =  " You Owe: \(currBet - putIn3) "
-            pot = calculatePot()
+            pot = realPot + calculatePot()
+            if(pot < 0 )
+            {
+                pot = 0
+            }
             potLabel.text = " Pot: \(pot)"
             
          prevOne = false
