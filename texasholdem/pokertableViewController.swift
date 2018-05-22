@@ -177,6 +177,10 @@ class pokertableViewController: UIViewController {
                 {
                     playerFourLabel.textColor = .white
                 }
+                isBet = false
+                isRaise = false
+                currBet = 0
+                currentBetLabel.text = " Current Bet: \(currBet)"
                 putIn0 = -1
                 putIn1 = 0
                 putIn2 = 0
@@ -185,6 +189,10 @@ class pokertableViewController: UIViewController {
                 put0 = 0
                 put2 = 0
                 put3 = 0
+                placedBet0 = false
+                placedBet1 = false
+                placedBet2 = false
+                placedBet3 = false
                 
             }
             if(putIn0 == putIn1) && (putIn1 == putIn2) && (putIn2 == putIn3) && (cardsFlopped == 4)
@@ -208,6 +216,10 @@ class pokertableViewController: UIViewController {
                 {
                     playerFourLabel.textColor = .white
                 }
+                isBet = false
+                isRaise = false
+                currBet = 0
+                currentBetLabel.text = " Current Bet: \(currBet)"
                 putIn0 = -1
                 putIn1 = 0
                 putIn2 = 0
@@ -216,11 +228,108 @@ class pokertableViewController: UIViewController {
                 put0 = 0
                 put2 = 0
                 put3 = 0
+                placedBet0 = false
+                placedBet1 = false
+                placedBet2 = false
+                placedBet3 = false
             }
             if(putIn0 == putIn1) && (putIn1 == putIn2) && (putIn2 == putIn3) && (cardsFlopped == 5)
             {
                 winners = determineWinner()
-                
+                if(winners.count == 2)
+                {
+                    pot = (pot / 2)
+                    for i in 0...3
+                    {
+                        if(winners[i] == 0)
+                        {
+                            playerOneBalance += pot
+                        }
+                        if(winners[i] == 1)
+                        {
+                            playerTwoBalance += pot
+                        }
+                        if(winners[i] == 2)
+                        {
+                            playerThreeBalance += pot
+                        }
+                        if(winners[i] == 3)
+                        {
+                            playerFourBalance += pot
+                        }
+                    }
+                }
+                if(winners.count == 3)
+                {
+                    pot = (pot / 3)
+                    for i in 0...3
+                    {
+                        if(winners[i] == 0)
+                        {
+                            playerOneBalance += pot
+                        }
+                        if(winners[i] == 1)
+                        {
+                            playerTwoBalance += pot
+                        }
+                        if(winners[i] == 2)
+                        {
+                            playerThreeBalance += pot
+                        }
+                        if(winners[i] == 3)
+                        {
+                            playerFourBalance += pot
+                        }
+                    }
+                }
+                if(winners.count == 4)
+                {
+                    pot = (pot / 4)
+                    playerOneBalance += pot
+                    playerTwoBalance += pot
+                    playerThreeBalance += pot
+                    playerFourBalance += pot
+                }
+                if(winners.count == 1)
+                {
+                    for i in 0...3
+                    {
+                        if(winners[i] == 0)
+                        {
+                            playerOneBalance += pot
+                        }
+                        if(winners[i] == 1)
+                        {
+                            playerTwoBalance += pot
+                        }
+                        if(winners[i] == 2)
+                        {
+                            playerThreeBalance += pot
+                        }
+                        if(winners[i] == 3)
+                        {
+                            playerFourBalance += pot
+                        }
+                    }
+                }
+                isBet = false
+                isRaise = false
+                currBet = 0
+                currentBetLabel.text = " Current Bet: \(currBet)"
+                putIn0 = -1
+                putIn1 = 0
+                putIn2 = 0
+                putIn3 = 0
+                put1 = 0
+                put0 = 0
+                put2 = 0
+                put3 = 0
+                placedBet0 = false
+                placedBet1 = false
+                placedBet2 = false
+                placedBet3 = false
+                pot = 0
+                potLabel.text = " Pot: \(pot)"
                 
                 if(!playerOneFolded)
                 {
@@ -746,7 +855,7 @@ func backRight()
         return putIn3 + putIn1 + putIn0 + putIn2
     }
     @IBAction func endTurn(_ sender: UIButton) {
-        
+        print(determineWinner())
         leftCard.image = #imageLiteral(resourceName: "back")
         rightCard.image = #imageLiteral(resourceName: "back")
         flippedOne = false
@@ -1067,26 +1176,41 @@ func backRight()
     }
     func straightFlush(player: Array<Card>) -> Int
     {
-        let temp : Card = Card(numb: 0)
         var tempArrayYuh: [Card] = []
-        for i in 0...6
-        {
-            tempArrayYuh = []
-            temp.setSuit(num: player[i].getSuit())
-            for j in 0...6
-            {
-                if(player[i].getSuit() == player[j].getSuit())
-                {
-                    tempArrayYuh.append(player[j])
-                }
-                if(tempArrayYuh.count >= 5)
-                {
-                    break
-                }
-            }
-        }
+var arrayOfVars = [0,0,0,0]
+for i in 0...6
+{
+if player[i].getSuit() == 0
+{
+    arrayOfVars[0] += 1
+}
+if player[i].getSuit() == 1
+{
+arrayOfVars[1] += 1
+}
+if player[i].getSuit() == 2
+{
+    arrayOfVars[2] += 1
+}
+if player[i].getSuit() == 3
+{
+arrayOfVars[3] += 1}
+}
+        let maxNum = arrayOfVars.max()
+        var indexForPlayerWithMaxScore = arrayOfVars.indices.filter { arrayOfVars[$0] == maxNum }
+for i in 0...6
+{
+if (player[i].getSuit() == indexForPlayerWithMaxScore[0])
+{
+tempArrayYuh.append(player[i])
+}
+}
+if tempArrayYuh.count < 5
+{
+return -1
+}
         var tempArray: [Int] = []
-        for i in 0...tempArrayYuh.count
+        for i in 0...tempArrayYuh.count - 1
         {
             tempArray.append(tempArrayYuh[i].getName())
         }
@@ -1134,7 +1258,7 @@ func backRight()
     }
     func fourOfAKind(player: Array<Card>) -> Int
     {
-        for i in 6...3
+        for i in stride(from: 6, through: 3, by: -1)
         {
             if (player[i].getName() == player[i - 1].getName() && player[i].getName() == player[i - 2].getName() && player[i].getName() == player[i - 3].getName())
             {
@@ -1235,7 +1359,7 @@ func backRight()
     }
     func threeOfAKind(player: Array<Card>) -> Int
     {
-        for i in 6...2
+       for i in stride(from: 6, through: 2, by: -1)
         {
             if (player[i].getName() == player[i - 1].getName() && player[i].getName() == player[i - 2].getName())
             {
@@ -1246,34 +1370,34 @@ func backRight()
     }
     func twoPair(player: Array<Card>) -> Int
     {
-        var a = -1
-        var b = -1
-        for i in 6...1
+        var a = 0
+        for i in stride(from: 6, through: 3, by: -1)
         {
             if (player[i].getName() == player[i - 1].getName())
             {
                 a = i
+                break
             }
         }
-        for i in a...1
-        {
-            if (player[i].getName() == player[i - 1].getName())
-            {
-                b = i
-            }
-        }
-        if (b != -1)
-        {
-            return player[a].getName()
-        }
-        else
+        if a == 0
         {
             return -1
         }
+       for i in stride(from: a - 2, through: 1, by: -1)
+        {
+            if (player[i].getName() == player[i - 1].getName())
+            {
+                return player[a].getName()
+            }
+        }
+       
+        return -1
+        
+        
     }
     func onePair(player: Array<Card>) -> Int
     {
-        for i in 6...1
+        for i in stride(from: 6, through: 1, by: -1)
         {
             if (player[i].getName() == player[i - 1].getName())
             {
