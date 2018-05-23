@@ -10,9 +10,19 @@ import UIKit
 var importantvar = 2
 class playercontroller: UIViewController {
 
+    @IBOutlet weak var nextButton: UIButton!
+    @IBOutlet weak var minusButton: UIButton!
+    @IBOutlet weak var plusButton: UIButton!
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        numberofPlayersLabel.layer.cornerRadius = 20
+        numberofPlayersLabel.clipsToBounds = true
+        minusButton.layer.cornerRadius = 20
+        minusButton.clipsToBounds = true
+        plusButton.layer.cornerRadius = 20
+        plusButton.clipsToBounds = true
+        nextButton.layer.cornerRadius = 20
+        nextButton.clipsToBounds = true
         // Do any additional setup after loading the view.
     }
   

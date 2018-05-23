@@ -40,6 +40,7 @@ class Card: NSObject
     {
         return num1
     }
+    
 }
 
 
@@ -82,11 +83,11 @@ class pokertableViewController: UIViewController {
     var flippedTwo = false
     var images: [UIImage] = []
     var numberOfPlayers = importantvar - 1
-    
-    var playerOneName = " Player One"
-    var playerTwoName = " Player Two"
-    var playerThreeName = " Player Three"
-    var playerFourName = " Player Four"
+    var placecard: Card = Card(numb: 0)
+    var playerOneName = player1
+    var playerTwoName = player2
+    var playerThreeName = player3
+    var playerFourName = player4
     
     @IBOutlet weak var potLabel: UILabel!
     
@@ -101,7 +102,7 @@ class pokertableViewController: UIViewController {
     var prevOne = false
     var prevTwo = false
     var prevThree = false
-    var putIn0 = nil
+    var putIn0 = -1
     var putIn1 = 0
     var putIn2 = 0
     var putIn3 = 0
@@ -144,7 +145,7 @@ class pokertableViewController: UIViewController {
                 isRaise = false
                 currBet = 0
                 currentBetLabel.text = " Current Bet: \(currBet)"
-                putIn0 = nil
+                putIn0 = -1
                 putIn1 = 0
                 putIn2 = 0
                 putIn3 = 0
@@ -184,7 +185,7 @@ class pokertableViewController: UIViewController {
                 isRaise = false
                 currBet = 0
                 currentBetLabel.text = " Current Bet: \(currBet)"
-                putIn0 = nil
+                putIn0 = -1
                 putIn1 = 0
                 putIn2 = 0
                 putIn3 = 0
@@ -224,7 +225,7 @@ class pokertableViewController: UIViewController {
                 isRaise = false
                 currBet = 0
                 currentBetLabel.text = " Current Bet: \(currBet)"
-                putIn0 = nil
+                putIn0 = -1
                 putIn1 = 0
                 putIn2 = 0
                 putIn3 = 0
@@ -241,10 +242,11 @@ class pokertableViewController: UIViewController {
             if(putIn0 == putIn1) && (putIn1 == putIn2) && (putIn2 == putIn3) && (cardsFlopped == 5)
             {
                 winners = determineWinner()
+                print(determineWinner())
                 if(winners.count == 2)
                 {
                     pot = (pot / 2)
-                    for i in 0...3
+                    for i in 0...1
                     {
                         if(winners[i] == 0)
                         {
@@ -267,7 +269,7 @@ class pokertableViewController: UIViewController {
                 if(winners.count == 3)
                 {
                     pot = (pot / 3)
-                    for i in 0...3
+                    for i in 0...2
                     {
                         if(winners[i] == 0)
                         {
@@ -297,31 +299,30 @@ class pokertableViewController: UIViewController {
                 }
                 if(winners.count == 1)
                 {
-                    for i in 0...3
-                    {
-                        if(winners[i] == 0)
+                    
+                        if(winners[0] == 0)
                         {
                             playerOneBalance += pot
                         }
-                        if(winners[i] == 1)
+                        if(winners[0] == 1)
                         {
                             playerTwoBalance += pot
                         }
-                        if(winners[i] == 2)
+                        if(winners[0] == 2)
                         {
                             playerThreeBalance += pot
                         }
-                        if(winners[i] == 3)
+                        if(winners[0] == 3)
                         {
                             playerFourBalance += pot
                         }
-                    }
+                    
                 }
                 isBet = false
                 isRaise = false
                 currBet = 0
                 currentBetLabel.text = " Current Bet: \(currBet)"
-                putIn0 = nil
+                putIn0 = -1
                 putIn1 = 0
                 putIn2 = 0
                 putIn3 = 0
@@ -396,6 +397,7 @@ class pokertableViewController: UIViewController {
         super.viewDidLoad()
         
         makeEverything()
+        
         if(numberOfPlayers == 1)
         {
             playerThreeLabel.text = ""
@@ -415,6 +417,12 @@ class pokertableViewController: UIViewController {
        
     }
 
+    func newCard(num: Int) -> Card
+    {
+        let newCard: Card = Card(numb: num)
+        return newCard
+    }
+    
     func makeEverything()
     {
         currentBetLabel.layer.cornerRadius = 20
@@ -445,26 +453,20 @@ class pokertableViewController: UIViewController {
         {
             playerFourFolded = true
         }
-        
-        
-        
-        
         currBet = 5
-        
         playerOneFolded = false
         playerTwoFolded = false
         playerThreeFolded = false
         playerFourFolded = false
         isRaise = false
         isBet = true
-        
         currentBetLabel.text = " Current Bet: \(currBet)"
         youOweLabel.text = " You Owe: \(currBet)"
         
         putIn3 = 0
         putIn2 = 0
         putIn1 = 0
-        putIn0 = nil
+        putIn0 = -1
         put1 = 0
         put0 = 0
         put2 = 0
@@ -475,26 +477,39 @@ class pokertableViewController: UIViewController {
         typeInBetLabel?.isHidden = true
         okayButtonBackground.alpha = 0.0
         
-        playerOneLabel.text = " Player One: \(playerOneBalance)"
-        playerTwoLabel.text = " Player Two: \(playerTwoBalance)"
-        playerThreeLabel.text = " Player Three: \(playerThreeBalance)"
-        playerFourLabel.text = " Player Four: \(playerFourBalance)"
+        playerOneLabel.text = " \(playerOneName): \(playerOneBalance)"
+        playerTwoLabel.text = " \(playerTwoName): \(playerTwoBalance)"
+        playerThreeLabel.text = " \(playerThreeName): \(playerThreeBalance)"
+        playerFourLabel.text = " \(playerFourName): \(playerFourBalance)"
         
         board = [newCard(num: generateRandomNumber()), newCard(num: generateRandomNumber()), newCard(num: generateRandomNumber()), newCard(num: generateRandomNumber()), newCard(num: generateRandomNumber())]
         playerOne = [newCard(num: generateRandomNumber()), newCard(num: generateRandomNumber()), board[0], board[1], board[2], board[3], board[4]]
         
+        
+        
         playerTwo = [newCard(num: generateRandomNumber()), newCard(num: generateRandomNumber()), board[0], board[1], board[2], board[3], board[4]]
         playerThree = [newCard(num: generateRandomNumber()), newCard(num: generateRandomNumber()), board[0],board[1],board[2],board[3],board[4]]
         playerFour = [newCard(num: generateRandomNumber()), newCard(num: generateRandomNumber()), board[0],board[1],board[2],board[3],board[4]]
-        sortedPlayerOne = [playerOne[0],playerOne[1],playerOne[2],playerOne[3],playerOne[4], playerOne[5],playerOne[6]]
+        
+        
+        sortedPlayerOne = [playerOne[0], playerOne[1], playerOne[2],playerOne[3],playerOne[4],playerOne[5],playerOne[6]]
+        
+        
         sortedPlayerTwo = [playerTwo[0],playerTwo[1],playerTwo[2],playerTwo[3],playerTwo[4], playerTwo[5], playerTwo[6]]
         sortedPlayerThree = [playerThree[0],playerThree[1],playerThree[2],playerThree[3],playerThree[4], playerThree[5],playerThree[6]]
         sortedPlayerFour = [playerFour[0],playerFour[1],playerFour[2],playerFour[3],playerFour[4],playerFour[5],playerFour[6]]
         
-        quicksort(c: sortedPlayerOne, a: 0, b: 6)
-        quicksort(c: sortedPlayerTwo, a: 0, b: 6)
-        quicksort(c: sortedPlayerThree, a: 0, b: 6)
-        quicksort(c: sortedPlayerFour, a: 0, b: 6)
+        sortedPlayerOne = bubbleSort(c: sortedPlayerOne)
+        sortedPlayerTwo =  bubbleSort(c: sortedPlayerTwo)
+        sortedPlayerThree = bubbleSort(c: sortedPlayerThree)
+        sortedPlayerFour = bubbleSort(c: sortedPlayerFour)
+        
+        print(board[0].getName(),board[1].getName(),board[2].getName(),board[3].getName(),board[4].getName())
+        print(sortedPlayerOne[0].getName(),sortedPlayerOne[1].getName(), sortedPlayerOne[2].getName(),sortedPlayerOne[3].getName(), sortedPlayerOne[4].getName(), sortedPlayerOne[5].getName(), sortedPlayerOne[6].getName())
+        print(playerOne[0].getName(),playerOne[1].getName(), playerOne[2].getName(),playerOne[3].getName(), playerOne[4].getName(),playerOne[5].getName(),playerOne[6].getName())
+        
+        print(sortedPlayerOne[0].getNum(),sortedPlayerOne[1].getNum(),sortedPlayerOne[2].getNum(),sortedPlayerOne[3].getNum(),sortedPlayerOne[4].getNum(), sortedPlayerOne[5].getNum(), sortedPlayerOne[6].getNum())
+        print(playerOne[0].getNum(),playerOne[1].getNum(),playerOne[2].getNum(),playerOne[3].getNum(),playerOne[4].getNum(), playerOne[5].getNum(), playerOne[6].getNum())
         
         playerOneLabel.textColor = .blue
         playerTwoLabel.textColor = .white
@@ -646,7 +661,7 @@ func backRight()
             playerOneBalance = playerOneBalance - (currBet)
             if(currBet == 0)
             {
-                putIn0 = nil
+                putIn0 = -1
             }
             else{
                 putIn0 = currBet
@@ -681,7 +696,7 @@ func backRight()
                     
                     currBet = (Int(typeInBetTextField.text!)!)
                     updatePutin()
-                    if(putIn0 == nil )
+                    if(putIn0 == -1 )
                     {
                         playerOneBalance = playerOneBalance - (currBet)
                     }
@@ -1136,43 +1151,29 @@ func backRight()
         return num
     }
     
-    func newCard(num : Int) -> Card
+    
+    
+    
+    
+    func bubbleSort(c: [Card]) -> [Card]
     {
-        let newCard : Card = Card(numb: num)
-        return newCard
-    }
-    
-    
-    func partition(v: [Card], left: Int, right: Int) -> Int {
-        var i = left
-        let temp : Card = Card(numb: 0)
-        for j in (left)...(right) {
-            if v[j].getName() < v[left].getName() {
-                i += 1
-                temp.setSuit(num: v[i].getSuit())
-                temp.setName(num: v[i].getName())
-                v[i].setName(num: v[j].getName())
-                v[i].setSuit(num: v[j].getSuit())
-                v[j].setName(num: temp.getName())
-                v[j].setSuit(num: temp.getSuit())
+        for _ in 0...c.count - 1
+        {
+           for j in 1...c.count - 1
+           {
+                if(c[j - 1].getName() > c[j].getName())
+                {
+                    placecard.setName(num: c[j - 1].getName())
+                    placecard.setSuit(num: c[j - 1].getSuit())
+                    c[j-1].setName(num: c[j].getName())
+                    c[j-1].setSuit(num: c[j].getSuit())
+                    c[j].setName(num: placecard.getName())
+                    c[j].setSuit(num: placecard.getSuit())
+                    
+                }
             }
         }
-        
-        temp.setSuit(num: v[i].getSuit())
-        temp.setName(num: v[i].getName())
-        v[i].setSuit(num: v[left].getSuit())
-        v[i].setName(num: v[left].getName())
-        v[left].setSuit(num: temp.getSuit())
-        v[left].setName(num: temp.getName())
-        return i
-    }
-    
-    func quicksort(c: [Card], a: Int, b: Int) {
-        if b > a {
-            let pivotIndex = partition(v: c, left: a, right: b)
-            quicksort(c: c, a: a, b: pivotIndex - 1)
-            quicksort(c: c, a: pivotIndex + 1, b: b)
-        }
+        return c
     }
     
     func checkSuit(player: Array<Card>) -> Bool
@@ -1480,7 +1481,7 @@ return -1
             let indexForPlayerWithMaxScore = cardValues.indices.filter { cardValues[$0] == maxNum }
             return indexForPlayerWithMaxScore
         }
-        cardValues = []
+        
         cardValues = [straightFlush(player: sortedPlayerOne), straightFlush(player: sortedPlayerTwo), straightFlush(player: sortedPlayerThree), straightFlush(player: sortedPlayerFour)]
         maxNum = cardValues.max()
         if (maxNum != -1)
@@ -1488,7 +1489,7 @@ return -1
             let indexForPlayerWithMaxScore = cardValues.indices.filter { cardValues[$0] == maxNum }
             return indexForPlayerWithMaxScore
         }
-        cardValues = []
+       
         cardValues = [fourOfAKind(player: sortedPlayerOne), fourOfAKind(player: sortedPlayerTwo), fourOfAKind(player: sortedPlayerThree), fourOfAKind(player: sortedPlayerFour)]
         maxNum = cardValues.max()
         if (maxNum != -1)
@@ -1496,7 +1497,7 @@ return -1
             let indexForPlayerWithMaxScore = cardValues.indices.filter { cardValues[$0] == maxNum }
             return indexForPlayerWithMaxScore
         }
-        cardValues = []
+        
         cardValues = [fullHouse(player: sortedPlayerOne), fullHouse(player: sortedPlayerTwo), fullHouse(player: sortedPlayerThree), fullHouse(player: sortedPlayerFour)]
         maxNum = cardValues.max()
         if (maxNum != -1)
@@ -1504,7 +1505,7 @@ return -1
             let indexForPlayerWithMaxScore = cardValues.indices.filter { cardValues[$0] == maxNum }
             return indexForPlayerWithMaxScore
         }
-        cardValues = []
+       
         cardValues = [flush(player: sortedPlayerOne), flush(player: sortedPlayerTwo), flush(player: sortedPlayerThree), flush(player: sortedPlayerFour)]
         maxNum = cardValues.max()
         if (maxNum != -1)
@@ -1512,7 +1513,7 @@ return -1
             let indexForPlayerWithMaxScore = cardValues.indices.filter { cardValues[$0] == maxNum }
             return indexForPlayerWithMaxScore
         }
-        cardValues = []
+        
         cardValues = [straight(player: sortedPlayerOne), straight(player: sortedPlayerTwo), straight(player: sortedPlayerThree), straight(player: sortedPlayerFour)]
         maxNum = cardValues.max()
         if (maxNum != -1)
@@ -1520,7 +1521,7 @@ return -1
             let indexForPlayerWithMaxScore = cardValues.indices.filter { cardValues[$0] == maxNum }
             return indexForPlayerWithMaxScore
         }
-        cardValues = []
+        
         cardValues = [threeOfAKind(player: sortedPlayerOne), threeOfAKind(player: sortedPlayerTwo), threeOfAKind(player: sortedPlayerThree), threeOfAKind(player: sortedPlayerFour)]
         maxNum = cardValues.max()
         if (maxNum != -1)
@@ -1528,7 +1529,7 @@ return -1
             let indexForPlayerWithMaxScore = cardValues.indices.filter { cardValues[$0] == maxNum }
             return indexForPlayerWithMaxScore
         }
-        cardValues = []
+        
         cardValues = [twoPair(player: sortedPlayerOne), twoPair(player: sortedPlayerTwo), twoPair(player: sortedPlayerThree), twoPair(player: sortedPlayerFour)]
         maxNum = cardValues.max()
         if (maxNum != -1)
@@ -1536,7 +1537,7 @@ return -1
             let indexForPlayerWithMaxScore = cardValues.indices.filter { cardValues[$0] == maxNum }
             return indexForPlayerWithMaxScore
         }
-        cardValues = []
+        
         cardValues = [onePair(player: sortedPlayerOne), onePair(player: sortedPlayerTwo), onePair(player: sortedPlayerThree), onePair(player: sortedPlayerFour)]
         maxNum = cardValues.max()
         if (maxNum != -1)
@@ -1544,7 +1545,7 @@ return -1
             let indexForPlayerWithMaxScore = cardValues.indices.filter { cardValues[$0] == maxNum }
             return indexForPlayerWithMaxScore
         }
-        cardValues = []
+        
         cardValues = [highCard(player: sortedPlayerOne), highCard(player: sortedPlayerTwo), highCard(player: sortedPlayerThree), highCard(player: sortedPlayerFour)]
         maxNum = cardValues.max()
         if (maxNum != -1)
@@ -1554,7 +1555,7 @@ return -1
         }
         
         
-        return []
+        return cardValues
         
     }
 }
